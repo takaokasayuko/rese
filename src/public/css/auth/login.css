@@ -38,7 +38,12 @@
   width: 300px;
 }
 
-.form__group:nth-child(2) {
+.error-message {
+  color: red;
+  text-align: center;
+}
+
+.form__group:nth-child(1) {
   width: 300px;
   background: url(../../image/icon/icon_mail.png) no-repeat;
   background-position: left;

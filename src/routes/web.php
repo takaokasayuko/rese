@@ -15,5 +15,9 @@ use App\Http\Controllers\ShopController;
 */
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [ShopController::class, 'index']);
+    Route::get('/thanks', [ShopController::class, 'thanks'])->name('thanks');
 });
+
+Route::get('/', [ShopController::class, 'index']);
+
+

@@ -100,3 +100,12 @@ body {
   transition: 0.2s;
 }
 
+.header-nav__button {
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background-color: inherit;
+  color: #3560F6;
+  font-size: 18px;
+}
+
