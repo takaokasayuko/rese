@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Shop extends Model
+class Favorite extends Model
 {
     use HasFactory;
 
@@ -13,9 +13,12 @@ class Shop extends Model
         'id',
     ];
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany(User::class, 'favorites');
+        return $this->belongsTo(User::class);
     }
-
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
+    }
 }

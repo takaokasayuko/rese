@@ -8,13 +8,13 @@
 <div class="content">
 
   <h2 class="form__heading">Login</h2>
-  <form action="/login" class="form" method="post">
+  <form class="form" action="/login" method="post">
     @csrf
 
     <div class="form-content">
 
       <div class="form__group">
-        <input type="email" class="form__input" name="email" id="email" placeholder="Email" value="{{ old('email') }}">
+        <input class="form__input" type="email" name="email" id="email" placeholder="Email" value="{{ old('email') }}">
       </div>
       <p class="error-message">
         @error('email')
@@ -23,7 +23,7 @@
       </p>
 
       <div class="form__group">
-        <input type="password" class="form__input" name="password" id="password" placeholder="Password">
+        <input class="form__input" type="password" name="password" id="password" placeholder="Password">
       </div>
       <p class="error-message">
         @error('password')

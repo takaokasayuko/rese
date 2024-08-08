@@ -6,6 +6,12 @@ body {
   background-color: #EEEEEE;
 }
 
+.header {
+  margin: 30px;
+  width: 95%;
+
+}
+
 .header-logo {
   color: #3560F6;
   position: fixed;

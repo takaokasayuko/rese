@@ -16,8 +16,12 @@ use App\Http\Controllers\ShopController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/thanks', [ShopController::class, 'thanks'])->name('thanks');
+
+    Route::post('/favorite/store', [ShopController::class, 'store']);
+    Route::delete('/favorite/delete', [ShopController::class, 'destory']);
 });
 
 Route::get('/', [ShopController::class, 'index']);
+Route::get('/search', [ShopController::class, 'search']);
 
 

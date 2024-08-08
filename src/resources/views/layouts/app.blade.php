@@ -15,10 +15,11 @@
   <header class="header">
     <div class="header-menu">
 
+      @section('search')
       <div class="menu-container">
         <input type="checkbox" id="menu-toggle">
         <h1 class="header-logo">Rese</h1>
-        <label for="menu-toggle" class="header-button">
+        <label class="header-button" for="menu-toggle">
 
           <span class="bar"></span>
           <span class="bar"></span>
@@ -60,10 +61,9 @@
         </nav>
         @endauth
 
-
-
-
       </div>
+
+      @show
 
     </div>
   </header>
