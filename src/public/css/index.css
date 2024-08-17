@@ -101,16 +101,17 @@
   text-decoration: none
 }
 
-.button__submit-fav {
+.button__submit-un_fav {
     font-size: 30px;
     margin-top: -10px;
     border: none;
     color: #9C9C9C;;
     background-color: white;
     cursor: pointer;
+    text-decoration: none
 }
 
-.button__submit-un_fav {
+.button__submit-fav {
   font-size: 30px;
   margin-top: -10px;
   border: none;

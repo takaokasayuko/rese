@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
-use App\Models\User;
 use App\Models\Favorite;
+use App\Models\Reservation;
+use Carbon\Carbon;
 
 class ShopController extends Controller
 {
@@ -105,7 +106,7 @@ class ShopController extends Controller
         $favorite->user_id = Auth::user()->id;
         $favorite->save();
 
-        return redirect('search');
+        return back();
     }
 
     public function destory(Request $request)
@@ -115,6 +116,41 @@ class ShopController extends Controller
             ->where('user_id', $user_id)
             ->delete();
 
-        return redirect('search');
+        return back();
+    }
+
+    public function detail($shop_favorite)
+    {
+        $shop = Shop::find($shop_favorite);
+        $today = Carbon::now();
+        $user = Auth::user();
+        $reservations = Reservation::where('user_id', $user->id)
+        ->where('shop_id', $shop_favorite)
+        ->whereDate('date', '>', $today)
+        ->oldest('date')
+        ->with('reservationShop')
+        ->get();
+
+        if(empty($reservations)) {
+            $reservations = null;
+        }
+
+
+        //予約可能時間
+        $start_time = Carbon::createFromTimeString('09:00:00');
+        $end_time = Carbon::createFromTimeString('21:00:00');
+        $times = [];
+        while($start_time <= $end_time) {
+            $times[] = $start_time->format('H:i');
+            $start_time = $start_time->addMinute(30);
+        }
+
+        //予約可能人数
+        $people_num = [];
+        for ($number = 1; $number <= 10; $number++) {
+            $people_num[] = $number;
+        }
+
+        return view('detail', compact('shop', 'times', 'people_num', 'reservations'));
     }
 }

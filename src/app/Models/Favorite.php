@@ -13,12 +13,8 @@ class Favorite extends Model
         'id',
     ];
 
-    public function user()
+    public function favoriteShop()
     {
-        return $this->belongsTo(User::class);
-    }
-    public function shop()
-    {
-        return $this->belongsTo(Shop::class);
+        return $this->belongsTo(Shop::class, 'shop_id');
     }
 }

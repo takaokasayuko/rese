@@ -42,18 +42,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function favorites()
-    {
-        return $this->hasMany(Favorite::class);
-    }
-
-    public function shops()
-    {
-        return $this->hasMany(Shop::class);
-    }
-
-    public function favoriteShops()
-    {
-        return $this->belongsToMany(Shop::class, 'favorites');
-    }
 }

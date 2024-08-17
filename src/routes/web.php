@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,18 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/favorite/store', [ShopController::class, 'store']);
     Route::delete('/favorite/delete', [ShopController::class, 'destory']);
+
+    Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('shop.detail');
+
+    Route::post('/reservation/store', [ReservationController::class, 'store']);
+    Route::delete('/reservation/delete', [ReservationController::class, 'destory']);
+
+    Route::get('/done', [ReservationController::class, 'done']);
+
+    Route::get('/mypage', [ReservationController::class, 'mypage']);
+
+
+
 });
 
 Route::get('/', [ShopController::class, 'index']);

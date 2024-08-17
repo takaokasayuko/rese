@@ -1,0 +1,129 @@
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 予約状況 */
+.content__reservation {
+  width: 30%;
+  margin-top: 60px;
+}
+
+.reservation__list {
+  background-color: #3560F6;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #9C9C9C;
+  color: white;
+  margin-bottom: 30px;
+  padding: 15px 20px;
+  font-size: 13px;
+}
+
+.reservation__list-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-list__name {
+  margin-left: 30px;
+  padding-left: 20px;
+  position: relative;
+}
+.header-list__name::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -50%;
+  background: url(../image/icon/icon_time.png) no-repeat;
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  transform: translate(0, -50%);
+}
+
+.header-list__form-button {
+  background: url(../image/icon/icon_cross.png) no-repeat;
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.reservation__list--detail {
+  margin-top: 20px;
+}
+.reservation__list-data {
+  padding: 0 30px 20px 0;
+}
+
+/* お気に入り */
+.content__right {
+  width: 60%;
+}
+
+.content__favorite {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.favorite__list {
+  width: 40%;
+  background-color: white;
+  box-shadow: 2px 2px 2px #9C9C9C;
+  border-radius: 5px;
+  margin: 0 45px 30px 0;
+}
+.shop__img img {
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  height: 150px;
+  object-fit: cover;
+}
+
+.shop__container {
+  padding: 0 15px 10px;
+}
+
+.shop-name {
+  font-size: 15px;
+}
+
+.shop__container-tag {
+  margin-top: -20px;
+  font-size: 10px;
+}
+
+.shop__container-tag--area,
+.shop__container-tag--genre {
+  display: inline-block;
+}
+
+.shop__container-foot {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shop__container-foot--detail {
+  background-color: #3560F6;
+  box-shadow: 2px 2px 2px #9C9C9C;
+  border-radius: 5px;
+  width: 90px;
+  height: 30px;
+  padding: 2px 10px;
+}
+
+.shop-detail__link {
+  font-size: 13px;
+  color: white;
+  text-decoration: none
+}
+
+.button__submit-fav {
+  font-size: 30px;
+  margin-top: -10px;
+  border: none;
+  color: red;
+  background-color: white;
+  cursor: pointer;
+}

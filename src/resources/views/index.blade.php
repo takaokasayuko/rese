@@ -53,7 +53,7 @@
       </div>
       <div class="shop__container-foot">
         <div class="shop__container-foot--detail">
-          <a class="shop-detail__link" href="">詳しくみる</a>
+          <a class="shop-detail__link" href="{{ route('shop.detail', ['shop_id' => $shop_favorite['shop']['id']]) }}">詳しくみる</a>
         </div>
         <div class="shop__container-foot--fav">
           @auth
@@ -61,7 +61,7 @@
           <form class="form__fav" action="/favorite/store" method="post">
             <input type="hidden" name="shop_id" value="{{ $shop_favorite['shop']['id'] }}">
             @csrf
-            <button class="button__submit-fav">&#10084;</button>
+            <button class="button__submit-un_fav">&#10084;</button>
           </form>
           @endif
 
@@ -70,13 +70,13 @@
             <input type="hidden" name="shop_id" value="{{ $shop_favorite['shop']['id'] }}">
             @csrf
             @method('delete')
-            <button class="button__submit-un_fav">&#10084;</button>
+            <button class="button__submit-fav">&#10084;</button>
           </form>
           @endif
           @endauth
 
           @guest
-          <button class="button__submit-fav">&#10084;</button>
+          <a class="button__submit-un_fav" href="/login">&#10084;</a>
           @endguest
 
         </div>
