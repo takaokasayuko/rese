@@ -95,7 +95,6 @@ class ShopController extends Controller
             ];
         });
 
-
         return view('index', compact('shop_favorites', 'areas', 'genres'));
     }
 
@@ -134,7 +133,6 @@ class ShopController extends Controller
         if(empty($reservations)) {
             $reservations = null;
         }
-
 
         //予約可能時間
         $start_time = Carbon::createFromTimeString('09:00:00');

@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="content">
-  <p class="tanks__text">ご予約ありがとうございます</p>
+  <p class="thanks__text">ご予約ありがとうございます</p>
   <div class="return__link">
     <a class="return__link-button" href="/">戻る</a>
   </div>

@@ -9,6 +9,7 @@
   border-radius: 5px;
   padding: 5px;
   background-color: white;
+  width: 40%;
 }
 
 .search-form {
@@ -28,7 +29,7 @@
 
 .search__keyword-input {
   height: 30px;
-  width: 400px;
+  width: 20%;
   padding: 10px;
   border: none;
   outline: none;
