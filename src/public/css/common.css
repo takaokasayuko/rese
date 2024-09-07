@@ -10,14 +10,6 @@ main {
   padding-top: 50px;
 }
 
-.header {
-  width: 100%;
-  height: 65px;
-  position: fixed;
-  background-color: #EEEEEE;
-
-}
-
 .header-logo {
   color: #3560F6;
   position: fixed;
@@ -64,14 +56,14 @@ main {
 }
 #menu-toggle:checked~.header-button .bar:nth-child(1) {
   transform: rotate(48deg) translate(5px, 6px);
-  width: 20px;
+  width: 25px;
 }
 #menu-toggle:checked~.header-button .bar:nth-child(2) {
   opacity: 0;
 }
 #menu-toggle:checked~.header-button .bar:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -7px);
-  width: 20px;
+  width: 25px;
 }
 
 #menu-toggle {
@@ -117,5 +109,9 @@ main {
   background-color: inherit;
   color: #3560F6;
   font-size: 18px;
+}
+
+.wrapper {
+  margin-top: 100px;
 }
 

@@ -19,6 +19,7 @@ class Reservation extends Model
         return $this->belongsTo(Shop::class, 'shop_id');
     }
 
+
     public function reservationDay()
     {
         $day = Carbon::parse($this->date)->format('Y-m-d');

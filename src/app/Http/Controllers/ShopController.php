@@ -22,26 +22,7 @@ class ShopController extends Controller
         $areas = $shops->unique('area');
         $genres = $shops->unique('genre');
 
-        $shop_favorites = $shops->map(function ($shop) {
-            $user = Auth::user();
-            if ($user) {
-                $favorite_status = Favorite::where('shop_id', $shop->id)
-                    ->Where('user_id', $user->id)
-                    ->exists();
-            } else {
-                $favorite_status = null;
-            }
-
-            if ($favorite_status) {
-                $favorite = 'true'; //お気に入り登録済み
-            } else {
-                $favorite = 'false'; //お気に入り未登録
-            }
-            return [
-                'shop' => $shop,
-                'favorite' => $favorite,
-            ];
-        });
+        $shop_favorites = Shop::getFavoriteStatus($shops);
 
         return view('index', compact('shop_favorites', 'areas', 'genres'));
     }
@@ -74,26 +55,7 @@ class ShopController extends Controller
         $areas = Shop::all()->unique('genre');
         $genres = Shop::all()->unique('genre');
 
-        $shop_favorites = $shops->map(function ($shop) {
-            $user = Auth::user();
-            if ($user) {
-                $favorite_status = Favorite::where('shop_id', $shop->id)
-                    ->Where('user_id', $user->id)
-                    ->exists();
-            } else {
-                $favorite_status = null;
-            }
-
-            if ($favorite_status) {
-                $favorite = 'true'; //お気に入り登録済み
-            } else {
-                $favorite = 'false'; //お気に入り未登録
-            }
-            return [
-                'shop' => $shop,
-                'favorite' => $favorite,
-            ];
-        });
+        $shop_favorites = Shop::getFavoriteStatus($shops);
 
         return view('index', compact('shop_favorites', 'areas', 'genres'));
     }
@@ -124,18 +86,13 @@ class ShopController extends Controller
         $today = Carbon::now();
         $user = Auth::user();
         $reservations = Reservation::where('user_id', $user->id)
-        ->where('shop_id', $shop_favorite)
         ->whereDate('date', '>', $today)
         ->oldest('date')
         ->with('reservationShop')
         ->get();
 
-        if(empty($reservations)) {
-            $reservations = null;
-        }
-
         //予約可能時間
-        $start_time = Carbon::createFromTimeString('09:00:00');
+        $start_time = Carbon::createFromTimeString('11:00:00');
         $end_time = Carbon::createFromTimeString('21:00:00');
         $times = [];
         while($start_time <= $end_time) {

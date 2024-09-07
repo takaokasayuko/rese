@@ -12,15 +12,13 @@
 </head>
 
 <body>
-  <header class="header">
+  <maim>
     <div class="header-menu">
-
       @section('search')
       <div class="menu-container">
         <input type="checkbox" id="menu-toggle">
         <h1 class="header-logo">Rese</h1>
         <label class="header-button" for="menu-toggle">
-
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
@@ -60,17 +58,16 @@
           </ul>
         </nav>
         @endauth
-
       </div>
 
       @show
-
     </div>
-  </header>
 
-  <main>
-    @yield('content')
-  </main>
+    <div class="wrapper">
+      @yield('content')
+    </div>
+
+    </main>
 
 </body>
 

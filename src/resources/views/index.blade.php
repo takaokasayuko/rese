@@ -15,7 +15,6 @@
         <option selected value="">All area</option>
         @foreach($areas as $area)
         <option value="{{ $area['area'] }}" @if( request('area')==$area['area'] ) selected @endif>{{ $area['area'] }}</option>
-
         @endforeach
       </select>
     </div>
