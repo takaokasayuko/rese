@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/thanks', [ShopController::class, 'thanks'])->name('thanks');
+
+    Route::post('/favorite/store', [ShopController::class, 'store']);
+    Route::delete('/favorite/delete', [ShopController::class, 'destory']);
+
+    Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('shop.detail');
+
+    Route::post('/reservation/store', [ReservationController::class, 'store']);
+    Route::delete('/reservation/delete', [ReservationController::class, 'destory']);
+
+    Route::get('/done', [ReservationController::class, 'done']);
+
+    Route::get('/mypage', [ReservationController::class, 'mypage']);
+
+
+
 });
+
+Route::get('/', [ShopController::class, 'index']);
+Route::get('/search', [ShopController::class, 'search']);
+
+
