@@ -51,7 +51,7 @@
           </div>
 
       </div>
-      @if(!empty($reservations))
+
       @foreach($reservations as $reservation)
       <div class="shop-reservation__list">
         <table class="reservation__table">
@@ -74,7 +74,7 @@
         </table>
       </div>
       @endforeach
-      @endif
+
     </div>
     <div class="reservation__submit">
       <button class="reservation__submit-button">予約する</button>
