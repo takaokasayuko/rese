@@ -52,6 +52,7 @@
 
       </div>
 
+
       <div class="shop-reservation__list">
         <table class="reservation__table">
           <tr class="reservation__row">
@@ -72,7 +73,10 @@
           </tr>
         </table>
       </div>
+
       <script src="{{ asset('js/detail.js') }}" defer></script>
+
+
 
     </div>
     <div class="reservation__submit">
