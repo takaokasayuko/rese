@@ -102,7 +102,7 @@ class ShopController extends Controller
 
         //予約可能人数
         $people_num = [];
-        for ($number = 1; $number <= 10; $number++) {
+        for ($number = 1; $number <= 99; $number++) {
             $people_num[] = $number;
         }
 

@@ -32,10 +32,10 @@
         <form class="shop-reservation__form" action="/reservation/store" method="post">
           <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">
           @csrf
-          <input class="reservation__date-input" type="date" name="date">
+          <input class="reservation__date-input" type="date" name="date" id="reservationDate">
 
           <div class="reservation__time">
-            <select class="reservation__time-select" name="time">
+            <select class="reservation__time-select" name="time" id="reservationTime">
               @foreach($times as $time)
               <option value="{{ $time }}">{{ $time }}</option>
               @endforeach
@@ -43,7 +43,7 @@
           </div>
 
           <div class="reservation__number">
-            <select class="reservation__number-select" name="person_num">
+            <select class="reservation__number-select" name="person_num" id="reservationNumber">
               @foreach($people_num as $person_num)
               <option value="{{ $person_num }}">{{ $person_num }}人</option>
               @endforeach
@@ -51,30 +51,29 @@
           </div>
 
       </div>
-      @if(!empty($reservations))
-      @foreach($reservations as $reservation)
+
       <div class="shop-reservation__list">
         <table class="reservation__table">
           <tr class="reservation__row">
             <td class="reservation__data">Shop</td>
-            <td class="reservation__data">{{ $reservation->reservationShop->name }}</td>
+            <td class="reservation__data">{{ $shop['name'] }}</td>
           </tr>
           <tr class="reservation__row">
             <td class="reservation__data">Date</td>
-            <td class="reservation__data">{{ $reservation->reservationDay() }}</td>
+            <td class="reservation__data" id="displayDate"></td>
           </tr>
           <tr class="reservation__row">
             <td class="reservation__data">Time</td>
-            <td class="reservation__data">{{ $reservation->reservationTime() }}</td>
+            <td class="reservation__data" id="displayTime"></td>
           </tr>
           <tr class="reservation__row">
             <td class="reservation__data">Number</td>
-            <td class="reservation__data">{{ $reservation['person_num'] }}人</td>
+            <td class="reservation__data" id="displayNumber"></td>
           </tr>
         </table>
       </div>
-      @endforeach
-      @endif
+      <script src="{{ asset('js/detail.js') }}" defer></script>
+
     </div>
     <div class="reservation__submit">
       <button class="reservation__submit-button">予約する</button>
