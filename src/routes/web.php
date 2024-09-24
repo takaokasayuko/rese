@@ -25,12 +25,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/reservation/store', [ReservationController::class, 'store']);
     Route::delete('/reservation/delete', [ReservationController::class, 'destory']);
+    Route::patch('/reservation/update', [ReservationController::class, 'update']);
 
     Route::get('/done', [ReservationController::class, 'done']);
 
     Route::get('/mypage', [ReservationController::class, 'mypage']);
-
-
+    Route::get('/mypage/update/{reservation_id}', [ReservationController::class, 'mypageUpdate'])->name('mypage.update');
 
 });
 
