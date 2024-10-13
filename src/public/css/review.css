@@ -1,0 +1,136 @@
+.content__shop-visited {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.shop-visited__list {
+  background-color: #3560F6;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #9C9C9C;
+  color: white;
+  margin-bottom: 10px;
+  padding: 15px;
+  font-size: 13px;
+  width: 30%;
+  margin-right: 20px;
+}
+
+.shop-visited__list-table,
+.review__list-table {
+  table-layout: auto;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 15px;
+}
+.review-list{
+  background-color: #5580F7;
+  width: 95%;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+th {
+  white-space: nowrap;
+}
+
+.review-data {
+  padding-right: 10px;
+}
+
+.review-data__date {
+  text-align: right;
+  font-size: 10px;
+}
+
+.review-data__text {
+  white-space: pre-wrap;
+}
+
+.review-data__data-rate {
+  font-size: 15px;
+  color: white;
+  white-space: nowrap;
+}
+
+.review-star {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
+}
+
+.review-star input[type="radio"] {
+  display: none;
+}
+
+.review-star label {
+  color: #D2D2D2;
+  cursor: pointer;
+  padding: 0 3px;
+  font-size: 20px;
+}
+
+.review-star label:hover,
+.review-star label:hover ~ label {
+  color: gold;
+}
+
+.review-star input[type="radio"]:checked~label {
+  color: gold;
+}
+
+.review__button {
+  text-align: right;
+}
+
+.review__button-submit {
+  width: 20%;
+  border: none;
+  color: #003FF5;
+  background-color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  height: 30px;
+  font-weight: bolder;
+}
+
+.review-data__star{
+  position: relative;
+  color: #D2D2D2;
+  font-size: 20px;
+  white-space: nowrap;
+  width: 102px;
+  display: inline-block;
+}
+
+.review-data__star::before,
+.review-data__star::after {
+  content: '★★★★★';
+}
+.review-data__star::after {
+  position: absolute;
+  z-index: 1;
+  top: 2px;
+  left: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  color: gold;
+}
+
+.review-data__star[data-rate="5"]::after {
+  width: 100%;
+}
+.review-data__star[data-rate="4"]::after {
+  width: 80%;
+}
+.review-data__star[data-rate="3"]::after {
+  width: 60%;
+}
+.review-data__star[data-rate="2"]::after {
+  width: 40%;
+}
+.review-data__star[data-rate="1"]::after {
+  width: 20%;
+}
+

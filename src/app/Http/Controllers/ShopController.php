@@ -23,7 +23,7 @@ class ShopController extends Controller
         $genres = $shops->unique('genre');
 
         $shop_favorites = Shop::getFavoriteStatus($shops);
-
+// dd($shop_favorites);
         return view('index', compact('shop_favorites', 'areas', 'genres'));
     }
 

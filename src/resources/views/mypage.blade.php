@@ -60,6 +60,11 @@
       </div>
       @endforeach
     </div>
+
+      <div class="shop-visited">
+        <a class="shop-visited__link" href="/review">来店履歴</a>
+      </div>
+
   </div>
 
 

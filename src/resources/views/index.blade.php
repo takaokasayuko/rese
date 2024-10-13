@@ -45,7 +45,15 @@
       <img src="{{ $shop_favorite['shop']['image'] }}" alt="">
     </div>
     <div class="shop__container">
-      <h2 class="shop-name">{{ $shop_favorite['shop']['name'] }}</h2>
+      <div class="shop-tittle__group">
+        <h2 class="shop-name">{{ $shop_favorite['shop']['name'] }}</h2>
+
+        <p class="shop-review">
+          <span class="review-rate" data-rate="{{ $shop_favorite['star'] }}"></span>
+          <span class="review-average">{{ $shop_favorite['average'] }}</span>
+        </p>
+      </div>
+
       <div class="shop__container-tag">
         <p class="shop__container-tag--area">#{{ $shop_favorite['shop']['area'] }}</p>
         <p class="shop__container-tag--genre">#{{ $shop_favorite['shop']['genre'] }}</p>

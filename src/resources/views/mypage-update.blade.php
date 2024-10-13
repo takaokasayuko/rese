@@ -28,7 +28,7 @@
         <td class="reservation__list-data">{{ $reservation_update->reservationShop->name}}</td>
       </tr>
       <tr class="reservation__list-row">
-        <th class="reservation__list-data"><label>Date</label></th>
+        <th class="reservation__list-data">Date</th>
         <td class="td reservation__list-data">
           <input class="reservation__list-data--input" type="date" name="date" value="{{ $reservation_update->reservationDay() }}">
         </td>

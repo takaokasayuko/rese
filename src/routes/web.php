@@ -32,6 +32,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/mypage', [ReservationController::class, 'mypage']);
     Route::get('/mypage/update/{reservation_id}', [ReservationController::class, 'mypageUpdate'])->name('mypage.update');
 
+    Route::get('/review', [ReservationController::class, 'review']);
+    Route::patch('/review/update', [ReservationController::class, 'reviewUpdate']);
+
 });
 
 Route::get('/', [ShopController::class, 'index']);

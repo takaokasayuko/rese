@@ -150,3 +150,14 @@
   cursor: pointer;
 }
 
+
+.shop-visited {
+  font-size: 20px;
+  margin-bottom: 50px;
+  width: 90px;
+}
+
+.shop-visited__link {
+  color: black;
+}
+

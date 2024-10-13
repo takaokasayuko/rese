@@ -109,4 +109,38 @@ class ReservationController extends Controller
         return view('done');
     }
 
+    public function review()
+    {
+        $user = Auth::user();
+        $today = Carbon::now();
+        $visited_shops = Reservation::where('user_id', $user->id)
+            ->whereDate('date', '<', $today)
+            ->latest('date')
+            ->with('reservationShop')
+            ->get();
+
+
+        return view('review', compact('visited_shops'));
+    }
+
+    public function reviewUpdate(Request $request)
+    {
+        $review = Reservation::find($request->id);
+        if($review['stars']) {
+            return view('error');
+        }
+
+        if (empty($request['nickname'])) {
+            $request['nickname'] = "匿名";
+        }
+        Reservation::find($request->id)
+        ->update($request->only([
+            'stars',
+            'nickname',
+            'comment',
+        ]));
+
+        return redirect('/review');
+    }
+
 }
