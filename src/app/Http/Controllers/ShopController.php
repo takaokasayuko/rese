@@ -23,7 +23,7 @@ class ShopController extends Controller
         $genres = $shops->unique('genre');
 
         $shop_favorites = Shop::getFavoriteStatus($shops);
-
+// dd($shop_favorites);
         return view('index', compact('shop_favorites', 'areas', 'genres'));
     }
 
@@ -62,10 +62,11 @@ class ShopController extends Controller
 
     public function store(Request $request)
     {
-        $favorite = new Favorite;
-        $favorite->shop_id = $request->shop_id;
-        $favorite->user_id = Auth::user()->id;
-        $favorite->save();
+        $request['user_id'] = Auth::user()->id;
+        Favorite::create($request->only([
+            'user_id',
+            'shop_id'
+        ]));
 
         return back();
     }
@@ -86,25 +87,14 @@ class ShopController extends Controller
         $today = Carbon::now();
         $user = Auth::user();
         $reservations = Reservation::where('user_id', $user->id)
-        ->whereDate('date', '>', $today)
-        ->oldest('date')
-        ->with('reservationShop')
-        ->get();
+            ->whereDate('date', '>', $today)
+            ->oldest('date')
+            ->with('reservationShop')
+            ->get();
 
-        //予約可能時間
-        $start_time = Carbon::createFromTimeString('11:00:00');
-        $end_time = Carbon::createFromTimeString('21:00:00');
-        $times = [];
-        while($start_time <= $end_time) {
-            $times[] = $start_time->format('H:i');
-            $start_time = $start_time->addMinute(30);
-        }
-
-        //予約可能人数
-        $people_num = [];
-        for ($number = 1; $number <= 99; $number++) {
-            $people_num[] = $number;
-        }
+        $reservation = new Reservation();
+        $times = $reservation->reservationOpeningHours();
+        $people_num = $reservation->reservationPeopleNum();
 
         return view('detail', compact('shop', 'times', 'people_num', 'reservations'));
     }

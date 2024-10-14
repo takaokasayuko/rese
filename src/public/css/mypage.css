@@ -41,7 +41,7 @@
   transform: translate(0, -50%);
 }
 
-.header-list__form-button {
+.delete-form__button {
   background: url(../image/icon/icon_cross.png) no-repeat;
   background-size: cover;
   width: 20px;
@@ -55,6 +55,28 @@
 }
 .reservation__list-data {
   padding: 0 30px 20px 0;
+}
+
+.message {
+  color: red;
+  font-size: 20px;
+  border: none;
+}
+
+.header-list__update {
+  background-color: white;
+  height: 22px;
+  width: 45px;
+  text-align: center;
+  border-radius: 3px;
+
+}
+
+.update__link {
+  color: #3560F6;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 15px;
 }
 
 /* お気に入り */
@@ -127,3 +149,15 @@
   background-color: white;
   cursor: pointer;
 }
+
+
+.shop-visited {
+  font-size: 20px;
+  margin-bottom: 50px;
+  width: 90px;
+}
+
+.shop-visited__link {
+  color: black;
+}
+

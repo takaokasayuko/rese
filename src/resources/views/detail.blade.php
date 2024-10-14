@@ -25,6 +25,16 @@
   </div>
 
   <div class="content__shop-reservation">
+
+    <ul class="message">
+      @if(session('message'))
+      <li class="message-list">{{ session('message') }}</li>
+      @endif
+      @foreach ($errors->all() as $error)
+      <li class="message-list">{{ $error }}</li>
+      @endforeach
+    </ul>
+
     <div class="content__shop-reservation--main">
       <h2 class="shop-reservation__tittle">予約</h2>
 
@@ -37,7 +47,7 @@
           <div class="reservation__time">
             <select class="reservation__time-select" name="time" id="reservationTime">
               @foreach($times as $time)
-              <option value="{{ $time }}">{{ $time }}</option>
+              <option>{{ $time }}</option>
               @endforeach
             </select>
           </div>

@@ -1,0 +1,22 @@
+.save__button {
+  text-align: right;
+}
+
+.save__button-submit {
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  color: #3560F6;
+  background-color: white;
+}
+
+.message {
+  color: red;
+  font-size: 20px;
+}
+
+.message-list {
+  list-style: none;
+}
+

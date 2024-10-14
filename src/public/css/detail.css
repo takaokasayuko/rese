@@ -42,7 +42,6 @@
 /* 予約 */
 .content__shop-reservation {
   width: 45%;
-  color: white;
 }
 
 .content__shop-reservation--main {
@@ -51,6 +50,7 @@
   padding: 20px 20px 200px;
   border-radius: 5px 5px 0 0;
   box-shadow: 2px 2px 2px #9C9C9C;
+  color: white;
 }
 
 .reservation__date-input,
@@ -89,7 +89,6 @@
   text-align: center;
   border-radius: 0 0 5px 5px;
   box-shadow: 2px 2px 2px #9C9C9C;
-
 }
 .reservation__submit-button {
   background-color: #003FF5;
@@ -97,4 +96,12 @@
   color: white;
   cursor: pointer;
   padding: 10px;
+}
+
+.message {
+  color: red;
+  font-size: 20px;
+}
+.message-list {
+  list-style: none;
 }

@@ -70,6 +70,7 @@
 
 .shop-name {
   font-size: 20px;
+  display: inline-block;
 }
 
 .shop__container-tag {
@@ -119,5 +120,76 @@
   color: red;
   background-color: white;
   cursor: pointer;
+}
+
+/* 星評価 */
+.shop-review {
+  display: inline-block;
+}
+
+.shop-tittle__group {
+  white-space: nowrap;
+}
+
+.review-average {
+  color: red;
+}
+
+.review-rate {
+  position: relative;
+  color: #D2D2D2;
+  font-size: 20px;
+  white-space: nowrap;
+  width: 100px;
+  display: inline-block;
+}
+
+.review-rate::before,
+.review-rate::after {
+  content: '★★★★★';
+}
+
+.review-rate::after {
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  color: gold;
+}
+
+.review-rate[data-rate="5"]::after {
+  width: 100%;
+}
+.review-rate[data-rate="4.5"]::after {
+  width: 90%;
+}
+.review-rate[data-rate="4"]::after {
+  width: 80%;
+}
+.review-rate[data-rate="3.5"]::after {
+  width: 70%;
+}
+.review-rate[data-rate="3"]::after {
+  width: 60%;
+}
+.review-rate[data-rate="2.5"]::after {
+  width: 50%;
+}
+.review-rate[data-rate="2"]::after {
+  width: 40%;
+}
+.review-rate[data-rate="1.5"]::after {
+  width: 30%;
+}
+.review-rate[data-rate="1"]::after {
+  width: 20%;
+}
+.review-rate[data-rate="0.5"]::after {
+  width: 10%;
+}
+.review-rate[data-rate="0"]::after {
+  width: 0%;
 }
 
