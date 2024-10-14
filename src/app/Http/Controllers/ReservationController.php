@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ReservationRequest;
+use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 use App\Models\Favorite;
@@ -10,7 +12,7 @@ use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
-    public function store(Request $request)
+    public function store(ReservationRequest $request)
     {
         $request['date'] = $request->date . " " . $request->time . ":00";
         $tomorrow = Carbon::tomorrow();
@@ -79,7 +81,7 @@ class ReservationController extends Controller
         return view('mypage-update', compact('reservation_update', 'user', 'reservations', 'favorites', 'reservation_num', 'times', 'people_num'));
     }
 
-    public function update(Request $request)
+    public function update(ReservationRequest $request)
     {
         $request['date'] = Carbon::parse($request->date . " " . $request->time);
         $tomorrow = Carbon::tomorrow();
@@ -123,7 +125,7 @@ class ReservationController extends Controller
         return view('review', compact('visited_shops'));
     }
 
-    public function reviewUpdate(Request $request)
+    public function reviewUpdate(ReviewRequest $request)
     {
         $review = Reservation::find($request->id);
         if($review['stars']) {

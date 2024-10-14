@@ -25,11 +25,16 @@
   </div>
 
   <div class="content__shop-reservation">
-    @if(session('message'))
-    <div class="message">
-      {{ session('message') }}
-    </div>
-    @endif
+
+    <ul class="message">
+      @if(session('message'))
+      <li class="message-list">{{ session('message') }}</li>
+      @endif
+      @foreach ($errors->all() as $error)
+      <li class="message-list">{{ $error }}</li>
+      @endforeach
+    </ul>
+
     <div class="content__shop-reservation--main">
       <h2 class="shop-reservation__tittle">予約</h2>
 

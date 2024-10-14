@@ -101,5 +101,7 @@
 .message {
   color: red;
   font-size: 20px;
-  border: none;
+}
+.message-list {
+  list-style: none;
 }

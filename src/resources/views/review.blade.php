@@ -52,6 +52,13 @@
 
         <!-- レビュー入力 -->
         @else
+        <ul class="message">
+          <li class="message-list">{{ session('message') }}</li>
+          @foreach ($errors->all() as $error)
+          <li class="message-list">{{ $error }}</li>
+          @endforeach
+        </ul>
+
         <table class="review__list-table--form">
           <form class="review-form" action="/review/update" method="post">
             <input type="hidden" name="id" value="{{ $visited_shop['id'] }}">
@@ -71,7 +78,7 @@
             <tr class="review-row">
               <th class="review-data">Nickname</th>
               <td class="review-data">
-                <input class="review-data__input" type="text" name="nickname" placeholder="名前を入力してください">
+                <input class="review-data__input" type="text" name="nickname" placeholder="未入力の場合「匿名」になります">
               </td>
             </tr>
             <tr class="review-row">

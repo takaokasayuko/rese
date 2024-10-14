@@ -11,3 +11,12 @@
   background-color: white;
 }
 
+.message {
+  color: red;
+  font-size: 20px;
+}
+
+.message-list {
+  list-style: none;
+}
+

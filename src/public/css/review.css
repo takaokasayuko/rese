@@ -134,3 +134,15 @@ th {
   width: 20%;
 }
 
+.message {
+  color: red;
+  font-size: 15px;
+}
+
+.message-list {
+  list-style: none;
+}
+
+.review-data__input::placeholder {
+  font-size: 10px;
+}
