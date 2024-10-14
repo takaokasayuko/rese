@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/favorite/delete', [ShopController::class, 'destory']);
 
     Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('shop.detail');
+    Route::get('/detail/review/{shop_id}', [ShopController::class, 'detailReview'])->name('detail.review');
 
     Route::post('/reservation/store', [ReservationController::class, 'store']);
     Route::delete('/reservation/delete', [ReservationController::class, 'destory']);

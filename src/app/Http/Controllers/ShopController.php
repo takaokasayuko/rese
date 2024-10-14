@@ -23,7 +23,7 @@ class ShopController extends Controller
         $genres = $shops->unique('genre');
 
         $shop_favorites = Shop::getFavoriteStatus($shops);
-// dd($shop_favorites);
+
         return view('index', compact('shop_favorites', 'areas', 'genres'));
     }
 
@@ -81,21 +81,25 @@ class ShopController extends Controller
         return back();
     }
 
-    public function detail($shop_favorite)
+    public function detail($shop_id)
     {
-        $shop = Shop::find($shop_favorite);
-        $today = Carbon::now();
-        $user = Auth::user();
-        $reservations = Reservation::where('user_id', $user->id)
-            ->whereDate('date', '>', $today)
-            ->oldest('date')
-            ->with('reservationShop')
-            ->get();
-
+        $shop = Shop::find($shop_id);
         $reservation = new Reservation();
         $times = $reservation->reservationOpeningHours();
         $people_num = $reservation->reservationPeopleNum();
 
-        return view('detail', compact('shop', 'times', 'people_num', 'reservations'));
+        return view('detail', compact('shop', 'times', 'people_num'));
+    }
+
+    public function detailReview($shop_id)
+    {
+        $shop = Shop::find($shop_id);
+        $reviews = Reservation::where('shop_id', $shop_id)
+        ->whereNotnull('stars')
+        ->latest('updated_at')
+        ->paginate(3);
+
+        return view('detail-review', compact('shop', 'reviews'));
+
     }
 }

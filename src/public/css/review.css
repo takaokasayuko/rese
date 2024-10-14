@@ -146,3 +146,12 @@ th {
 .review-data__input::placeholder {
   font-size: 10px;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+.page-item {
+  padding: 10px;
+}

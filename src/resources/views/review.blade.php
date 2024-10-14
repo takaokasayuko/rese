@@ -98,7 +98,7 @@
 
     </div>
     @endforeach
-
+    {{ $visited_shops->links('vendor.pagination.bootstrap-4') }}
   </div>
 </div>
 
