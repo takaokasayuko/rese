@@ -34,10 +34,8 @@
 </div>
 @endsection
 
-
 @section('content')
 <div class="content">
-
 
   @foreach($shop_favorites as $shop_favorite)
   <div class="shop__list">
@@ -64,7 +62,7 @@
         </div>
         <div class="shop__container-foot--fav">
           @auth
-          @if($shop_favorite['favorite'] == 'false')
+          @if($shop_favorite['favorite'] === 'false')
           <form class="form__fav" action="/favorite/store" method="post">
             <input type="hidden" name="shop_id" value="{{ $shop_favorite['shop']['id'] }}">
             @csrf
@@ -72,7 +70,7 @@
           </form>
           @endif
 
-          @if($shop_favorite['favorite'] == 'true')
+          @if($shop_favorite['favorite'] === 'true')
           <form class="form__fav" action="/favorite/delete" method="post">
             <input type="hidden" name="shop_id" value="{{ $shop_favorite['shop']['id'] }}">
             @csrf
@@ -93,6 +91,4 @@
   @endforeach
 
 </div>
-
-
 @endsection

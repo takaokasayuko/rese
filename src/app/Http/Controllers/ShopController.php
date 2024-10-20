@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
 use App\Models\Favorite;
 use App\Models\Reservation;
-use Carbon\Carbon;
 
 class ShopController extends Controller
 {
@@ -22,7 +21,7 @@ class ShopController extends Controller
         $areas = $shops->unique('area');
         $genres = $shops->unique('genre');
 
-        $shop_favorites = Shop::getFavoriteStatus($shops);
+        $shop_favorites = $this->getShopStatus($shops);
 
         return view('index', compact('shop_favorites', 'areas', 'genres'));
     }
@@ -55,7 +54,7 @@ class ShopController extends Controller
         $areas = Shop::all()->unique('genre');
         $genres = Shop::all()->unique('genre');
 
-        $shop_favorites = Shop::getFavoriteStatus($shops);
+        $shop_favorites = $this->getShopStatus($shops);
 
         return view('index', compact('shop_favorites', 'areas', 'genres'));
     }
@@ -95,11 +94,46 @@ class ShopController extends Controller
     {
         $shop = Shop::find($shop_id);
         $reviews = Reservation::where('shop_id', $shop_id)
-        ->whereNotnull('stars')
-        ->latest('updated_at')
-        ->paginate(3);
+            ->whereNotnull('stars')
+            ->latest('updated_at')
+            ->paginate(3);
 
         return view('detail-review', compact('shop', 'reviews'));
+    }
 
+    private function getShopStatus($shops)
+    {
+        return $shops->map(function ($shop) {
+            $user = Auth::user();
+            $favorite_status = false;
+            if($user) {
+                $favorite_status = Favorite::where('shop_id', $shop->id)
+                ->Where('user_id', $user->id)
+                ->exists();
+            }
+            // trueお気に入り済み、falseお気に入り未登録
+            $favorite = $favorite_status ? 'true' : 'false';
+
+            // 星評価の平均
+            $review = Reservation::where('shop_id', $shop->id)
+                ->avg('stars');
+            $review_avg = round($review, 1);
+            $review_int = floor($review_avg);
+            $review_decimal = $review_avg - $review_int;
+            if ($review_decimal < 0.5) {
+                $review_decimal = 0;
+            } else {
+                $review_decimal = 0.5;
+            }
+            $review_star = $review_int + $review_decimal;
+
+
+            return [
+                'shop' => $shop,
+                'favorite' => $favorite,
+                'average' => number_format($review_avg, 1),
+                'star' => $review_star,
+            ];
+        });
     }
 }

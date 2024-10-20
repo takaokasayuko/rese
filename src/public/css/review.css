@@ -1,3 +1,13 @@
+.mypage__link {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  padding: 3px 8px;
+  box-shadow: 2px 2px 2px #9C9C9C;
+  border-radius: 5px;
+}
+
 .content__shop-visited {
   display: flex;
   flex-wrap: wrap;
@@ -22,28 +32,36 @@
   border-collapse: separate;
   border-spacing: 15px;
 }
-.review-list{
-  background-color: #5580F7;
-  width: 95%;
-  border-radius: 5px;
-  padding: 15px;
-}
 
 th {
   white-space: nowrap;
 }
 
+.review-list{
+  background-color: #5580F7;
+  width: 100%;
+  border-radius: 5px;
+  padding: 15px;
+}
 .review-data {
   padding-right: 10px;
 }
-
 .review-data__date {
   text-align: right;
   font-size: 10px;
 }
-
 .review-data__text {
   white-space: pre-wrap;
+}
+.review-data__input {
+  height: 30px;
+  width: 100%;
+}
+.review-comment__input {
+  width: 100%;
+}
+.review-data__input::placeholder {
+  font-size: 13px;
 }
 
 .review-data__data-rate {
@@ -51,31 +69,62 @@ th {
   color: white;
   white-space: nowrap;
 }
-
 .review-star {
   display: flex;
   flex-direction: row-reverse;
   justify-content: left;
 }
-
 .review-star input[type="radio"] {
   display: none;
 }
-
 .review-star label {
   color: #D2D2D2;
   cursor: pointer;
   padding: 0 3px;
   font-size: 20px;
 }
-
 .review-star label:hover,
 .review-star label:hover ~ label {
   color: gold;
 }
-
 .review-star input[type="radio"]:checked~label {
   color: gold;
+}
+.review-data__star{
+  position: relative;
+  color: #D2D2D2;
+  font-size: 20px;
+  white-space: nowrap;
+  width: 102px;
+  display: inline-block;
+}
+.review-data__star::before,
+.review-data__star::after {
+  content: '★★★★★';
+}
+.review-data__star::after {
+  position: absolute;
+  z-index: 1;
+  top: 2px;
+  left: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  color: gold;
+}
+.review-data__star[data-rate="5"]::after {
+  width: 100%;
+}
+.review-data__star[data-rate="4"]::after {
+  width: 80%;
+}
+.review-data__star[data-rate="3"]::after {
+  width: 60%;
+}
+.review-data__star[data-rate="2"]::after {
+  width: 40%;
+}
+.review-data__star[data-rate="1"]::after {
+  width: 20%;
 }
 
 .review__button {
@@ -95,45 +144,6 @@ th {
   font-weight: bolder;
 }
 
-.review-data__star{
-  position: relative;
-  color: #D2D2D2;
-  font-size: 20px;
-  white-space: nowrap;
-  width: 102px;
-  display: inline-block;
-}
-
-.review-data__star::before,
-.review-data__star::after {
-  content: '★★★★★';
-}
-.review-data__star::after {
-  position: absolute;
-  z-index: 1;
-  top: 2px;
-  left: 1px;
-  overflow: hidden;
-  white-space: nowrap;
-  color: gold;
-}
-
-.review-data__star[data-rate="5"]::after {
-  width: 100%;
-}
-.review-data__star[data-rate="4"]::after {
-  width: 80%;
-}
-.review-data__star[data-rate="3"]::after {
-  width: 60%;
-}
-.review-data__star[data-rate="2"]::after {
-  width: 40%;
-}
-.review-data__star[data-rate="1"]::after {
-  width: 20%;
-}
-
 .message {
   color: red;
   font-size: 15px;
@@ -143,10 +153,7 @@ th {
   list-style: none;
 }
 
-.review-data__input::placeholder {
-  font-size: 10px;
-}
-
+/* ページネーション */
 .pagination {
   display: flex;
   justify-content: center;
@@ -154,4 +161,25 @@ th {
 }
 .page-item {
   padding: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .content {
+    padding-left: 40px;
+    width: 95%;
+  }
+
+  .shop-visited__list {
+    width: 100%;
+    font-size: 17px;
+  }
+
+  .review-list {
+    padding: 15px 15px 15px 50px;
+  }
+  .review-data__td {
+    padding-right: 20px;
+    width: 400px;
+  }
 }

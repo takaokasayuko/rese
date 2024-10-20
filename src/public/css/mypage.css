@@ -9,6 +9,11 @@
   margin-top: 60px;
 }
 
+.reservation__list-all{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .reservation__list {
   background-color: #3560F6;
   border-radius: 5px;
@@ -17,6 +22,7 @@
   margin-bottom: 30px;
   padding: 15px 20px;
   font-size: 13px;
+  width: 100%;
 }
 
 .reservation__list-header {
@@ -69,7 +75,6 @@
   width: 45px;
   text-align: center;
   border-radius: 3px;
-
 }
 
 .update__link {
@@ -77,6 +82,16 @@
   text-decoration: none;
   cursor: pointer;
   font-size: 15px;
+}
+
+.shop-visited {
+  font-size: 20px;
+  margin-bottom: 50px;
+  width: 90px;
+}
+
+.shop-visited__link {
+  color: black;
 }
 
 /* お気に入り */
@@ -150,14 +165,44 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
 
-.shop-visited {
-  font-size: 20px;
-  margin-bottom: 50px;
-  width: 90px;
+  .content__reservation {
+    width: 90%;
+    margin: 0 auto;
+
+  }
+  .reservation__list-all {
+    display: flex;
+    justify-content: space-between;
+  }
+  .reservation__list {
+    width: 45%;
+    margin: 10px 5px;
+  }
+
+  .content__right {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .content__favorite {
+    display: flex;
+    justify-content: space-between;
+  }
+  .favorite__list {
+    width: 45%;
+    margin: 10px 5px;
+  }
 }
 
-.shop-visited__link {
-  color: black;
+@media screen and (max-width: 480px) {
+  .content__reservation {
+      width: 90%;
+      margin: 0 auto;
+    }
 }
 

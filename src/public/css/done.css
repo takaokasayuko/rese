@@ -1,11 +1,11 @@
 .content {
-    margin: 100px auto;
-    text-align: center;
-    background-color: white;
-    width: 30%;
-    box-shadow: 2px 2px 2px #9C9C9C;
-    border-radius: 5px;
-		padding: 60px 20px;
+  margin: 100px auto;
+  text-align: center;
+  background-color: white;
+  width: 30%;
+  box-shadow: 2px 2px 2px #9C9C9C;
+  border-radius: 5px;
+	padding: 60px 20px;
 }
 
 .thanks__text {
@@ -25,4 +25,10 @@
 	color: white;
 	text-decoration: none;
 	font-size: 13px;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    width: 50%;
+  }
 }

@@ -1,26 +1,24 @@
 /* 検索 */
 .search-box {
-  text-align: right;
   position: fixed;
   top: 25px;
   right: 100px;
-  display: flex;
   box-shadow: 2px 2px 2px #9C9C9C;
   border-radius: 5px;
   padding: 5px;
   background-color: white;
-  width: 40%;
+  width: 500px;
+  flex-wrap: wrap;
 }
 
 .search-form {
   display: flex;
   align-items: stretch;
-  flex-wrap: wrap;
 }
 
 .search__select {
   height: 30px;
-  width: 100px;
+  width: 80px;
   border: none;
   margin-right: 5px;
   border-right: solid 1px #9C9C9C;
@@ -29,7 +27,7 @@
 
 .search__keyword-input {
   height: 30px;
-  width: 20%;
+  width: 250px;
   padding: 10px;
   border: none;
   outline: none;
@@ -48,7 +46,7 @@
 .content {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 50px;
+  margin: 50px auto 0;
 }
 
 .shop__list {
@@ -104,13 +102,13 @@
 }
 
 .button__submit-un_fav {
-    font-size: 30px;
-    margin-top: -10px;
-    border: none;
-    color: #9C9C9C;;
-    background-color: white;
-    cursor: pointer;
-    text-decoration: none
+  font-size: 30px;
+  margin-top: -10px;
+  border: none;
+  color: #9C9C9C;;
+  background-color: white;
+  cursor: pointer;
+  text-decoration: none
 }
 
 .button__submit-fav {
@@ -193,3 +191,43 @@
   width: 0%;
 }
 
+
+@media screen and (max-width: 768px) {
+  .shop__list {
+    width: 45%;
+    margin: 10px auto;
+  }
+  .shop-name {
+    font-size: 25px;
+  }
+  .review-rate {
+    font-size: 25px;
+    width: 129px;
+  }
+  .review-average,
+  .shop__container-tag,
+  .shop-detail__link {
+    font-size: 15px;
+  }
+  .shop__container-foot--detail {
+    width: 100px;
+  }
+  .button__submit-un_fav,
+  .button__submit-fav {
+    font-size: 40px;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  .shop__list {
+      width: 70%;
+    }
+  .shop-name {
+    font-size: 30px;
+  }
+  .review-rate {
+    font-size: 30px;
+    width: 153px;
+  }
+}

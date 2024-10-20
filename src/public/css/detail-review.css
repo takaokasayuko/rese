@@ -96,6 +96,10 @@
   margin-bottom: 5px;
 }
 
+.review-comment {
+  white-space: pre-wrap;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -104,4 +108,20 @@
 
 .page-item {
   padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+      display: flex;
+      flex-direction: column;
+    }
+  .content__shop-detail {
+    width: 90%;
+    margin: 0 auto;
+}
+
+  .content__review {
+    width: 90%;
+    margin: 0 auto;
+}
 }

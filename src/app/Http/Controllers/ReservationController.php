@@ -121,7 +121,6 @@ class ReservationController extends Controller
             ->with('reservationShop')
             ->paginate(6);
 
-
         return view('review', compact('visited_shops'));
     }
 
