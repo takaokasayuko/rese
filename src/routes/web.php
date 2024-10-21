@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReservationController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['verified'])->group(function () {
     Route::get('/thanks', [ShopController::class, 'thanks'])->name('thanks');
 
     Route::post('/favorite/store', [ShopController::class, 'store']);
@@ -40,5 +41,12 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/', [ShopController::class, 'index']);
 Route::get('/search', [ShopController::class, 'search']);
+
+// メール再送信
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 

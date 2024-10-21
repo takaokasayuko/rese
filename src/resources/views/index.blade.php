@@ -61,7 +61,7 @@
           <a class="shop-detail__link" href="{{ route('shop.detail', ['shop_id' => $shop_favorite['shop']['id']]) }}">詳しくみる</a>
         </div>
         <div class="shop__container-foot--fav">
-          @auth
+          @auth()
           @if($shop_favorite['favorite'] === 'false')
           <form class="form__fav" action="/favorite/store" method="post">
             <input type="hidden" name="shop_id" value="{{ $shop_favorite['shop']['id'] }}">
@@ -80,7 +80,7 @@
           @endif
           @endauth
 
-          @guest
+          @guest()
           <a class="button__submit-un_fav" href="/login">&#10084;</a>
           @endguest
 
