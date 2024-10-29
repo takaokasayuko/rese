@@ -1,0 +1,42 @@
+.content {
+  text-align: center;
+}
+
+.reservation-date {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  margin: 10px auto;
+}
+
+.reservation__date-link {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  padding: 3px 8px;
+  box-shadow: 2px 2px 2px #9C9C9C;
+  border-radius: 5px;
+  height: 30px;
+  margin-top: 20px;
+}
+
+.reservation__table {
+  border-collapse: collapse;
+  margin: 20px auto;
+  width: 80%;
+}
+
+.reservation__row {
+  border-top: solid 1px #3560F6;
+}
+
+.reservation__label {
+  font-weight: bolder;
+}
+
+
+@media screen and (max-width: 768px) {
+
+
+}

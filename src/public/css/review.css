@@ -57,6 +57,9 @@ th {
   height: 30px;
   width: 100%;
 }
+.review-data textarea {
+  height: 50px;
+}
 .review-comment__input {
   width: 100%;
 }
@@ -178,7 +181,7 @@ th {
   .review-list {
     padding: 15px 15px 15px 50px;
   }
-  .review-data__td {
+  .review-data {
     padding-right: 20px;
     width: 400px;
   }

@@ -47,13 +47,19 @@
               <a class="header-nav__link" href="/">Home</a>
             </li>
             <li class="header-nav__item">
-              <form class="form" action="/logout" method="post">
+              <form class="form-logout" action="/logout" method="post">
                 @csrf
                 <button class="header-nav__button">Logout</button>
               </form>
             </li>
             <li class="header-nav__item">
               <a class="header-nav__link" href="/mypage">Mypage</a>
+            </li>
+            <li class="header-nav__item">
+              <a class="header-nav__link" href="/admin">Admin</a>
+            </li>
+            <li class="header-nav__item">
+              <a class="header-nav__link" href="/shop/register">Owner</a>
             </li>
           </ul>
         </nav>

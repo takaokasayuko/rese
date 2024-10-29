@@ -105,10 +105,14 @@ main {
 .nav ul li a {
   text-decoration: none;
   color: #3560F6;
-  font-size: 18px;
   display: block;
   padding: 10px 0;
   transition: 0.2s;
+}
+
+.header-nav__link,
+.header-nav__button {
+  font-size: 18px;
 }
 
 .header-nav__button {
@@ -122,4 +126,16 @@ main {
 
 .wrapper {
   margin-top: 100px;
+}
+
+.form-logout {
+  padding: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .header-nav__link,
+  .header-nav__button {
+    font-size: 30px;
+  }
+
 }

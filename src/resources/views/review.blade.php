@@ -41,11 +41,11 @@
 
           </tr>
           <tr class=" review-row">
-            <th class="review-data__th">Nickname</th>
+            <th class="review-data">Nickname</th>
             <td class="review-data">{{ $visited_shop['nickname'] }}</td>
           </tr>
           <tr class="review-row">
-            <th class="review-data__th" valign="top">Comment</th>
+            <th class="review-data" valign="top">Comment</th>
             <td class="review-data review-data__text">{{ $visited_shop['comment'] }}</td>
           </tr>
         </table>
@@ -69,7 +69,7 @@
             @method('patch')
             <tr class="review-row">
               <th class="review-data">Stars</th>
-              <td class="review-data__td">
+              <td class="review-data">
                 <div class="review-star">
                   @for($i = 5; $i >= 1; $i--)
                   <input class="review-star__input" id="star-{{ $i }}" type="radio" name="stars" value="{{ $i }}">
@@ -80,14 +80,14 @@
             </tr>
             <tr class="review-row">
               <th class="review-data">Nickname</th>
-              <td class="review-data__td">
+              <td class="review-data">
                 <input class="review-data__input" type="text" name="nickname" placeholder="未入力の場合「匿名」になります">
               </td>
             </tr>
             <tr class="review-row">
               <th class="review-data" valign="top">Comment</th>
-              <td class="review-data__td">
-                <textarea class="review-comment__input" name="comment" cols="30" rows="7" placeholder="レビュー内容を記入してください"></textarea>
+              <td class="review-data">
+                <textarea class="review-comment__input" name="comment" placeholder="レビュー内容を記入してください"></textarea>
               </td>
             </tr>
         </table>
@@ -101,8 +101,9 @@
 
     </div>
     @endforeach
-    {{ $visited_shops->links('vendor.pagination.bootstrap-4') }}
+
   </div>
+  {{ $visited_shops->links('vendor.pagination.bootstrap-4') }}
 </div>
 
 

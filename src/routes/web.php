@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 
 /*
@@ -37,6 +38,10 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/review', [ReservationController::class, 'review']);
     Route::patch('/review/update', [ReservationController::class, 'reviewUpdate']);
 
+    Route::get('/admin', [AdminController::class, 'admin']);
+    Route::post('/admin/store', [AdminController::class, 'store']);
+    Route::get('/shop/register', [AdminController::class, 'shopRegister']);
+    Route::get('/shop/reservation', [AdminController::class, 'shopReservation']);
 });
 
 Route::get('/', [ShopController::class, 'index']);
