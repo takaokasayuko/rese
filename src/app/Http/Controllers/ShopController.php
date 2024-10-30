@@ -17,11 +17,6 @@ class ShopController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
-        if(!empty($user->id) && empty($user->email_verified_at)) {
-            return view('auth.verify-email');
-        }
-
         $shops = Shop::all();
         $areas = $shops->unique('area');
         $genres = $shops->unique('genre');

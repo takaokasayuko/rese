@@ -39,7 +39,7 @@ Route::middleware(['verified'])->group(function () {
     Route::patch('/review/update', [ReservationController::class, 'reviewUpdate']);
 
     Route::get('/admin', [AdminController::class, 'admin']);
-    Route::post('/admin/store', [AdminController::class, 'store']);
+    Route::post('/admin/store', [AdminController::class, 'adminStore']);
     Route::get('/shop/register', [AdminController::class, 'shopRegister']);
     Route::get('/shop/reservation', [AdminController::class, 'shopReservation']);
 });

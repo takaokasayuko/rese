@@ -4,10 +4,9 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Auth\Events\Login;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\Events\Registered;
 
-class SendEmailVerificationLogin
+class AdminRegister
 {
     /**
      * Create the event listener.
@@ -25,17 +24,10 @@ class SendEmailVerificationLogin
      * @param  object  $event
      * @return void
      */
-    public function handle(Login $event)
+    public function handle(Registered $event)
     {
         $user = $event->user;
-        if ($user) {
-            $user->email_verified_at = null;
-            $user->save();
-        }
-        if ($user instanceof MustVerifyEmail && !$user->hasVerifiedEmail()) {
-            $user->sendEmailVerificationNotification();
-        }
-        if(empty($user->admin)) {
+        if($user) {
             $user->admin = 2;
             $user->save();
         }

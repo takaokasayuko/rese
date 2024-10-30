@@ -1,6 +1,10 @@
 .content {
   margin: 100px auto;
   width: 400px;
+
+}
+
+.form-list {
   border-radius: 5px;
   box-shadow: 2px 2px 1px #9C9C9C;
   background-color: white;
@@ -36,7 +40,8 @@
   width: 300px;
 }
 
-.error-message {
+.error-message,
+.message {
   color: red;
   text-align: center;
 }

@@ -10,6 +10,7 @@ use Illuminate\Auth\Events\Login;
 use App\Listeners\SendEmailVerificationLogin;
 use Illuminate\Auth\Events\Logout;
 use App\Listeners\DeleteEmailVerificationLogout;
+use App\Listeners\AdminRegister;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
+        Registered::class => [
+            AdminRegister::class,
+        ],
         Login::class => [
             SendEmailVerificationLogin::class,
         ],
