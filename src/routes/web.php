@@ -40,8 +40,9 @@ Route::middleware(['verified'])->group(function () {
 
     Route::get('/admin', [AdminController::class, 'admin']);
     Route::post('/admin/store', [AdminController::class, 'adminStore']);
-    Route::get('/shop/register', [AdminController::class, 'shopRegister']);
-    Route::get('/shop/reservation', [AdminController::class, 'shopReservation']);
+    Route::get('/owner/register', [AdminController::class, 'ownerRegister']);
+    Route::get('/owner/reservation', [AdminController::class, 'ownerReservation']);
+    Route::get('/owner/shop', [AdminController::class, 'ownerShop']);
 });
 
 Route::get('/', [ShopController::class, 'index']);

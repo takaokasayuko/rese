@@ -25,7 +25,7 @@ class AdminRegisterRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:8'],
         ];
     }
@@ -37,6 +37,7 @@ class AdminRegisterRequest extends FormRequest
 
             'email.required' => 'メールアドレスを入力してください',
             'email.email' => 'メールアドレスは「ユーザー名@ドメイン」形式で入力してください',
+            'unique:users' => '指定のメールアドレスは既に登録済みです',
 
             'password.required' => 'パスワードを入力してください',
             'password.min:8' => 'パスワードは8文字以上で入力してください'

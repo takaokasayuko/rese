@@ -45,6 +45,9 @@
   color: red;
   text-align: center;
 }
+.message-list {
+  list-style: none;
+}
 
 .form__group:nth-child(1) {
   background: url(../../image/icon/icon_person.png) no-repeat;

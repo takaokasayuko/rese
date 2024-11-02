@@ -9,9 +9,12 @@
 
   @if(session('message'))
   <div class="message">
-    {{ session('message') }}
+    <p class="message">
+      {{ session('message') }}
+    </p>
   </div>
   @endif
+
 
   <div class="form-list">
     <h2 class="form__heading">ShopOwnerRegistration</h2>

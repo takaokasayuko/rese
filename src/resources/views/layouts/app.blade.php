@@ -55,11 +55,19 @@
             <li class="header-nav__item">
               <a class="header-nav__link" href="/mypage">Mypage</a>
             </li>
+
             <li class="header-nav__item">
               <a class="header-nav__link" href="/admin">Admin</a>
             </li>
+
             <li class="header-nav__item">
-              <a class="header-nav__link" href="/shop/register">Owner</a>
+              <a class="header-nav__link" href="/owner/shop">Shop</a>
+            </li>
+            <li class="header-nav__item">
+              <a class="header-nav__link" href="/owner/register">Register</a>
+            </li>
+            <li class="header-nav__item">
+              <a class="header-nav__link" href="/owner/reservation">Reservation</a>
             </li>
           </ul>
         </nav>

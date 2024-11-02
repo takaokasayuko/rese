@@ -15,7 +15,7 @@ class AdminController extends Controller
         return view('admin.admin');
     }
 
-    public function adminStore(Request $request)
+    public function adminStore(AdminRegisterRequest $request)
     {
         $request['admin'] = 1;
         $request['password'] = bcrypt($request['password']);
@@ -25,11 +25,16 @@ class AdminController extends Controller
         return redirect('/admin')->with('message', '登録しました');
     }
 
-    public function shopRegister()
+
+    public function ownerShop()
+    {
+        return view('admin.owner');
+    }
+    public function ownerRegister()
     {
         return view('admin.shop-registration');
     }
-    public function shopReservation()
+    public function ownerReservation()
     {
         return view('admin.reservation');
     }
