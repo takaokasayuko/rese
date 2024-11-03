@@ -77,7 +77,11 @@
       @foreach($favorites as $favorite)
       <div class="favorite__list">
         <div class="shop__img">
+          @if(str_starts_with($favorite->favoriteShop->image, 'https://'))
           <img src="{{ $favorite->favoriteShop->image }}" alt="">
+          @else
+          <img src="{{ Storage::url($favorite->favoriteShop->image) }}" alt="">
+          @endif
         </div>
         <div class="shop__container">
           <h2 class="shop-name">{{ $favorite->favoriteShop->name }}</h2>

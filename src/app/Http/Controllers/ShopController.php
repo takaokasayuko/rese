@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
 use App\Models\Favorite;
 use App\Models\Reservation;
+use App\Consts\PrefectureConst;
 
 class ShopController extends Controller
 {
@@ -18,7 +19,12 @@ class ShopController extends Controller
     public function index()
     {
         $shops = Shop::all();
-        $areas = $shops->unique('area');
+        $prefecture = PrefectureConst::PREFECTURES;
+        $shop_areas = Shop::distinct()->pluck('area')->toArray();
+        $areas = collect($prefecture)
+            ->filter(fn($shop_area) => in_array($shop_area, $shop_areas))
+            ->values();
+
         $genres = $shops->unique('genre');
         $shop_favorites = $this->getShopStatus($shops);
 
@@ -50,7 +56,11 @@ class ShopController extends Controller
         }
 
         $shops = $query->get();
-        $areas = Shop::all()->unique('genre');
+        $prefecture = PrefectureConst::PREFECTURES;
+        $shop_areas = Shop::distinct()->pluck('area')->toArray();
+        $areas = collect($prefecture)
+            ->filter(fn($shop_area) => in_array($shop_area, $shop_areas))
+            ->values();
         $genres = Shop::all()->unique('genre');
 
         $shop_favorites = $this->getShopStatus($shops);
@@ -105,10 +115,10 @@ class ShopController extends Controller
         return $shops->map(function ($shop) {
             $user = Auth::user();
             $favorite_status = false;
-            if($user) {
+            if ($user) {
                 $favorite_status = Favorite::where('shop_id', $shop->id)
-                ->Where('user_id', $user->id)
-                ->exists();
+                    ->Where('user_id', $user->id)
+                    ->exists();
             }
             // trueお気に入り済み、falseお気に入り未登録
             $favorite = $favorite_status ? 'true' : 'false';
@@ -126,7 +136,6 @@ class ShopController extends Controller
             }
             $review_star = $review_int + $review_decimal;
 
-
             return [
                 'shop' => $shop,
                 'favorite' => $favorite,
@@ -135,6 +144,4 @@ class ShopController extends Controller
             ];
         });
     }
-
-
 }

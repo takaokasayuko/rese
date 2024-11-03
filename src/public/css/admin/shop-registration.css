@@ -1,10 +1,20 @@
-.content {
+.message-content {
+  text-align: center;
+}
+.message {
+  color: red;
+  font-size: 15px;
+}
+.message-list {
+  list-style: none;
+}
+
+.shop-register {
   width: 50%;
   margin: 0 auto;
   background-color: white;
   border-radius: 5px;
   box-shadow: 2px 2px 1px #9C9C9C;
-
 }
 
 .shop-register__tittle {
@@ -15,7 +25,7 @@
   border-radius: 5px 5px 0 0;
 }
 
-.shop-register {
+.shop-register__list {
   padding: 30px;
 }
 

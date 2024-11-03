@@ -35,7 +35,7 @@ class SendEmailVerificationLogin
         if ($user instanceof MustVerifyEmail && !$user->hasVerifiedEmail()) {
             $user->sendEmailVerificationNotification();
         }
-        if(empty($user->admin)) {
+        if(is_null($user->admin)) {
             $user->admin = 2;
             $user->save();
         }

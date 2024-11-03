@@ -13,7 +13,11 @@
       <h2 class="shop__tittle-name">{{ $shop['name'] }}</h2>
     </div>
     <div class="shop-img">
+      @if(str_starts_with($shop['image'], 'https://'))
       <img src="{{ $shop['image'] }}" alt="">
+      @else
+      <img src="{{ Storage::url($shop['image']) }}" alt="">
+      @endif
     </div>
     <div class="shop-tag">
       <p class="shop-tag__area">#{{ $shop['area'] }}</p>

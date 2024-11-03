@@ -34,7 +34,7 @@
 }
 
 .search__button-submit {
-  background: url(../image/icon/icon_search.png) no-repeat;
+  background: url(../icon/icon_search.png) no-repeat;
   background-size: 60%;
   background-position: center;
   border: none;

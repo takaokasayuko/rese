@@ -4,17 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\AdminRegisterRequest;
+use App\Http\Requests\ShopRegisterRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Shop;
+use App\Models\Reservation;
+use App\Consts\GenreConst;
+use App\Consts\PrefectureConst;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
+    // 管理者
     public function admin()
     {
         return view('admin.admin');
     }
 
+    // 店舗代表登録
     public function adminStore(AdminRegisterRequest $request)
     {
         $request['admin'] = 1;
@@ -25,17 +32,67 @@ class AdminController extends Controller
         return redirect('/admin')->with('message', '登録しました');
     }
 
-
-    public function ownerShop()
-    {
-        return view('admin.owner');
-    }
+    // 店舗登録画面
     public function ownerRegister()
     {
-        return view('admin.shop-registration');
+        $areas = PrefectureConst::PREFECTURES;
+        $genres = GenreConst::GENRES;
+
+        return view('admin.shop-registration', compact('areas', 'genres'));
     }
-    public function ownerReservation()
+
+    // 店舗登録
+    public function ownerStore(ShopRegisterRequest $request)
     {
-        return view('admin.reservation');
+        $user = Auth::user();
+        $data = [
+            'user_id' => $user->id,
+            'name' => $request->name,
+            'area' => $request->area,
+            'genre' => $request->genre,
+            'image' => $request->file('image')->store('image', 'public'),
+            'detail' => $request->detail,
+        ];
+        Shop::create($data);
+
+        return redirect('/owner/register')->with('message', '登録しました');
+    }
+
+    // 登録店舗一覧
+    public function ownerShop()
+    {
+        $user = Auth::user();
+        $shops = Shop::where('user_id', $user->id)
+            ->with(['shopReservations' => function ($query) {
+                $query->latest('updated_at');
+            }])
+            ->orderByDesc(function ($query) {
+                $query->select('updated_at')
+                    ->from('reservations')
+                    ->whereColumn('reservations.shop_id', 'shops.id')
+                    ->latest('updated_at')
+                    ->limit(1);
+            })
+            ->get();
+
+        return view('admin.owner', compact('shops'));
+    }
+
+    // 予約確認
+    public function ownerReservation($shop_id, Request $request)
+    {
+        $user = Auth::user()->id;
+        $shop = Shop::find($shop_id);
+        if (!$user === $shop['user_id']) {
+            return view('error');
+        }
+        $date = $request->input('date', Carbon::now()->toDateString());
+        $reservations = Reservation::where('shop_id', $shop_id)
+            ->whereDate('date', $date)
+            ->oldest('date')
+            ->with('reservationUser')
+            ->get();
+
+        return view('admin.reservation', compact('reservations', 'date', 'shop_id'));
     }
 }

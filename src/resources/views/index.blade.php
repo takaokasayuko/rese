@@ -14,7 +14,7 @@
       <select class="search__select" name="area">
         <option selected value="">All area</option>
         @foreach($areas as $area)
-        <option value="{{ $area['area'] }}" @if( request('area')==$area['area'] ) selected @endif>{{ $area['area'] }}</option>
+        <option value="{{ $area }}" @if( request('area')==$area ) selected @endif>{{ $area }}</option>
         @endforeach
       </select>
     </div>
@@ -40,7 +40,12 @@
   @foreach($shop_favorites as $shop_favorite)
   <div class="shop__list">
     <div class="shop__img">
+      @if(str_starts_with($shop_favorite['shop']['image'], 'https://'))
       <img src="{{ $shop_favorite['shop']['image'] }}" alt="">
+      @else
+      <img src="{{ Storage::url($shop_favorite['shop']['image']) }}" alt="">
+      @endif
+
     </div>
     <div class="shop__container">
       <div class="shop-tittle__group">

@@ -15,7 +15,6 @@
   </div>
   @endif
 
-
   <div class="form-list">
     <h2 class="form__heading">ShopOwnerRegistration</h2>
     <form class="form" action="/admin/store" method="post">

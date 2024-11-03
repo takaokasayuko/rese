@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware(['verified'])->group(function () {
+Route::middleware(['check.user', 'verified'])->group(function () {
     Route::get('/thanks', [ShopController::class, 'thanks'])->name('thanks');
 
     Route::post('/favorite/store', [ShopController::class, 'store']);
@@ -38,12 +38,23 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/review', [ReservationController::class, 'review']);
     Route::patch('/review/update', [ReservationController::class, 'reviewUpdate']);
 
-    Route::get('/admin', [AdminController::class, 'admin']);
-    Route::post('/admin/store', [AdminController::class, 'adminStore']);
-    Route::get('/owner/register', [AdminController::class, 'ownerRegister']);
-    Route::get('/owner/reservation', [AdminController::class, 'ownerReservation']);
-    Route::get('/owner/shop', [AdminController::class, 'ownerShop']);
 });
+
+Route::middleware(['check.admin'])->group(
+    function () {
+        Route::get('/admin', [AdminController::class, 'admin']);
+        Route::post('/admin/store', [AdminController::class, 'adminStore']);
+    });
+
+Route::middleware(['check.owner'])->group(
+    function () {
+    Route::get('/owner/register', [AdminController::class, 'ownerRegister']);
+    Route::post('/owner/store', [AdminController::class, 'ownerStore']);
+    Route::get('/owner/reservation/{shop_id}', [AdminController::class, 'ownerReservation'])->name('owner.reservation');
+    Route::get('/owner/shop', [AdminController::class, 'ownerShop']);
+    }
+);
+
 
 Route::get('/', [ShopController::class, 'index']);
 Route::get('/search', [ShopController::class, 'search']);

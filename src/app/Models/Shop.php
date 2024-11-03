@@ -13,4 +13,9 @@ class Shop extends Model
         'id',
     ];
 
+    public function shopReservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
 }

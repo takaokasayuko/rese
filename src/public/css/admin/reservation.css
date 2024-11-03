@@ -27,8 +27,13 @@
   width: 80%;
 }
 
-.reservation__row {
-  border-top: solid 1px #3560F6;
+.reservation__row-label {
+  border-top: solid 2px #3560F6;
+  border-bottom: solid 2px #3560F6;
+}
+
+.reservation__row-data {
+  border-bottom: solid 1px #3560F6;
 }
 
 .reservation__label {

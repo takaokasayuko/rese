@@ -37,8 +37,8 @@ class Reservation extends Model
 
     public function reservationOpeningHours()
     {
-        $start_time = Carbon::createFromTimeString('11:00:00');
-        $end_time = Carbon::createFromTimeString('21:00:00');
+        $start_time = Carbon::createFromTimeString('00:00:00');
+        $end_time = Carbon::createFromTimeString('23:30:00');
         $times = [];
         while ($start_time <= $end_time) {
             $times[] = $start_time->format('H:i');

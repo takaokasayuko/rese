@@ -40,7 +40,7 @@
   position: absolute;
   top: 50%;
   left: -50%;
-  background: url(../image/icon/icon_time.png) no-repeat;
+  background: url(../icon/icon_time.png) no-repeat;
   background-size: cover;
   width: 20px;
   height: 20px;
@@ -48,7 +48,7 @@
 }
 
 .delete-form__button {
-  background: url(../image/icon/icon_cross.png) no-repeat;
+  background: url(../icon/icon_cross.png) no-repeat;
   background-size: cover;
   width: 20px;
   height: 20px;

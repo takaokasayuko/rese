@@ -27,7 +27,7 @@ class AdminRegister
     public function handle(Registered $event)
     {
         $user = $event->user;
-        if($user) {
+        if($user || is_null($user->admin)) {
             $user->admin = 2;
             $user->save();
         }
