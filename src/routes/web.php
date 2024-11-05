@@ -44,14 +44,16 @@ Route::middleware(['check.admin'])->group(
     function () {
         Route::get('/admin', [AdminController::class, 'admin']);
         Route::post('/admin/store', [AdminController::class, 'adminStore']);
+        Route::get('/admin/email', [AdminController::class, 'mail']);
+        Route::post('/admin/email/send', [AdminController::class, 'send']);
     });
 
 Route::middleware(['check.owner'])->group(
     function () {
     Route::get('/owner/register', [AdminController::class, 'ownerRegister']);
     Route::post('/owner/store', [AdminController::class, 'ownerStore']);
-    Route::get('/owner/reservation/{shop_id}', [AdminController::class, 'ownerReservation'])->name('owner.reservation');
     Route::get('/owner/shop', [AdminController::class, 'ownerShop']);
+    Route::get('/owner/reservation/{shop_id}', [AdminController::class, 'ownerReservation'])->name('owner.reservation');
     }
 );
 

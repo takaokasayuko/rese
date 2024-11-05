@@ -12,6 +12,8 @@ use App\Models\Reservation;
 use App\Consts\GenreConst;
 use App\Consts\PrefectureConst;
 use Carbon\Carbon;
+use App\Mail\AdminMail;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -94,5 +96,23 @@ class AdminController extends Controller
             ->get();
 
         return view('admin.reservation', compact('reservations', 'date', 'shop_id'));
+    }
+
+    // メール送信
+    public function mail()
+    {
+        return view('admin.admin-email');
+    }
+
+    public function send(Request $request)
+    {
+        $subject = $request->input('subject');
+        $message_content = $request->input('message');
+        $users = User::all();
+        foreach ($users as $user) {
+            Mail::to($user->email)->send(new AdminMail($subject, $message_content));
+        }
+
+        return back()->with('message', '送信しました');
     }
 }

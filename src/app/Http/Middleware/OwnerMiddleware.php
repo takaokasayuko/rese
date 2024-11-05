@@ -22,6 +22,5 @@ class OwnerMiddleware
             return redirect('/');
         }
         return $next($request);
-        return $next($request);
     }
 }
