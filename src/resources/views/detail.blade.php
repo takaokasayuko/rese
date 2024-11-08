@@ -74,19 +74,19 @@
       <div class="shop-reservation__list">
         <table class="reservation__table">
           <tr class="reservation__row">
-            <td class="reservation__data">Shop</td>
+            <th class="reservation__data">Shop</th>
             <td class="reservation__data">{{ $shop['name'] }}</td>
           </tr>
           <tr class="reservation__row">
-            <td class="reservation__data">Date</td>
+            <th class="reservation__data">Date</th>
             <td class="reservation__data" id="displayDate"></td>
           </tr>
           <tr class="reservation__row">
-            <td class="reservation__data">Time</td>
+            <th class="reservation__data">Time</th>
             <td class="reservation__data" id="displayTime"></td>
           </tr>
           <tr class="reservation__row">
-            <td class="reservation__data">Number</td>
+            <th class="reservation__data">Number</th>
             <td class="reservation__data" id="displayNumber"></td>
           </tr>
         </table>

@@ -1,23 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.email-app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ $subject }}</title>
-  <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/emails/send-email.css') }}">
-</head>
-
-<body>
-  <maim>
-    <p class="message-content">{{ $message_content }}</p>
-    <p class="message-attention">
-      本メールにお心当たりがない場合は、恐れ入りますが破棄していただきますようお願いいたします。
-      Rese
-    </p>
-    </main>
-</body>
-
-</html>
+@section('content')
+<p class="message-content">{{ $message_content }}</p>
+@endsection
