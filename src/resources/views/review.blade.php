@@ -6,6 +6,7 @@
 
 @section('content')
 <div class="content">
+  <a class="mypage__link" href="/mypage">&lt</a>
   <h3 class="shop-visited__tittle">来店履歴</h3>
   <div class="content__shop-visited">
     @foreach($visited_shops as $visited_shop)
@@ -36,19 +37,21 @@
         <table class="review__list-table">
           <tr class="review-row">
             <th class="review-data__th">stars</th>
-            <td class="review-data review-data__star" data-rate="{{ $visited_shop['stars'] }}"></td>
-            <td class="review-data__data-rate">({{ $visited_shop['stars'] }})</td>
+            <td class="review-data review-data__star" data-rate="{{ $visited_shop['stars'] }}"> <span class="review-data__data-rate">({{ $visited_shop['stars'] }})</span></td>
+
           </tr>
           <tr class=" review-row">
-            <th class="review-data__th">Nickname</th>
+            <th class="review-data">Nickname</th>
             <td class="review-data">{{ $visited_shop['nickname'] }}</td>
           </tr>
           <tr class="review-row">
-            <th class="review-data__th">Comment</th>
+            <th class="review-data" valign="top">Comment</th>
             <td class="review-data review-data__text">{{ $visited_shop['comment'] }}</td>
           </tr>
         </table>
-        <p class="review-data__date">2024/10/01 更新</p>
+        <p class="review-data__date">
+          {{ \Carbon\Carbon::parse($visited_shop['updated_at'])->format('Y-m-d') }}更新
+        </p>
 
         <!-- レビュー入力 -->
         @else
@@ -82,9 +85,9 @@
               </td>
             </tr>
             <tr class="review-row">
-              <th class="review-data">Comment</th>
+              <th class="review-data" valign="top">Comment</th>
               <td class="review-data">
-                <textarea class="review-comment__input" name="comment" cols="30" rows="7" placeholder="レビュー内容を記入してください"></textarea>
+                <textarea class="review-comment__input" name="comment" placeholder="レビュー内容を記入してください"></textarea>
               </td>
             </tr>
         </table>
@@ -100,6 +103,7 @@
     @endforeach
 
   </div>
+  {{ $visited_shops->links('vendor.pagination.bootstrap-4') }}
 </div>
 
 

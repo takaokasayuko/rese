@@ -13,6 +13,8 @@
     <li class="message-list">{{ $error }}</li>
     @endforeach
   </ul>
+
+  <a class="mypage__link" href="/mypage">&lt</a>
   <h3 class="reservation__tittle">予約変更</h3>
   <div class="reservation__list">
     <div class="reservation__list-header">

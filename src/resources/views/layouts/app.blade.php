@@ -43,18 +43,41 @@
         @auth
         <nav class="nav">
           <ul class="header-nav">
+            @if(auth()->user()->admin === 2)
             <li class="header-nav__item">
               <a class="header-nav__link" href="/">Home</a>
             </li>
+            @endif
+
             <li class="header-nav__item">
-              <form class="form" action="/logout" method="post">
+              <form class="form-logout" action="/logout" method="post">
                 @csrf
                 <button class="header-nav__button">Logout</button>
               </form>
             </li>
+            @if(auth()->user()->admin === 0)
+            <li class="header-nav__item">
+              <a class="header-nav__link" href="/admin">Admin</a>
+            </li>
+            <li class="header-nav__item">
+              <a class="header-nav__link" href="/admin/email">Mail</a>
+            </li>
+            @endif
+
+            @if(auth()->user()->admin === 1)
+            <li class="header-nav__item">
+              <a class="header-nav__link" href="/owner/shop">Shop</a>
+            </li>
+            <li class="header-nav__item">
+              <a class="header-nav__link" href="/owner/register">Register</a>
+            </li>
+            @endif
+
+            @if(auth()->user()->admin === 2)
             <li class="header-nav__item">
               <a class="header-nav__link" href="/mypage">Mypage</a>
             </li>
+            @endif
           </ul>
         </nav>
         @endauth

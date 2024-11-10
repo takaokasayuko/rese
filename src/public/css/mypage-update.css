@@ -1,3 +1,13 @@
+.mypage__link {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  padding: 3px 8px;
+  box-shadow: 2px 2px 2px #9C9C9C;
+  border-radius: 5px;
+}
+
 .save__button {
   text-align: right;
 }

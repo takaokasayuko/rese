@@ -14,7 +14,7 @@
       <select class="search__select" name="area">
         <option selected value="">All area</option>
         @foreach($areas as $area)
-        <option value="{{ $area['area'] }}" @if( request('area')==$area['area'] ) selected @endif>{{ $area['area'] }}</option>
+        <option value="{{ $area }}" @if( request('area')==$area ) selected @endif>{{ $area }}</option>
         @endforeach
       </select>
     </div>
@@ -34,15 +34,18 @@
 </div>
 @endsection
 
-
 @section('content')
 <div class="content">
-
 
   @foreach($shop_favorites as $shop_favorite)
   <div class="shop__list">
     <div class="shop__img">
+      @if(str_starts_with($shop_favorite['shop']['image'], 'https://'))
       <img src="{{ $shop_favorite['shop']['image'] }}" alt="">
+      @else
+      <img src="{{ Storage::url($shop_favorite['shop']['image']) }}" alt="">
+      @endif
+
     </div>
     <div class="shop__container">
       <div class="shop-tittle__group">
@@ -63,8 +66,8 @@
           <a class="shop-detail__link" href="{{ route('shop.detail', ['shop_id' => $shop_favorite['shop']['id']]) }}">詳しくみる</a>
         </div>
         <div class="shop__container-foot--fav">
-          @auth
-          @if($shop_favorite['favorite'] == 'false')
+          @auth()
+          @if($shop_favorite['favorite'] === 'false')
           <form class="form__fav" action="/favorite/store" method="post">
             <input type="hidden" name="shop_id" value="{{ $shop_favorite['shop']['id'] }}">
             @csrf
@@ -72,7 +75,7 @@
           </form>
           @endif
 
-          @if($shop_favorite['favorite'] == 'true')
+          @if($shop_favorite['favorite'] === 'true')
           <form class="form__fav" action="/favorite/delete" method="post">
             <input type="hidden" name="shop_id" value="{{ $shop_favorite['shop']['id'] }}">
             @csrf
@@ -82,7 +85,7 @@
           @endif
           @endauth
 
-          @guest
+          @guest()
           <a class="button__submit-un_fav" href="/login">&#10084;</a>
           @endguest
 
@@ -93,6 +96,4 @@
   @endforeach
 
 </div>
-
-
 @endsection

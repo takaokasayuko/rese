@@ -119,8 +119,7 @@ class ReservationController extends Controller
             ->whereDate('date', '<', $today)
             ->latest('date')
             ->with('reservationShop')
-            ->get();
-
+            ->paginate(6);
 
         return view('review', compact('visited_shops'));
     }

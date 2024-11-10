@@ -1,0 +1,77 @@
+.message-content {
+  text-align: center;
+}
+.message {
+  color: red;
+  font-size: 15px;
+}
+.message-list {
+  list-style: none;
+}
+
+.shop-register {
+  width: 50%;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px #9C9C9C;
+}
+
+.shop-register__tittle {
+  background-color: #3560F6;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 5px 5px 0 0;
+}
+
+.shop-register__list {
+  padding: 30px;
+}
+
+.shop-register__table {
+  table-layout: auto;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 15px;
+
+}
+
+th {
+  white-space: nowrap;
+}
+
+.shop-register__data {
+  padding-right: 10px;
+}
+.shop-register__data input{
+  width: 80%;
+}
+.shop-register__data textarea {
+  width: 80%;
+  height: 100px;
+}
+
+.register-button {
+  text-align: right;
+}
+.register-button__submit {
+  width: 20%;
+  border: none;
+  color: white;
+  background-color: #3560F6;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  height: 30px;
+  font-weight: bolder;
+}
+
+
+@media screen and (max-width: 768px) {
+  .content {
+    width: 70%;
+
+  }
+}

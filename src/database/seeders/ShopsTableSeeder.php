@@ -17,6 +17,7 @@ class ShopsTableSeeder extends Seeder
     public function run()
     {
         Shop::create([
+            'user_id' => 2,
             'name' => '仙人',
             'area' => '東京都',
             'genre' => '寿司',
@@ -25,6 +26,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '牛助',
             'area' => '大阪府',
             'genre' => '焼肉',
@@ -33,6 +35,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '戦慄',
             'area' => '福岡県',
             'genre' => '居酒屋',
@@ -41,6 +44,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => 'ルーク',
             'area' => '東京都',
             'genre' => 'イタリアン',
@@ -49,6 +53,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '志摩屋',
             'area' => '福岡県',
             'genre' => 'ラーメン',
@@ -57,6 +62,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '香',
             'area' => '東京都',
             'genre' => '焼肉',
@@ -65,6 +71,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => 'JJ',
             'area' => '大阪府',
             'genre' => 'イタリアン',
@@ -73,6 +80,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => 'らーめん極み',
             'area' => '東京都',
             'genre' => 'ラーメン',
@@ -81,6 +89,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '鳥雨',
             'area' => '大阪府',
             'genre' => '居酒屋',
@@ -89,6 +98,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '築地色合',
             'area' => '東京都',
             'genre' => '寿司',
@@ -97,6 +107,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '晴海',
             'area' => '大阪府',
             'genre' => '焼肉',
@@ -105,6 +116,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '三子',
             'area' => '福岡県',
             'genre' => '焼肉',
@@ -113,6 +125,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '八戒',
             'area' => '東京都',
             'genre' => '居酒屋',
@@ -121,6 +134,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '福助',
             'area' => '大阪府',
             'genre' => '寿司',
@@ -129,6 +143,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => 'ラー北',
             'area' => '東京都',
             'genre' => 'ラーメン',
@@ -137,6 +152,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '翔',
             'area' => '大阪府',
             'genre' => '居酒屋',
@@ -145,6 +161,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '経緯',
             'area' => '東京都',
             'genre' => '寿司',
@@ -153,6 +170,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '漆',
             'area' => '東京都',
             'genre' => '焼肉',
@@ -161,6 +179,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => 'THE TOOL',
             'area' => '福岡県',
             'genre' => 'イタリアン',
@@ -169,6 +188,7 @@ class ShopsTableSeeder extends Seeder
         ]);
 
         Shop::create([
+            'user_id' => 2,
             'name' => '木船',
             'area' => '大阪府',
             'genre' => '寿司',

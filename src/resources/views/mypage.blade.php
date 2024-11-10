@@ -16,54 +16,55 @@
     @yield('update')
     <div class="content__reservation-detail">
       <h3 class="reservation__tittle">予約状況</h3>
+      <div class="reservation__list-all">
+        @foreach($reservations as $key=>$reservation)
+        <div class="reservation__list">
+          <div class="reservation__list-header">
+            <p class="header-list__name">予約{{ $key+1 }}</p>
 
-      @foreach($reservations as $key=>$reservation)
-      <div class="reservation__list">
-        <div class="reservation__list-header">
-          <p class="header-list__name">予約{{ $key+1 }}</p>
+            <div class="header-list__update">
+              <a class="update__link" href="{{ route('mypage.update', ['reservation_id' => $reservation['id']]) }}">編集</a>
+            </div>
 
-          <div class="header-list__update">
-            <a class="update__link" href="{{ route('mypage.update', ['reservation_id' => $reservation['id']]) }}">編集</a>
+            <div class="header-list__delete">
+              <form class="delete-form" action="/reservation/delete" method="post">
+                <input type="hidden" name="id" value="{{ $reservation['id'] }}">
+                @csrf
+                @method('delete')
+                <button class="delete-form__button"></button>
+              </form>
+            </div>
+
           </div>
 
-          <div class="header-list__delete">
-            <form class="delete-form" action="/reservation/delete" method="post">
-              <input type="hidden" name="id" value="{{ $reservation['id'] }}">
-              @csrf
-              @method('delete')
-              <button class="delete-form__button"></button>
-            </form>
+          <div class="reservation__list--detail">
+            <table class="reservation__list-table">
+              <tr class="reservation__list-row">
+                <th class="reservation__list-data">Shop</th>
+                <td class="reservation__list-data">{{ $reservation->reservationShop->name}}</td>
+              </tr>
+              <tr class="reservation__list-row">
+                <th class="reservation__list-data">Date</th>
+                <td class="reservation__list-data" id="reservationDate">{{ $reservation->reservationDay() }}</td>
+              </tr>
+              <tr class="reservation__list-row">
+                <th class="reservation__list-data">Time</th>
+                <td class="reservation__list-data" id="reservationTime">{{ $reservation->reservationTime() }}</td>
+              </tr>
+              <tr class="reservation__list-row">
+                <th class="reservation__list-data">Number</th>
+                <td class="reservation__list-data" id="personNum">{{ $reservation['person_num'] }}人</td>
+              </tr>
+            </table>
           </div>
-
         </div>
-
-        <div class="reservation__list--detail">
-          <table class="reservation__list-table">
-            <tr class="reservation__list-row">
-              <th class="reservation__list-data">Shop</th>
-              <td class="reservation__list-data">{{ $reservation->reservationShop->name}}</td>
-            </tr>
-            <tr class="reservation__list-row">
-              <th class="reservation__list-data">Date</th>
-              <td class="reservation__list-data" id="reservationDate">{{ $reservation->reservationDay() }}</td>
-            </tr>
-            <tr class="reservation__list-row">
-              <th class="reservation__list-data">Time</th>
-              <td class="reservation__list-data" id="reservationTime">{{ $reservation->reservationTime() }}</td>
-            </tr>
-            <tr class="reservation__list-row">
-              <th class="reservation__list-data">Number</th>
-              <td class="reservation__list-data" id="personNum">{{ $reservation['person_num'] }}人</td>
-            </tr>
-          </table>
-        </div>
+        @endforeach
       </div>
-      @endforeach
     </div>
 
-      <div class="shop-visited">
-        <a class="shop-visited__link" href="/review">来店履歴</a>
-      </div>
+    <div class="shop-visited">
+      <a class="shop-visited__link" href="/review">来店履歴</a>
+    </div>
 
   </div>
 
@@ -76,7 +77,11 @@
       @foreach($favorites as $favorite)
       <div class="favorite__list">
         <div class="shop__img">
+          @if(str_starts_with($favorite->favoriteShop->image, 'https://'))
           <img src="{{ $favorite->favoriteShop->image }}" alt="">
+          @else
+          <img src="{{ Storage::url($favorite->favoriteShop->image) }}" alt="">
+          @endif
         </div>
         <div class="shop__container">
           <h2 class="shop-name">{{ $favorite->favoriteShop->name }}</h2>

@@ -1,6 +1,10 @@
 .content {
   margin: 100px auto;
   width: 400px;
+
+}
+
+.form-list {
   border-radius: 5px;
   box-shadow: 2px 2px 1px #9C9C9C;
   background-color: white;
@@ -31,30 +35,34 @@
 }
 
 .form__group {
-    margin: 10px auto;
-    padding: 5px 0;
-    width: 300px;
+  margin: 10px auto;
+  padding: 5px 0;
+  width: 300px;
 }
 
-.error-message {
+.error-message,
+.message {
   color: red;
   text-align: center;
 }
+.message-list {
+  list-style: none;
+}
 
 .form__group:nth-child(1) {
-  background: url(../../image/icon/icon_person.png) no-repeat;
+  background: url(../../icon/icon_person.png) no-repeat;
   background-position: left;
   background-size: 10%;
 }
 .form__group:nth-child(3) {
   width: 300px;
-  background: url(../../image/icon/icon_mail.png) no-repeat;
+  background: url(../../icon/icon_mail.png) no-repeat;
   background-position: left;
   background-size: 10%;
 }
 .form__group:nth-child(5) {
   width: 300px;
-  background: url(../../image/icon/icon_key.png) no-repeat;
+  background: url(../../icon/icon_key.png) no-repeat;
   background-position: left;
   background-size: 10%;
 }
@@ -72,5 +80,15 @@
 .form__button {
   text-align: right;
   padding-right: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    width: 80%;
+  }
+  .form__input {
+    margin: 20px 80px;
+  }
+
 }
 

@@ -6,6 +6,11 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Auth\Events\Login;
+use App\Listeners\SendEmailVerificationLogin;
+use Illuminate\Auth\Events\Logout;
+use App\Listeners\DeleteEmailVerificationLogout;
+use App\Listeners\AdminRegister;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -16,7 +21,13 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            AdminRegister::class,
+        ],
+        Login::class => [
+            SendEmailVerificationLogin::class,
+        ],
+        Logout::class => [
+            DeleteEmailVerificationLogout::class,
         ],
     ];
 
@@ -27,6 +38,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        parent::boot();
     }
 }

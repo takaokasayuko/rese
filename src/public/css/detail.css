@@ -31,8 +31,21 @@
 }
 
 .shop-tag__area,
-.shop-tag__genre {
+.shop-tag__genre,
+.review-link {
   display: inline-block;
+}
+
+.review-link {
+  margin-left: 10px;
+}
+
+.review-link__button {
+  background-color: #3560F6;
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .shop-detail {
@@ -104,4 +117,23 @@
 }
 .message-list {
   list-style: none;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+    }
+  .content__shop-detail {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .content__shop-reservation {
+    width: 90%;
+    margin: 0 auto;
+}
+  .content__shop-reservation--main {
+    padding: 20px;
+  }
 }

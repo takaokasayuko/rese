@@ -13,15 +13,23 @@
       <h2 class="shop__tittle-name">{{ $shop['name'] }}</h2>
     </div>
     <div class="shop-img">
+      @if(str_starts_with($shop['image'], 'https://'))
       <img src="{{ $shop['image'] }}" alt="">
+      @else
+      <img src="{{ Storage::url($shop['image']) }}" alt="">
+      @endif
     </div>
     <div class="shop-tag">
       <p class="shop-tag__area">#{{ $shop['area'] }}</p>
       <p class="shop-tag__genre">#{{ $shop['genre'] }}</p>
+      <div class="review-link">
+        <a class="review-link__button" href="{{ route('detail.review', ['shop_id' => $shop['id']]) }}">口コミ</a>
+      </div>
     </div>
     <div class="shop-detail">
       <p class="shop-detail__text">{{ $shop['detail'] }}</p>
     </div>
+
   </div>
 
   <div class="content__shop-reservation">
@@ -85,8 +93,6 @@
       </div>
 
       <script src="{{ asset('js/detail.js') }}" defer></script>
-
-
 
     </div>
     <div class="reservation__submit">
