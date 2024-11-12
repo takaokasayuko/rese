@@ -39,6 +39,9 @@ Route::middleware(['check.user', 'verified'])->group(function () {
     Route::get('/review', [ReservationController::class, 'review']);
     Route::patch('/review/update', [ReservationController::class, 'reviewUpdate']);
 
+    Route::get('/credit', [ReservationController::class, 'credit']);
+    Route::post('/credit/store', [ReservationController::class, 'creditStore']);
+
 });
 
 // 管理者

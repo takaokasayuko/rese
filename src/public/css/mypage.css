@@ -84,14 +84,17 @@
   font-size: 15px;
 }
 
-.shop-visited {
+.shop-visited,
+.credit-card {
   font-size: 20px;
   margin-bottom: 50px;
   width: 90px;
 }
 
-.shop-visited__link {
+.shop-visited__link,
+.credit-card__link {
   color: black;
+  white-space: nowrap;
 }
 
 /* お気に入り */
