@@ -21,7 +21,7 @@ class UserMiddleware
         if (!$user || $user->admin !== 2) {
             return redirect('/');
         }
-        return $next($request);
+
         return $next($request);
     }
 }

@@ -18,36 +18,50 @@ class ReservationController extends Controller
 {
     public function store(ReservationRequest $request)
     {
-        $request['date'] = $request->date . " " . $request->time . ":00";
         $tomorrow = Carbon::tomorrow();
         if ($request['date'] < $tomorrow) {
             return back()->with('message', '日付を明日以降にしてください');
         }
 
         $user = Auth::user();
-        $request['user_id'] = $user->id;
-        Reservation::create($request->only([
-            'user_id',
-            'shop_id',
-            'date',
-            'person_num'
-        ]));
-
-        $message_content = $request->all();
-        $message_content['user_name'] = $user->name;
         $shop = Shop::where('id', $request['shop_id'])
             ->first();
-        $message_content['shop_name'] = $shop->name;
-        $message_content['date'] = Carbon::parse($request['date'])->format('Y-m-d H:i');
+            $date = $request->date . " " . $request->time . ":00";
 
-        $qrcode = "予約氏名: {$message_content['user_name']}\n" .
-            "店舗名: {$message_content['shop_name']}\n" .
-            "日時: {$message_content['date']}\n" .
-            "人数: {$message_content['person_num']}";
+        Reservation::create([
+            'user_id' => $user->id,
+            'shop_id' => $shop->id,
+            'date' => $date,
+            'person_num' => $request->person_num
+        ]);
 
-        Mail::to($user->email)->send(new QrcodeMail($message_content, $qrcode));
+        $reservation = [
+            'user' => $user->name,
+            'shop' => $shop->name,
+            'date' => Carbon::parse($date)->format('Y-m-d H:i'),
+            'person_num' => $request->person_num,
+        ];
+
+        $reservation_id = Reservation::where('user_id', $user->id)
+        ->where('shop_id', $shop->id)
+        ->latest('updated_at')
+        ->first();
+
+        $url = route('confirmation', ['reservation_id' => $reservation_id->id]);
+
+        Mail::to($user->email)->send(new QrcodeMail($reservation, $url));
 
         return redirect('/done');
+    }
+
+    public function confirmation($reservation_id)
+    {
+        $reservation = Reservation::where('id', $reservation_id)
+        ->with('reservationShop')
+        ->with('reservationUser')
+        ->first();
+
+        return view('confirmation', compact('reservation'));
     }
 
     public function mypage()

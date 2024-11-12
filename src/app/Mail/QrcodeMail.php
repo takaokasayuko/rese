@@ -11,18 +11,18 @@ class QrcodeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $message_content;
-    public $qrcode;
+    public $reservation;
+    public $url;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($message_content, $qrcode)
+    public function __construct($reservation, $url)
     {
-        $this->message_content = $message_content;
-        $this->qrcode = $qrcode;
+        $this->reservation = $reservation;
+        $this->url = $url;
     }
 
     /**
@@ -35,8 +35,8 @@ class QrcodeMail extends Mailable
         return $this->view('emails.qrcode')
             ->subject('ご予約の確認について')
             ->with([
-                'message_content' => $this->message_content,
-                'qrcode' => $this->qrcode
+                'message_content' => $this->reservation,
+                'url' => $this->url
             ]);
     }
 }
