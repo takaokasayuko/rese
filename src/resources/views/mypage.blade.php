@@ -66,6 +66,10 @@
       <a class="shop-visited__link" href="/review">来店履歴</a>
     </div>
 
+    <div class="credit-card">
+      <a class="credit-card__link" href="/credit">クレジットカード情報</a>
+    </div>
+
   </div>
 
 

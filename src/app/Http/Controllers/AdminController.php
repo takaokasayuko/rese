@@ -12,8 +12,8 @@ use App\Models\Reservation;
 use App\Consts\GenreConst;
 use App\Consts\PrefectureConst;
 use Carbon\Carbon;
-use App\Mail\AdminMail;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\AdminMail;
 
 class AdminController extends Controller
 {

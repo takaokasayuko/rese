@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ReservationRequest;
 use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Shop;
 use App\Models\Reservation;
 use App\Models\Favorite;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\QrcodeMail;
+
 
 class ReservationController extends Controller
 {
@@ -16,13 +20,33 @@ class ReservationController extends Controller
     {
         $request['date'] = $request->date . " " . $request->time . ":00";
         $tomorrow = Carbon::tomorrow();
-        if($request['date'] < $tomorrow) {
+        if ($request['date'] < $tomorrow) {
             return back()->with('message', '日付を明日以降にしてください');
         }
 
-        $request['user_id'] = Auth::user()->id;
-        unset($request['_token']);
-        Reservation::create($request->all());
+        $user = Auth::user();
+        $request['user_id'] = $user->id;
+        Reservation::create($request->only([
+            'user_id',
+            'shop_id',
+            'date',
+            'person_num'
+        ]));
+
+        $message_content = $request->all();
+        $message_content['user_name'] = $user->name;
+        $shop = Shop::where('id', $request['shop_id'])
+            ->first();
+        $message_content['shop_name'] = $shop->name;
+        $message_content['date'] = Carbon::parse($request['date'])->format('Y-m-d H:i');
+
+        $qrcode = "予約氏名: {$message_content['user_name']}\n" .
+            "店舗名: {$message_content['shop_name']}\n" .
+            "日時: {$message_content['date']}\n" .
+            "人数: {$message_content['person_num']}";
+
+        Mail::to($user->email)->send(new QrcodeMail($message_content, $qrcode));
+
         return redirect('/done');
     }
 
@@ -85,7 +109,7 @@ class ReservationController extends Controller
     {
         $request['date'] = Carbon::parse($request->date . " " . $request->time);
         $tomorrow = Carbon::tomorrow();
-        if($request['date'] < $tomorrow) {
+        if ($request['date'] < $tomorrow) {
             return back()->with('message', '日付を明日以降にしてください');
         }
         Reservation::find($request->id)
@@ -127,7 +151,7 @@ class ReservationController extends Controller
     public function reviewUpdate(ReviewRequest $request)
     {
         $review = Reservation::find($request->id);
-        if($review['stars']) {
+        if ($review['stars']) {
             return view('error');
         }
 
@@ -135,13 +159,30 @@ class ReservationController extends Controller
             $request['nickname'] = "匿名";
         }
         Reservation::find($request->id)
-        ->update($request->only([
-            'stars',
-            'nickname',
-            'comment',
-        ]));
+            ->update($request->only([
+                'stars',
+                'nickname',
+                'comment',
+            ]));
 
         return redirect('/review');
     }
 
+    public function credit()
+    {
+        $user = Auth::user();
+        $user->createOrGetStripeCustomer();
+        $setup_intent = $user->createSetupIntent();
+
+        return view('credit-card', compact('setup_intent'));
+    }
+
+    public function creditStore(Request $request)
+    {
+        $user = Auth::user();
+        $paymentMethod = $request->input('paymentMethod');
+        $user->addPaymentMethod($paymentMethod);
+
+        return redirect('/credit');
+    }
 }

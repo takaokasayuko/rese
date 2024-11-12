@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 |
 */
 
+// ユーザー
 Route::middleware(['check.user', 'verified'])->group(function () {
     Route::get('/thanks', [ShopController::class, 'thanks'])->name('thanks');
 
@@ -38,8 +39,12 @@ Route::middleware(['check.user', 'verified'])->group(function () {
     Route::get('/review', [ReservationController::class, 'review']);
     Route::patch('/review/update', [ReservationController::class, 'reviewUpdate']);
 
+    Route::get('/credit', [ReservationController::class, 'credit']);
+    Route::post('/credit/store', [ReservationController::class, 'creditStore']);
+
 });
 
+// 管理者
 Route::middleware(['check.admin'])->group(
     function () {
         Route::get('/admin', [AdminController::class, 'admin']);
@@ -48,6 +53,7 @@ Route::middleware(['check.admin'])->group(
         Route::post('/admin/email/send', [AdminController::class, 'send']);
     });
 
+// 店舗管理者
 Route::middleware(['check.owner'])->group(
     function () {
     Route::get('/owner/register', [AdminController::class, 'ownerRegister']);
@@ -56,7 +62,6 @@ Route::middleware(['check.owner'])->group(
     Route::get('/owner/reservation/{shop_id}', [AdminController::class, 'ownerReservation'])->name('owner.reservation');
     }
 );
-
 
 Route::get('/', [ShopController::class, 'index']);
 Route::get('/search', [ShopController::class, 'search']);
