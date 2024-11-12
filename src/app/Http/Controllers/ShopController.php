@@ -18,6 +18,21 @@ class ShopController extends Controller
 
     public function index()
     {
+        $user = Auth::user();
+        if ($user && !$user->email_verified_at) {
+            return view('auth.verify-email');
+        }
+
+        // 店舗管理者ログイン後
+        if ($user['admin'] === 0 && $user->email_verified_at) {
+            return redirect('/admin');
+        }
+
+        // 店舗代表者ログイン後
+        if ($user['admin'] === 1 && $user->email_verified_at) {
+            return redirect('/owner/shop');
+        }
+
         $shops = Shop::all();
         $prefecture = PrefectureConst::PREFECTURES;
         $shop_areas = Shop::distinct()->pluck('area')->toArray();
