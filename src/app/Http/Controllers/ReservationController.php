@@ -26,7 +26,7 @@ class ReservationController extends Controller
         $user = Auth::user();
         $shop = Shop::where('id', $request['shop_id'])
             ->first();
-            $date = $request->date . " " . $request->time . ":00";
+        $date = $request->date . " " . $request->time . ":00";
 
         Reservation::create([
             'user_id' => $user->id,
@@ -43,9 +43,9 @@ class ReservationController extends Controller
         ];
 
         $reservation_id = Reservation::where('user_id', $user->id)
-        ->where('shop_id', $shop->id)
-        ->latest('updated_at')
-        ->first();
+            ->where('shop_id', $shop->id)
+            ->latest('updated_at')
+            ->first();
 
         $url = route('confirmation', ['reservation_id' => $reservation_id->id]);
 
@@ -57,9 +57,9 @@ class ReservationController extends Controller
     public function confirmation($reservation_id)
     {
         $reservation = Reservation::where('id', $reservation_id)
-        ->with('reservationShop')
-        ->with('reservationUser')
-        ->first();
+            ->with('reservationShop')
+            ->with('reservationUser')
+            ->first();
 
         return view('confirmation', compact('reservation'));
     }
@@ -131,7 +131,6 @@ class ReservationController extends Controller
                 'date',
                 'person_num'
             ]));
-
 
         return redirect('/mypage')->with('message', '変更しました');
     }
