@@ -1,56 +1,51 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/stripe.css') }}">
+<link rel="stylesheet" href="{{ asset('css/credit-card.css') }}">
 @endsection
 
 @section('content')
 <div class="content">
   <h2 class="stripe__ttl">クレジットカード情報</h2>
-
   <script src="https://js.stripe.com/v3/"></script>
+  <div class="credit">
+    <form id="payment-form" action="/credit/store" method="POST">
+      @csrf
+      <input id="card-holder-name" type="text" placeholder="カード名義人">
 
-  <form id="payment-form" action="/credit/store" method="POST">
-    @csrf
-    <div class="credit-container">
-      <div class="credit" id="card-element"></div>
+      <!-- ストライプ要素のプレースホルダ -->
+      <div id="card-element"></div>
+
       <div class="credit__button">
-        <button class="credit__button-submit" type="submit">登録</button>
+        <button class="credit__button-submit">
+          登録
+        </button>
+        <input type="hidden" name="stripeToken" id="stripeToken">
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 
   <script>
-    const stripe = Stripe('{{ env('STRIPE_KEY') }}');
+    const stripe = Stripe("{{ config('services.stripe.pb_key') }}");
     const elements = stripe.elements();
-    const cardElement = elements.create('card', {
-      hidePostalCode: true
-    });
+    const cardElement = elements.create('card');
     cardElement.mount('#card-element');
 
     const form = document.getElementById('payment-form');
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-
-      const clientSecret = "{{ $setup_intent->client_secret }}";
+      const cardHolderName = document.getElementById('card-holder-name').value;
       const {
-        setupIntent,
+        token,
         error
-      } = await stripe.confirmCardSetup(clientSecret, {
-        payment_method: {
-          card: cardElement,
-        },
+      } = await stripe.createToken(cardElement, {
+        name: cardHolderName,
       });
 
       if (error) {
-        alert(error.message);
-      } else if (paymentMethod) {
-        let hiddenInput = document.createElement('input');
-        hiddenInput.setAttribute('type', 'hidden');
-        hiddenInput.setAttribute('name', 'paymentMethod');
-        hiddenInput.setAttribute('value', paymentMethod.payment_method);
-        form.appendChild(hiddenInput);
-
+        console.error(error);
+      } else {
+        document.getElementById('stripeToken').value = token.id;
         form.submit();
       }
     });

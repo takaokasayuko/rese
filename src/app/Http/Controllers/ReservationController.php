@@ -12,6 +12,9 @@ use App\Models\Favorite;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\QrcodeMail;
+use Stripe\Stripe;
+use Stripe\Customer;
+use Stripe\PaymentMethod;
 
 
 class ReservationController extends Controller
@@ -183,18 +186,44 @@ class ReservationController extends Controller
 
     public function credit()
     {
-        $user = Auth::user();
-        $user->createOrGetStripeCustomer();
-        $setup_intent = $user->createSetupIntent();
+        // $user = Auth::user();
+        // $user->createOrGetStripeCustomer();
+        // $intent = $user->createSetupIntent();
+        // $stripe_key = env('STRIPE_KEY');
 
-        return view('credit-card', compact('setup_intent'));
+        // $taxIds = $user->taxIds();
+        // dd($sprite_key);
+
+        return view('credit-card');
     }
 
     public function creditStore(Request $request)
     {
+        $request->validate([
+            'stripeToken' => 'required',
+        ]);
         $user = Auth::user();
-        $paymentMethod = $request->input('paymentMethod');
-        $user->addPaymentMethod($paymentMethod);
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+// dd($request->all());
+
+        if (!$user->stripe_id) {
+            $customer = Customer::create([
+            'email' => $user->email,
+            'name' => $user->name,
+            'source' => $request->stripeToken,
+        ]);
+            $user->stripe_id = $customer->id;
+            $user->save();
+    }
+            // $paymentMethod = PaymentMethod::retrieve($request->stripeToken);
+            // $paymentMethod->attach(['customer' => $user->stripe_id]);
+
+            // $user->update([
+            //     'pm_type' => $paymentMethod->card->brand,
+            //     'pm_last_four' => $paymentMethod->card->last4,
+            // ]);
+
+        // $user->updateDefaultPaymentMethod($request->payment_method);
 
         return redirect('/credit');
     }
