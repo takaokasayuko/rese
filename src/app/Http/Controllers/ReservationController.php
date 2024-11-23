@@ -12,7 +12,7 @@ use App\Models\Favorite;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\QrcodeMail;
-
+use Stripe\Stripe;
 
 class ReservationController extends Controller
 {
@@ -184,18 +184,29 @@ class ReservationController extends Controller
     public function credit()
     {
         $user = Auth::user();
-        $user->createOrGetStripeCustomer();
-        $setup_intent = $user->createSetupIntent();
+        $intent = $user->createSetupIntent();
 
-        return view('credit-card', compact('setup_intent'));
+        return view('credit-card', compact('intent', 'user'));
     }
 
     public function creditStore(Request $request)
     {
-        $user = Auth::user();
-        $paymentMethod = $request->input('paymentMethod');
-        $user->addPaymentMethod($paymentMethod);
+        Stripe::setApiKey(config('services.stripe.sk_key'));
 
-        return redirect('/credit');
+        $user = Auth::user();
+        $user->createOrGetStripeCustomer();
+        $paymentMethodId = $request->input('paymentMethod');
+
+        if ($paymentMethodId) {
+            try {
+                $user->updateDefaultPaymentMethod($paymentMethodId);
+
+                return redirect()->back()->with('message', 'カード情報を登録しました');
+            } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['message' => 'カード情報の登録に失敗しました' . $e->getMessage()]);
+            }
+        } else {
+            return redirect()->back()->withErrors(['message' => '支払い方法が送信されませんでした']);
+        }
     }
 }

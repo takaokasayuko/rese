@@ -62,6 +62,9 @@ Route::middleware(['check.owner'])->group(
     Route::post('/owner/store', [AdminController::class, 'ownerStore']);
     Route::get('/owner/shop', [AdminController::class, 'ownerShop']);
     Route::get('/owner/reservation/{shop_id}', [AdminController::class, 'ownerReservation'])->name('owner.reservation');
+
+    Route::get('/owner/payment/{reservation_id}', [AdminController::class, 'payment'])->name('owner.payment');
+    Route::post('/owner/payment/store/', [AdminController::class, 'paymentStore']);
     }
 );
 

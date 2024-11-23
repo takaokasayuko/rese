@@ -17,12 +17,14 @@
         <th class="reservation__label">Name</th>
         <th class="reservation__label">Time</th>
         <th class="reservation__label">Number</th>
+        <th class="reservation__label">Payment</th>
       </tr>
       @foreach($reservations as $reservation)
       <tr class="reservation__row-data">
         <td class="reservation__data">{{ $reservation->reservationUser->name }}</td>
         <td class="reservation__data">{{ $reservation->reservationTime() }}</td>
         <td class="reservation__data">{{ $reservation->person_num }}人</td>
+        <td class="reservation__data"><a class="payment-link" href="{{ route('owner.payment', ['reservation_id' => $reservation->id]) }}">支払い</a></td>
       </tr>
       @endforeach
     </table>
