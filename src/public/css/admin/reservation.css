@@ -36,6 +36,18 @@
   border-bottom: solid 1px #3560F6;
 }
 
+.reservation__data {
+  padding: 10px 0;
+}
+
 .reservation__label {
   font-weight: bolder;
+}
+
+.payment-link {
+  text-decoration: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #3560F6;
+  padding: 5px;
 }

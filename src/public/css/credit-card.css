@@ -3,6 +3,10 @@
   margin: 0 auto;
 }
 
+.message {
+  color: red;
+}
+
 .credit {
   background-color: white;
   border-radius: 5px;

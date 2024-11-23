@@ -1,0 +1,28 @@
+.content {
+  text-align: center;
+}
+
+.payment-info {
+  width: 30%;
+  margin: 20px auto;
+}
+
+.payment-text,
+.message {
+  color: red;
+}
+
+.reservation__link {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  padding: 3px 8px;
+  box-shadow: 2px 2px 2px #9C9C9C;
+  border-radius: 5px;
+}
+
+.payment-ttl {
+  display: inline;
+  margin: 10px;
+}

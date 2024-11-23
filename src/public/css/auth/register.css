@@ -22,6 +22,12 @@
   border-radius: 5px 5px 0 0;
 }
 
+.form {
+  background-color: white;
+  margin-top: -10px;
+  border-radius: 0px 0px 5px 5px;
+}
+
 .form-content {
   margin-left: -30px;
 }

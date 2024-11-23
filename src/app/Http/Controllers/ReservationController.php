@@ -13,9 +13,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\QrcodeMail;
 use Stripe\Stripe;
-use Stripe\Customer;
-use Stripe\PaymentMethod;
-
 
 class ReservationController extends Controller
 {
@@ -186,45 +183,30 @@ class ReservationController extends Controller
 
     public function credit()
     {
-        // $user = Auth::user();
-        // $user->createOrGetStripeCustomer();
-        // $intent = $user->createSetupIntent();
-        // $stripe_key = env('STRIPE_KEY');
+        $user = Auth::user();
+        $intent = $user->createSetupIntent();
 
-        // $taxIds = $user->taxIds();
-        // dd($sprite_key);
-
-        return view('credit-card');
+        return view('credit-card', compact('intent', 'user'));
     }
 
     public function creditStore(Request $request)
     {
-        $request->validate([
-            'stripeToken' => 'required',
-        ]);
+        Stripe::setApiKey(config('services.stripe.sk_key'));
+
         $user = Auth::user();
-        Stripe::setApiKey(env('STRIPE_SECRET'));
-// dd($request->all());
+        $user->createOrGetStripeCustomer();
+        $paymentMethodId = $request->input('paymentMethod');
 
-        if (!$user->stripe_id) {
-            $customer = Customer::create([
-            'email' => $user->email,
-            'name' => $user->name,
-            'source' => $request->stripeToken,
-        ]);
-            $user->stripe_id = $customer->id;
-            $user->save();
-    }
-            // $paymentMethod = PaymentMethod::retrieve($request->stripeToken);
-            // $paymentMethod->attach(['customer' => $user->stripe_id]);
+        if ($paymentMethodId) {
+            try {
+                $user->updateDefaultPaymentMethod($paymentMethodId);
 
-            // $user->update([
-            //     'pm_type' => $paymentMethod->card->brand,
-            //     'pm_last_four' => $paymentMethod->card->last4,
-            // ]);
-
-        // $user->updateDefaultPaymentMethod($request->payment_method);
-
-        return redirect('/credit');
+                return redirect()->back()->with('message', 'カード情報を登録しました');
+            } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['message' => 'カード情報の登録に失敗しました' . $e->getMessage()]);
+            }
+        } else {
+            return redirect()->back()->withErrors(['message' => '支払い方法が送信されませんでした']);
+        }
     }
 }

@@ -14,6 +14,8 @@ use App\Consts\PrefectureConst;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminMail;
+use Stripe\Stripe;
+use Stripe\PaymentIntent;
 
 class AdminController extends Controller
 {
@@ -114,5 +116,43 @@ class AdminController extends Controller
         }
 
         return back()->with('message', '送信しました');
+    }
+
+    // 支払い
+    public function payment($reservation_id, Request $request)
+    {
+        $reservation = Reservation::where('id', $reservation_id)
+        ->with('reservationShop')
+        ->with('reservationUser')
+        ->first();
+
+        return view('admin.payment', compact('reservation'));
+    }
+
+    public function paymentStore(Request $request)
+    {
+        $amount = $request->input('amount');
+        $reservation = Reservation::find($request->id);
+        $user = User::find($reservation->user_id);
+        $payment_method = $user->defaultPaymentMethod();
+
+        Stripe::setApiKey(config('services.stripe.st_key'));
+
+        PaymentIntent::create([
+            'amount' => $amount * 100, //セント（1円 = 100セント）
+            'currency' => 'jpy',
+            'customer' => $user->stripe_id,
+            'payment_method' => $payment_method->id,
+            'off_session' => true,
+            'confirm' => true,
+        ]);
+
+        // 1は支払い済み
+        Reservation::find($request->id)
+        ->update([
+            'payment' => 1,
+        ]);
+
+        return back()->with('message', '決済が完了しました');
     }
 }

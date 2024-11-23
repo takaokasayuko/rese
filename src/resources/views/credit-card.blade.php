@@ -7,20 +7,33 @@
 @section('content')
 <div class="content">
   <h2 class="stripe__ttl">クレジットカード情報</h2>
+
+  @if($user->stripe_id)
+  <div class="credit-info">
+  <h3 class="credit-info__ttl">登録済みカード情報</h3>
+  <p class="credit-info">{{ $user->pm_type }}
+    <span>****{{ $user->pm_last_four }}</span>
+  </p>
+  </div>
+  @endif
+
+  @if (session('message'))
+  <p class="message">{{ session('message') }}</p>
+  @endif
+
   <script src="https://js.stripe.com/v3/"></script>
   <div class="credit">
-    <form id="payment-form" action="/credit/store" method="POST">
+    <form class="form" id="payment-form" action="/credit/store" method="POST">
       @csrf
       <input id="card-holder-name" type="text" placeholder="カード名義人">
 
-      <!-- ストライプ要素のプレースホルダ -->
       <div id="card-element"></div>
 
       <div class="credit__button">
-        <button class="credit__button-submit">
+        <button class="credit__button-submit" id="card-button" data-secret="{{ $intent->client_secret }}">
           登録
         </button>
-        <input type="hidden" name="stripeToken" id="stripeToken">
+
       </div>
     </form>
   </div>
@@ -28,25 +41,44 @@
   <script>
     const stripe = Stripe("{{ config('services.stripe.pb_key') }}");
     const elements = stripe.elements();
-    const cardElement = elements.create('card');
+
+    const cardElement = elements.create('card', {
+      hidePostalCode: true
+    });
     cardElement.mount('#card-element');
 
+    const cardHolderName = document.getElementById('card-holder-name');
+    const cardButton = document.getElementById('card-button');
+    const clientSecret = cardButton.dataset.secret;
+
     const form = document.getElementById('payment-form');
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const cardHolderName = document.getElementById('card-holder-name').value;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
       const {
-        token,
+        setupIntent,
         error
-      } = await stripe.createToken(cardElement, {
-        name: cardHolderName,
-      });
+      } = await stripe.confirmCardSetup(
+        clientSecret, {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              name: cardHolderName.value
+            }
+          }
+        });
 
       if (error) {
-        console.error(error);
+        alert('カード登録に失敗しました: ' + error.message);
       } else {
-        document.getElementById('stripeToken').value = token.id;
+        let hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'paymentMethod');
+        hiddenInput.setAttribute('value', setupIntent.payment_method);
+        form.appendChild(hiddenInput);
+
         form.submit();
+
       }
     });
   </script>
