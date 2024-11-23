@@ -68,6 +68,7 @@ class ShopController extends Controller
         return view('index', compact('shop_favorites', 'areas', 'genres'));
     }
 
+    // お気に入り
     public function store(Request $request)
     {
         $request['user_id'] = Auth::user()->id;
@@ -89,6 +90,7 @@ class ShopController extends Controller
         return back();
     }
 
+    // 詳細ページ
     public function detail($shop_id)
     {
         $shop = Shop::find($shop_id);

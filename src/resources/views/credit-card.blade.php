@@ -10,10 +10,10 @@
 
   @if($user->stripe_id)
   <div class="credit-info">
-  <h3 class="credit-info__ttl">登録済みカード情報</h3>
-  <p class="credit-info">{{ $user->pm_type }}
-    <span>****{{ $user->pm_last_four }}</span>
-  </p>
+    <h3 class="credit-info__ttl">登録済みカード情報</h3>
+    <p class="credit-info">{{ $user->pm_type }}
+      <span>**** **** **** {{ $user->pm_last_four }}</span>
+    </p>
   </div>
   @endif
 
@@ -42,43 +42,41 @@
     const stripe = Stripe("{{ config('services.stripe.pb_key') }}");
     const elements = stripe.elements();
 
-    const cardElement = elements.create('card', {
-      hidePostalCode: true
+    const cardElement = elements.create("card", {
+      hidePostalCode: true,
     });
-    cardElement.mount('#card-element');
+    cardElement.mount("#card-element");
 
-    const cardHolderName = document.getElementById('card-holder-name');
-    const cardButton = document.getElementById('card-button');
+    const cardHolderName = document.getElementById("card-holder-name");
+    const cardButton = document.getElementById("card-button");
     const clientSecret = cardButton.dataset.secret;
 
-    const form = document.getElementById('payment-form');
-    form.addEventListener('submit', async (e) => {
+    const form = document.getElementById("payment-form");
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const {
         setupIntent,
         error
-      } = await stripe.confirmCardSetup(
-        clientSecret, {
-          payment_method: {
-            card: cardElement,
-            billing_details: {
-              name: cardHolderName.value
-            }
-          }
-        });
+      } = await stripe.confirmCardSetup(clientSecret, {
+        payment_method: {
+          card: cardElement,
+          billing_details: {
+            name: cardHolderName.value,
+          },
+        },
+      });
 
       if (error) {
-        alert('カード登録に失敗しました: ' + error.message);
+        alert("カード登録に失敗しました: " + error.message);
       } else {
-        let hiddenInput = document.createElement('input');
-        hiddenInput.setAttribute('type', 'hidden');
-        hiddenInput.setAttribute('name', 'paymentMethod');
-        hiddenInput.setAttribute('value', setupIntent.payment_method);
+        let hiddenInput = document.createElement("input");
+        hiddenInput.setAttribute("type", "hidden");
+        hiddenInput.setAttribute("name", "paymentMethod");
+        hiddenInput.setAttribute("value", setupIntent.payment_method);
         form.appendChild(hiddenInput);
 
         form.submit();
-
       }
     });
   </script>
