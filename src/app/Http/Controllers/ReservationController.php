@@ -16,6 +16,7 @@ use Stripe\Stripe;
 
 class ReservationController extends Controller
 {
+    // 予約登録
     public function store(ReservationRequest $request)
     {
         $tomorrow = Carbon::tomorrow();
@@ -54,6 +55,11 @@ class ReservationController extends Controller
         return redirect('/done');
     }
 
+    public function done()
+    {
+        return view('done');
+    }
+
     public function confirmation($reservation_id)
     {
         $reservation = Reservation::where('id', $reservation_id)
@@ -64,6 +70,7 @@ class ReservationController extends Controller
         return view('confirmation', compact('reservation'));
     }
 
+    // マイページ
     public function mypage()
     {
         $user = Auth::user();
@@ -119,6 +126,7 @@ class ReservationController extends Controller
         return view('mypage-update', compact('reservation_update', 'user', 'reservations', 'favorites', 'reservation_num', 'times', 'people_num'));
     }
 
+    // 予約変更
     public function update(ReservationRequest $request)
     {
         $request['date'] = Carbon::parse($request->date . " " . $request->time);
@@ -143,11 +151,7 @@ class ReservationController extends Controller
         return back();
     }
 
-    public function done()
-    {
-        return view('done');
-    }
-
+    // レビュー
     public function review()
     {
         $user = Auth::user();
@@ -181,6 +185,7 @@ class ReservationController extends Controller
         return redirect('/review');
     }
 
+    // クレジットカード
     public function credit()
     {
         $user = Auth::user();
@@ -195,18 +200,14 @@ class ReservationController extends Controller
 
         $user = Auth::user();
         $user->createOrGetStripeCustomer();
-        $paymentMethodId = $request->input('paymentMethod');
+        $paymentMethod_id = $request->input('paymentMethod');
 
-        if ($paymentMethodId) {
-            try {
-                $user->updateDefaultPaymentMethod($paymentMethodId);
+        if ($paymentMethod_id) {
+            $user->updateDefaultPaymentMethod($paymentMethod_id);
 
-                return redirect()->back()->with('message', 'カード情報を登録しました');
-            } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['message' => 'カード情報の登録に失敗しました' . $e->getMessage()]);
-            }
+            return back()->with('message', 'カード情報を登録しました');
         } else {
-            return redirect()->back()->withErrors(['message' => '支払い方法が送信されませんでした']);
+            return back()->with(['message' => 'カード情報を登録できませんでした']);
         }
     }
 }
