@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,17 +14,19 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        User::create([
             'name' => '管理者',
             'email' => 'info@example.com',
             'password' => bcrypt('12345678'),
             'admin' => 0,
         ]);
-        DB::table('users')->insert([
+        User::create([
             'name' => '店舗代表者',
             'email' => 'shop@example.com',
             'password' => bcrypt('12345678'),
             'admin' => 1,
         ]);
+
+        User::factory()->count(10)->create();
     }
 }

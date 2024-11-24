@@ -6,12 +6,12 @@
 
 @section('content')
 <div class="content">
-  <p class="error-text">
-    エラーが発生しました。<br>
-    再度
-    <a class="mypage-link" href="/mypage">マイページ</a>
-    からお試しください。
-  </p>
+	<p class="error-text">
+		エラーが発生しました。<br>
+		再度
+		<a class="mypage-link" href="/mypage">マイページ</a>
+		からお試しください。
+	</p>
 </div>
 
 @endsection

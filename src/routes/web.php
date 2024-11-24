@@ -39,15 +39,13 @@ Route::middleware(['check.user', 'verified'])->group(function () {
     Route::get('/review', [ReservationController::class, 'review']);
     Route::patch('/review/update', [ReservationController::class, 'reviewUpdate']);
 
-    Route::get('/confirmation/{reservation_id}', [ReservationController::class, 'confirmation'])->name('confirmation');
-
     Route::get('/credit', [ReservationController::class, 'credit']);
     Route::post('/credit/store', [ReservationController::class, 'creditStore']);
 
 });
 
 // 管理者
-Route::middleware(['check.admin'])->group(
+Route::middleware(['check.admin', 'verified'])->group(
     function () {
         Route::get('/admin', [AdminController::class, 'admin']);
         Route::post('/admin/store', [AdminController::class, 'adminStore']);
@@ -56,7 +54,7 @@ Route::middleware(['check.admin'])->group(
     });
 
 // 店舗管理者
-Route::middleware(['check.owner'])->group(
+Route::middleware(['check.owner', 'verified'])->group(
     function () {
     Route::get('/owner/register', [AdminController::class, 'ownerRegister']);
     Route::post('/owner/store', [AdminController::class, 'ownerStore']);
@@ -71,6 +69,7 @@ Route::middleware(['check.owner'])->group(
 // ゲスト
 Route::get('/', [ShopController::class, 'index']);
 Route::get('/search', [ShopController::class, 'search']);
+Route::get('/confirmation/{reservation_id}', [ReservationController::class, 'confirmation'])->name('confirmation');
 
 
 // メール再送信
