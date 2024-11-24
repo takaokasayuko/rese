@@ -1,39 +1,40 @@
 .content {
-  width: 60%;
-  margin: 0 auto;
+	width: 60%;
+	margin: 0 auto;
 }
 
 .message {
-  color: red;
+	color: red;
 }
 
 .credit {
-  background-color: white;
-  border-radius: 5px;
-  padding: 20px;
+	background-color: white;
+	border-radius: 5px;
+	padding: 20px;
 }
 
-#card-element, #card-holder-name {
-  border-radius: 5px;
-  padding: 20px;
-  border: 1px solid #003FF5;
-  width: 100%;
+#card-element,
+#card-holder-name {
+	border-radius: 5px;
+	padding: 20px;
+	border: 1px solid #003FF5;
+	width: 100%;
 }
 
 .credit__button {
-  text-align: right;
+	text-align: right;
 }
 
 .credit__button-submit {
-  width: 20%;
-  border: none;
-  background-color: #003FF5;
-  color: white;
-  cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 15px;
-  height: 30px;
-  font-weight: bolder;
-  margin-top: 20px;
+	width: 20%;
+	border: none;
+	background-color: #003FF5;
+	color: white;
+	cursor: pointer;
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 15px;
+	height: 30px;
+	font-weight: bolder;
+	margin-top: 20px;
 }

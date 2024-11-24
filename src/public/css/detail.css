@@ -1,139 +1,148 @@
 .content {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 /* 店舗詳細 */
 .content__shop-detail {
-  width: 45%;
-  margin-top: 40px;
+	width: 45%;
+	margin-top: 40px;
 }
 
 .shop__tittle-name {
-  display: inline;
-  margin: 10px;
+	display: inline;
+	margin: 10px;
 }
+
 .shop-all__link {
-  text-decoration: none;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  padding: 3px 8px;
-  box-shadow: 2px 2px 2px #9C9C9C;
-  border-radius: 5px;
+	text-decoration: none;
+	cursor: pointer;
+	background-color: white;
+	color: black;
+	padding: 3px 8px;
+	box-shadow: 2px 2px 2px #9C9C9C;
+	border-radius: 5px;
 }
 
 .shop-img {
-  margin-top: 20px;
+	margin-top: 20px;
 }
+
 .shop-img img {
-  width: 100%;
+	width: 100%;
 }
 
 .shop-tag__area,
 .shop-tag__genre,
 .review-link {
-  display: inline-block;
+	display: inline-block;
 }
 
 .review-link {
-  margin-left: 10px;
+	margin-left: 10px;
 }
 
 .review-link__button {
-  background-color: #3560F6;
-  color: white;
-  text-decoration: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+	background-color: #3560F6;
+	color: white;
+	text-decoration: none;
+	padding: 5px 10px;
+	border-radius: 5px;
 }
 
 .shop-detail {
-  margin-top: -20px;
+	margin-top: -20px;
 }
 
 /* 予約 */
 .content__shop-reservation {
-  width: 45%;
+	width: 45%;
 }
 
 .content__shop-reservation--main {
-  width: 100%;
-  background-color: #3560F6;
-  padding: 20px 20px 200px;
-  border-radius: 5px 5px 0 0;
-  box-shadow: 2px 2px 2px #9C9C9C;
-  color: white;
+	width: 100%;
+	background-color: #3560F6;
+	padding: 20px 20px 200px;
+	border-radius: 5px 5px 0 0;
+	box-shadow: 2px 2px 2px #9C9C9C;
+	color: white;
 }
 
 .reservation__date-input,
 .reservation__time-select,
 .reservation__number-select {
-  height: 25px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  cursor: pointer;
+	height: 25px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	cursor: pointer;
 }
+
 .reservation__date-input {
-  border: none;
-  outline: none;
-  width: 30%;
+	border: none;
+	outline: none;
+	width: 30%;
 }
+
 .reservation__time-select,
 .reservation__number-select {
-  width: 90%;
-  padding-left: 5px;
+	width: 90%;
+	padding-left: 5px;
 }
 
 .shop-reservation__list {
-  background-color: #5580F7;
-  width: 85%;
-  padding: 20px 15px;
-  border-radius: 5px;
-  margin-top: 10px;
+	background-color: #5580F7;
+	width: 85%;
+	padding: 20px 15px;
+	border-radius: 5px;
+	margin-top: 10px;
 }
+
 .reservation__data {
-  padding-right: 40px;
+	padding-right: 40px;
 }
 
 .reservation__submit {
-  width: 100%;
-  background-color: #003FF5;
-  text-align: center;
-  border-radius: 0 0 5px 5px;
-  box-shadow: 2px 2px 2px #9C9C9C;
+	width: 100%;
+	background-color: #003FF5;
+	text-align: center;
+	border-radius: 0 0 5px 5px;
+	box-shadow: 2px 2px 2px #9C9C9C;
 }
+
 .reservation__submit-button {
-  background-color: #003FF5;
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 10px;
+	background-color: #003FF5;
+	border: none;
+	color: white;
+	cursor: pointer;
+	padding: 10px;
 }
 
 .message {
-  color: red;
-  font-size: 20px;
+	color: red;
+	font-size: 20px;
 }
+
 .message-list {
-  list-style: none;
+	list-style: none;
 }
 
 @media screen and (max-width: 768px) {
-  .content {
-    display: flex;
-    flex-direction: column;
-    }
-  .content__shop-detail {
-    width: 90%;
-    margin: 0 auto;
-  }
+	.content {
+		display: flex;
+		flex-direction: column;
+	}
 
-  .content__shop-reservation {
-    width: 90%;
-    margin: 0 auto;
-}
-  .content__shop-reservation--main {
-    padding: 20px;
-  }
+	.content__shop-detail {
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.content__shop-reservation {
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.content__shop-reservation--main {
+		padding: 20px;
+	}
 }

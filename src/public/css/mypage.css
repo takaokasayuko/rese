@@ -1,211 +1,217 @@
 .content {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 /* 予約状況 */
 .content__reservation {
-  width: 30%;
-  margin-top: 60px;
+	width: 30%;
+	margin-top: 60px;
 }
 
-.reservation__list-all{
-  display: flex;
-  flex-wrap: wrap;
+.reservation__list-all {
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .reservation__list {
-  background-color: #3560F6;
-  border-radius: 5px;
-  box-shadow: 2px 2px 2px #9C9C9C;
-  color: white;
-  margin-bottom: 30px;
-  padding: 15px 20px;
-  font-size: 13px;
-  width: 100%;
+	background-color: #3560F6;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px #9C9C9C;
+	color: white;
+	margin-bottom: 30px;
+	padding: 15px 20px;
+	font-size: 13px;
+	width: 100%;
 }
 
 .reservation__list-header {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .header-list__name {
-  margin-left: 30px;
-  padding-left: 20px;
-  position: relative;
+	margin-left: 30px;
+	padding-left: 20px;
+	position: relative;
 }
+
 .header-list__name::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -50%;
-  background: url(../icon/icon_time.png) no-repeat;
-  background-size: cover;
-  width: 20px;
-  height: 20px;
-  transform: translate(0, -50%);
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: -50%;
+	background: url(../icon/icon_time.png) no-repeat;
+	background-size: cover;
+	width: 20px;
+	height: 20px;
+	transform: translate(0, -50%);
 }
 
 .delete-form__button {
-  background: url(../icon/icon_cross.png) no-repeat;
-  background-size: cover;
-  width: 20px;
-  height: 20px;
-  border: none;
-  cursor: pointer;
+	background: url(../icon/icon_cross.png) no-repeat;
+	background-size: cover;
+	width: 20px;
+	height: 20px;
+	border: none;
+	cursor: pointer;
 }
 
 .reservation__list--detail {
-  margin-top: 20px;
+	margin-top: 20px;
 }
+
 .reservation__list-data {
-  padding: 0 30px 20px 0;
+	padding: 0 30px 20px 0;
 }
 
 .message {
-  color: red;
-  font-size: 20px;
-  border: none;
+	color: red;
+	font-size: 20px;
+	border: none;
 }
 
 .header-list__update {
-  background-color: white;
-  height: 22px;
-  width: 45px;
-  text-align: center;
-  border-radius: 3px;
+	background-color: white;
+	height: 22px;
+	width: 45px;
+	text-align: center;
+	border-radius: 3px;
 }
 
 .update__link {
-  color: #3560F6;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 15px;
+	color: #3560F6;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 15px;
 }
 
 .shop-visited,
 .credit-card {
-  font-size: 20px;
-  margin-bottom: 50px;
-  width: 90px;
+	font-size: 20px;
+	margin-bottom: 50px;
+	width: 90px;
 }
 
 .shop-visited__link,
 .credit-card__link {
-  color: black;
-  white-space: nowrap;
+	color: black;
+	white-space: nowrap;
 }
 
 /* お気に入り */
 .content__right {
-  width: 60%;
+	width: 60%;
 }
 
 .content__favorite {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .favorite__list {
-  width: 40%;
-  background-color: white;
-  box-shadow: 2px 2px 2px #9C9C9C;
-  border-radius: 5px;
-  margin: 0 45px 30px 0;
+	width: 40%;
+	background-color: white;
+	box-shadow: 2px 2px 2px #9C9C9C;
+	border-radius: 5px;
+	margin: 0 45px 30px 0;
 }
+
 .shop__img img {
-  width: 100%;
-  border-radius: 5px 5px 0 0;
-  height: 150px;
-  object-fit: cover;
+	width: 100%;
+	border-radius: 5px 5px 0 0;
+	height: 150px;
+	object-fit: cover;
 }
 
 .shop__container {
-  padding: 0 15px 10px;
+	padding: 0 15px 10px;
 }
 
 .shop-name {
-  font-size: 15px;
+	font-size: 15px;
 }
 
 .shop__container-tag {
-  margin-top: -20px;
-  font-size: 10px;
+	margin-top: -20px;
+	font-size: 10px;
 }
 
 .shop__container-tag--area,
 .shop__container-tag--genre {
-  display: inline-block;
+	display: inline-block;
 }
 
 .shop__container-foot {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .shop__container-foot--detail {
-  background-color: #3560F6;
-  box-shadow: 2px 2px 2px #9C9C9C;
-  border-radius: 5px;
-  width: 90px;
-  height: 30px;
-  padding: 2px 10px;
+	background-color: #3560F6;
+	box-shadow: 2px 2px 2px #9C9C9C;
+	border-radius: 5px;
+	width: 90px;
+	height: 30px;
+	padding: 2px 10px;
 }
 
 .shop-detail__link {
-  font-size: 13px;
-  color: white;
-  text-decoration: none
+	font-size: 13px;
+	color: white;
+	text-decoration: none
 }
 
 .button__submit-fav {
-  font-size: 30px;
-  margin-top: -10px;
-  border: none;
-  color: red;
-  background-color: white;
-  cursor: pointer;
+	font-size: 30px;
+	margin-top: -10px;
+	border: none;
+	color: red;
+	background-color: white;
+	cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
-  .content {
-    display: flex;
-    flex-direction: column;
-  }
+	.content {
+		display: flex;
+		flex-direction: column;
+	}
 
-  .content__reservation {
-    width: 90%;
-    margin: 0 auto;
+	.content__reservation {
+		width: 90%;
+		margin: 0 auto;
 
-  }
-  .reservation__list-all {
-    display: flex;
-    justify-content: space-between;
-  }
-  .reservation__list {
-    width: 45%;
-    margin: 10px 5px;
-  }
+	}
 
-  .content__right {
-    width: 90%;
-    margin: 0 auto;
-  }
-  .content__favorite {
-    display: flex;
-    justify-content: space-between;
-  }
-  .favorite__list {
-    width: 45%;
-    margin: 10px 5px;
-  }
+	.reservation__list-all {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.reservation__list {
+		width: 45%;
+		margin: 10px 5px;
+	}
+
+	.content__right {
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.content__favorite {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.favorite__list {
+		width: 45%;
+		margin: 10px 5px;
+	}
 }
 
 @media screen and (max-width: 480px) {
-  .content__reservation {
-      width: 90%;
-      margin: 0 auto;
-    }
+	.content__reservation {
+		width: 90%;
+		margin: 0 auto;
+	}
 }
-

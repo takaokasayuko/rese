@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\AdminRegisterRequest;
 use App\Http\Requests\ShopRegisterRequest;
+use App\Http\Requests\PaymentRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Shop;
@@ -129,7 +130,7 @@ class AdminController extends Controller
         return view('admin.payment', compact('reservation'));
     }
 
-    public function paymentStore(Request $request)
+    public function paymentStore(PaymentRequest $request)
     {
         $amount = $request->input('amount');
         $reservation = Reservation::find($request->id);
@@ -139,7 +140,7 @@ class AdminController extends Controller
         Stripe::setApiKey(config('services.stripe.st_key'));
 
         PaymentIntent::create([
-            'amount' => $amount * 100, //セント（1円 = 100セント）
+            'amount' => $amount,
             'currency' => 'jpy',
             'customer' => $user->stripe_id,
             'payment_method' => $payment_method->id,
@@ -147,12 +148,11 @@ class AdminController extends Controller
             'confirm' => true,
         ]);
 
-        // 1は支払い済み
         Reservation::find($request->id)
         ->update([
-            'payment' => 1,
+            'payment' => $amount,
         ]);
 
-        return back()->with('message', '決済が完了しました');
+        return back();
     }
 }

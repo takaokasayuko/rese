@@ -39,8 +39,6 @@ Route::middleware(['check.user', 'verified'])->group(function () {
     Route::get('/review', [ReservationController::class, 'review']);
     Route::patch('/review/update', [ReservationController::class, 'reviewUpdate']);
 
-    Route::get('/confirmation/{reservation_id}', [ReservationController::class, 'confirmation'])->name('confirmation');
-
     Route::get('/credit', [ReservationController::class, 'credit']);
     Route::post('/credit/store', [ReservationController::class, 'creditStore']);
 
@@ -71,6 +69,7 @@ Route::middleware(['check.owner'])->group(
 // ゲスト
 Route::get('/', [ShopController::class, 'index']);
 Route::get('/search', [ShopController::class, 'search']);
+Route::get('/confirmation/{reservation_id}', [ReservationController::class, 'confirmation'])->name('confirmation');
 
 
 // メール再送信

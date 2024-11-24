@@ -33,9 +33,9 @@ class ReviewRequest extends FormRequest
     public function messages()
     {
         return [
-            'nickname.max:20' => 'ニックネームは20文字以内で入力してください',
-            'stars.required' => '星を1～5段階で選んでください',
-            'comment.max:500' => '感想・コメントは500文字以内で入力してください'
+            'nickname.max:20' => 'ニックネームは20文字以内で入力してください。',
+            'stars.required' => '星を1～5段階で選んでください。',
+            'comment.max:500' => '感想・コメントは500文字以内で入力してください。'
         ];
     }
 }

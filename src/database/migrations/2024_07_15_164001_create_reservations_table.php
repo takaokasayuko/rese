@@ -22,7 +22,7 @@ class CreateReservationsTable extends Migration
             $table->string('nickname')->nullable();
             $table->integer('stars')->nullable();
             $table->text('comment')->nullable();
-            $table->boolean('payment')->nullable();
+            $table->integer('payment')->nullable();
             $table->timestamps();
         });
     }
