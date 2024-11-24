@@ -18,6 +18,13 @@ class ShopController extends Controller
 
     public function index()
     {
+		$user = Auth::user();
+		if($user && !$user->email_verified_at) {
+			return view('auth.verify-email');
+		}
+
+		// ユーザー
+		if(!$user || $user->admin === 2) {
         $shops = Shop::all();
         $prefecture = PrefectureConst::PREFECTURES;
         $shop_areas = Shop::distinct()->pluck('area')->toArray();
@@ -29,6 +36,17 @@ class ShopController extends Controller
         $shop_favorites = $this->getShopStatus($shops);
 
         return view('index', compact('shop_favorites', 'areas', 'genres'));
+		}
+
+		// 管理者
+		if($user->admin === 0) {
+			return redirect('/admin');
+		}
+
+		// 店舗代表者
+		if($user->admin === 1) {
+			return redirect('/owner/shop');
+		}
     }
 
     public function search(Request $request)

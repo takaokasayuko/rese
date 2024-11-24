@@ -45,7 +45,7 @@ Route::middleware(['check.user', 'verified'])->group(function () {
 });
 
 // 管理者
-Route::middleware(['check.admin'])->group(
+Route::middleware(['check.admin', 'verified'])->group(
     function () {
         Route::get('/admin', [AdminController::class, 'admin']);
         Route::post('/admin/store', [AdminController::class, 'adminStore']);
@@ -54,7 +54,7 @@ Route::middleware(['check.admin'])->group(
     });
 
 // 店舗管理者
-Route::middleware(['check.owner'])->group(
+Route::middleware(['check.owner', 'verified'])->group(
     function () {
     Route::get('/owner/register', [AdminController::class, 'ownerRegister']);
     Route::post('/owner/store', [AdminController::class, 'ownerStore']);

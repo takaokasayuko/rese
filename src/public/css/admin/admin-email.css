@@ -1,10 +1,12 @@
 .send-email__content {
 	width: 50%;
 	margin: 0 auto;
+	text-align: center;
 }
 
 .message-success {
 	color: red;
+	text-align: center;
 }
 
 .email__group {
