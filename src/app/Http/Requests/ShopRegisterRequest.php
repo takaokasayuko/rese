@@ -35,11 +35,11 @@ class ShopRegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => '店舗名の入力がありません',
-            'area.required' => '地域が選択されていません',
+            'name.required' => '店舗名の入力がありません。',
+            'area.required' => '地域が選択されていません。',
             'genre.required' => 'ジャンルが選択されていません',
-            'image.required' => '画像を選んでください',
-            'detail.required' => '店舗の詳細の入力がありません',
+            'image.required' => '画像を選んでください。',
+            'detail.required' => '店舗の詳細の入力がありません。',
         ];
     }
 }

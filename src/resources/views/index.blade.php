@@ -63,7 +63,12 @@
 			</div>
 			<div class="shop__container-foot">
 				<div class="shop__container-foot--detail">
+					@auth()
 					<a class="shop-detail__link" href="{{ route('shop.detail', ['shop_id' => $shop_favorite['shop']['id']]) }}">詳しくみる</a>
+					@endauth
+					@guest()
+					<a class="shop-detail__link" href="/login">詳しくみる</a>
+					@endguest()
 				</div>
 				<div class="shop__container-foot--fav">
 					@auth()

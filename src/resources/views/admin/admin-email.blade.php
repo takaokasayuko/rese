@@ -12,6 +12,7 @@
 	</div>
 	@endif
 	<div class="send-email__content">
+		<h2 class="send-email__ttl">利用者へメール送信</h2>
 		<form class="send-email" action="/admin/email/send" method="post">
 			@csrf
 			<div class="email__group">
