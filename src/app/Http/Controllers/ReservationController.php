@@ -19,9 +19,10 @@ class ReservationController extends Controller
     // 予約登録
     public function store(ReservationRequest $request)
     {
-        $tomorrow = Carbon::tomorrow();
-        if ($request['date'] < $tomorrow) {
-            return back()->with('message', '日付を明日以降にしてください');
+		$date = Carbon::parse($request->date . " " . $request->time);
+		$possible_date = Carbon::now()->addHour(12);
+        if ($date < $possible_date) {
+            return back()->with('message', '予約を半日以降にしてください');
         }
 
         $user = Auth::user();
@@ -129,11 +130,12 @@ class ReservationController extends Controller
     // 予約変更
     public function update(ReservationRequest $request)
     {
-        $request['date'] = Carbon::parse($request->date . " " . $request->time);
-        $tomorrow = Carbon::tomorrow();
-        if ($request['date'] < $tomorrow) {
-            return back()->with('message', '日付を明日以降にしてください');
-        }
+		$date = Carbon::parse($request->date . " " . $request->time);
+		$possible_date = Carbon::now()->addHour(12);
+		if ($date < $possible_date) {
+			return back()->with('message', '予約を半日以降にしてください');
+		}
+
         Reservation::find($request->id)
             ->update($request->only([
                 'date',

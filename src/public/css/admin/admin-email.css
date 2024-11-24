@@ -1,5 +1,5 @@
 .send-email__content {
-	width: 50%;
+	width: 30%;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -11,6 +11,10 @@
 
 .email__group {
 	margin: 10px 0;
+	display: flex;
+	align-items: flex-start;
+	;
+	white-space: nowrap;
 }
 
 label {
@@ -44,4 +48,11 @@ label {
 	font-size: 15px;
 	height: 30px;
 	font-weight: bolder;
+}
+
+
+@media screen and (max-width: 768px) {
+	.send-email__content {
+		width: 50%;
+	}
 }

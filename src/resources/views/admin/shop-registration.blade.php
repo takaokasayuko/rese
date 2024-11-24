@@ -64,7 +64,7 @@
 					<tr class="shop-register__row">
 						<th class="shop-register__data" valign="top">Detail</th>
 						<td class="shop-register__data">
-							<textarea class="shop-register__data-input" name="detail" placeholder="店舗の概要を入力してください"></textarea>
+							<textarea class="shop-register__data-input" name="detail" placeholder="店舗の概要を入力してください">{{ old('detail') }}</textarea>
 						</td>
 					</tr>
 				</table>

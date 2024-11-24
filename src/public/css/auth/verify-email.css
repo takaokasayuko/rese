@@ -13,3 +13,9 @@
 	background-color: #3560F6;
 	cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+	.form__button-submit {
+		width: 40%;
+	}
+}

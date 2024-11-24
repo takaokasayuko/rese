@@ -96,7 +96,7 @@ return [
     'password'             => 'パスワードが正しくありません。',
     'present'              => ':attributeが存在している必要があります。',
     'regex'                => ':attributeには、有効な正規表現を指定してください。',
-    'required'             => ':attributeは、必ず指定してください。',
+    'required'             => ':attributeを入力してください。',
     'required_if'          => ':otherが:valueの場合、:attributeを指定してください。',
     'required_unless'      => ':otherが:values以外の場合、:attributeを指定してください。',
     'required_with'        => ':valuesが指定されている場合、:attributeも指定してください。',
@@ -131,8 +131,8 @@ return [
 
     'custom' => [
         'email' => [
-            'required' => 'メールアドレスは入力必須です',
-            'email' => 'メールアドレスは「ユーザー名@ドメイン」形式で入力してください',
+            'required' => 'メールアドレスを入力してください。',
+            'email' => 'メールアドレスは「ユーザー名@ドメイン」形式で入力してください。',
         ],
     ],
 

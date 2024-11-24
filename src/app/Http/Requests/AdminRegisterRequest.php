@@ -33,14 +33,14 @@ class AdminRegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => '名前を入力してください',
+            'name.required' => '名前を入力してください。',
 
-            'email.required' => 'メールアドレスを入力してください',
-            'email.email' => 'メールアドレスは「ユーザー名@ドメイン」形式で入力してください',
-            'unique:users' => '指定のメールアドレスは既に登録済みです',
+            'email.required' => 'メールアドレスを入力してください。',
+            'email.email' => 'メールアドレスは「ユーザー名@ドメイン」形式で入力してください。',
+            'unique:users' => '指定のメールアドレスは既に登録済みです。',
 
-            'password.required' => 'パスワードを入力してください',
-            'password.min:8' => 'パスワードは8文字以上で入力してください'
+            'password.required' => 'パスワードを入力してください。',
+            'password.min:8' => 'パスワードは8文字以上で入力してください。'
         ];
     }
 }

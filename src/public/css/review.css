@@ -63,7 +63,7 @@ th {
 }
 
 .review-data textarea {
-	height: 50px;
+	height: 150px;
 }
 
 .review-comment__input {
@@ -206,5 +206,9 @@ th {
 	.review-data {
 		padding-right: 20px;
 		width: 400px;
+	}
+
+	.review-data__star {
+		width: 103px;
 	}
 }

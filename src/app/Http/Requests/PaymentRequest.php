@@ -31,9 +31,9 @@ class PaymentRequest extends FormRequest
 	public function messages()
 	{
 		return [
-			'amount.required' => '金額を入力してください',
-			'amount.min:1' => '1以上の数字を入力してください',
-			'amount.integer' => '整数で入力してください',
+			'amount.required' => '金額を入力してください。',
+			'amount.min:1' => '1以上の数字を入力してください。',
+			'amount.integer' => '整数で入力してください。',
 		];
 	}
 }

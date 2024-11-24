@@ -1,5 +1,10 @@
+.content {
+	margin: 0 auto;
+}
+
 .message-content {
-	text-align: center;
+	margin: 0 auto;
+	width: 50%;
 }
 
 .message {
@@ -77,6 +82,9 @@ th {
 @media screen and (max-width: 768px) {
 	.content {
 		width: 70%;
+	}
 
+	.shop-register {
+		width: 100%;
 	}
 }
