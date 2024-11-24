@@ -114,6 +114,12 @@ _Permission denied というエラーが発生したら権限変更してくだ�
 php artisan db:seed
 ```
 
+9. storage保存の画像の表示（シンボリックリンク）
+
+```bash
+php artisan storage:link
+```
+
 ### タスクスケジューラ
 
 - コマンド起動中、朝 7 時に翌日の朝 7 時までの予約にリマインドのメールが送信されます
