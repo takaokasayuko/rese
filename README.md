@@ -41,7 +41,7 @@
 
 ## ER 図
 
-![ER図](src/public/image/DB.png)
+![ER図](src/public/image/ER.png)
 
 ## 環境構築
 
@@ -87,16 +87,16 @@ CASHIER_CURRENCY_LOCALE=ja_JP
 CASHIER_LOGGER=daily
 ```
 
-.env ファイルを編集後キャッシュクリアしてください
-
-```text
-php artisan config:cache
-```
-
 6. アプリケーションキーの作成
 
 ```bash
 php artisan key:generate
+```
+
+.env ファイルを編集後キャッシュクリアしてください
+
+```bash
+php artisan config:cache
 ```
 
 7. マイグレーションの実行
@@ -106,7 +106,7 @@ php artisan migrate
 ```
 
 _Permission denied というエラーが発生したら権限変更してください_
-`php sudo chmod -R 777 src/*`
+`sudo chmod -R 777 src/*`
 
 8. シーディングの実行
 
