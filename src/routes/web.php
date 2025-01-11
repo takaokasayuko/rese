@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
 
 /*
@@ -41,6 +42,8 @@ Route::middleware(['check.user', 'verified'])->group(function () {
 
     Route::get('/credit', [ReservationController::class, 'credit']);
     Route::post('/credit/store', [ReservationController::class, 'creditStore']);
+
+    Route::get('/review', [ReviewController::class, 'review']);
 
 });
 
