@@ -22,12 +22,12 @@
 		<div class="shop-tag">
 			<p class="shop-tag__area">#{{ $shop['area'] }}</p>
 			<p class="shop-tag__genre">#{{ $shop['genre'] }}</p>
-			<div class="review-link">
-				<a class="review-link__button" href="{{ route('detail.review', ['shop_id' => $shop['id']]) }}">口コミ</a>
-			</div>
 		</div>
 		<div class="shop-detail">
 			<p class="shop-detail__text">{{ $shop['detail'] }}</p>
+		</div>
+		<div class="review-posting">
+			<a class="review-posting__link" href="{{ route('review.posting', ['shop_id' => $shop['id']]) }}">口コミを投稿する</a>
 		</div>
 
 	</div>
