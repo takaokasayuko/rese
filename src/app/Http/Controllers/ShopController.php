@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
+use App\Models\Area;
+use App\Models\Genre;
 use App\Models\Favorite;
 use App\Models\Reservation;
 use App\Consts\PrefectureConst;
@@ -18,68 +20,59 @@ class ShopController extends Controller
 
     public function index()
     {
-		$user = Auth::user();
-		if($user && !$user->email_verified_at) {
-			return view('auth.verify-email');
-		}
+        $user = Auth::user();
+        if ($user && !$user->email_verified_at) {
+            return view('auth.verify-email');
+        }
 
-		// ユーザー
-		if(!$user || $user->admin === 2) {
-        $shops = Shop::all();
-        $prefecture = PrefectureConst::PREFECTURES;
-        $shop_areas = Shop::distinct()->pluck('area')->toArray();
-        $areas = collect($prefecture)
-            ->filter(fn($shop_area) => in_array($shop_area, $shop_areas))
-            ->values();
+        // ユーザー
+        if (!$user || $user->admin === 2) {
+            $shops = Shop::with('area', 'genre')
+                ->get();
+            $areas = Area::all();
+            $genres = Genre::all();
+            $shop_favorites = $this->getShopStatus($shops);
+            return view('index', compact('shop_favorites', 'areas', 'genres'));
+        }
 
-        $genres = $shops->unique('genre');
-        $shop_favorites = $this->getShopStatus($shops);
+        // 管理者
+        if ($user->admin === 0) {
+            return redirect('/admin');
+        }
 
-        return view('index', compact('shop_favorites', 'areas', 'genres'));
-		}
-
-		// 管理者
-		if($user->admin === 0) {
-			return redirect('/admin');
-		}
-
-		// 店舗代表者
-		if($user->admin === 1) {
-			return redirect('/owner/shop');
-		}
+        // 店舗代表者
+        if ($user->admin === 1) {
+            return redirect('/owner/shop');
+        }
     }
 
     public function search(Request $request)
     {
-        $area = $request->input('area');
-        $genre = $request->input('genre');
+
+        $area = Area::where('name', $request->input('area'))->first();
+        $genre = Genre::where('name', $request->input('genre'))->first();
+
         $keyword = $request->input('keyword');
         $query = Shop::query();
 
         if (!empty($area)) {
-            $query->where('area', 'LIKE', $area);
+            $query->where('area_id', 'LIKE', $area->id);
         }
 
         if (!empty($genre)) {
-            $query->where('genre', 'LIKE', $genre);
+            $query->where('genre_id', 'LIKE', $genre->id);
         }
 
         if (!empty($keyword)) {
             $query->where(function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->keyword . '%')
-                    ->orWhere('area', 'like', '%' . $request->keyword . '%')
-                    ->orWhere('genre', 'like', '%' . $request->keyword . '%')
                     ->orWhere('detail', 'like', '%' . $request->keyword . '%');
             });
         }
 
         $shops = $query->get();
-        $prefecture = PrefectureConst::PREFECTURES;
-        $shop_areas = Shop::distinct()->pluck('area')->toArray();
-        $areas = collect($prefecture)
-            ->filter(fn($shop_area) => in_array($shop_area, $shop_areas))
-            ->values();
-        $genres = Shop::all()->unique('genre');
+        $areas = Area::all();
+        $genres = Genre::all();
 
         $shop_favorites = $this->getShopStatus($shops);
 

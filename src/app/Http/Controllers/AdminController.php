@@ -8,10 +8,10 @@ use App\Http\Requests\ShopRegisterRequest;
 use App\Http\Requests\PaymentRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Area;
+use App\Models\Genre;
 use App\Models\Shop;
 use App\Models\Reservation;
-use App\Consts\GenreConst;
-use App\Consts\PrefectureConst;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminMail;
@@ -40,7 +40,7 @@ class AdminController extends Controller
     // 店舗登録画面
     public function ownerRegister()
     {
-        $areas = PrefectureConst::PREFECTURES;
+        $areas = Area::all();
         $genres = GenreConst::GENRES;
 
         return view('admin.shop-registration', compact('areas', 'genres'));
