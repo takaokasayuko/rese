@@ -104,7 +104,9 @@ class ShopController extends Controller
     // 詳細ページ
     public function detail($shop_id)
     {
-        $shop = Shop::find($shop_id);
+        $shop = Shop::where('id', $shop_id)
+            ->with('area', 'genre')
+            ->first();
         $reservation = new Reservation();
         $times = $reservation->reservationOpeningHours();
         $people_num = $reservation->reservationPeopleNum();

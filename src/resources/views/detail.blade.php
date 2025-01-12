@@ -20,8 +20,8 @@
       @endif
     </div>
     <div class="shop-tag">
-      <p class="shop-tag__area">#{{ $shop['area'] }}</p>
-      <p class="shop-tag__genre">#{{ $shop['genre'] }}</p>
+      <p class="shop-tag__area">#{{ $shop->area->name }}</p>
+      <p class="shop-tag__genre">#{{ $shop->genre->name }}</p>
     </div>
     <div class="shop-detail">
       <p class="shop-detail__text">{{ $shop['detail'] }}</p>

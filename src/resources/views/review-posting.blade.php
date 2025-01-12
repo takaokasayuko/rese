@@ -23,8 +23,8 @@
           <h3 class="shop-name">{{ $shop['name'] }}</h3>
 
           <div class="shop__container-tag">
-            <p class="shop__container-tag--area">#{{ $shop['area'] }}</p>
-            <p class="shop__container-tag--genre">#{{ $shop['genre'] }}</p>
+            <p class="shop__container-tag--area">#{{ $shop->area->name }}</p>
+            <p class="shop__container-tag--genre">#{{ $shop->genre->name }}</p>
           </div>
 
           <div class="shop__container-foot">
@@ -57,7 +57,8 @@
     </div>
 
     <div class="review-posting">
-      <form class="form-review" action="">
+      <form class="form-review" action="/review" method="post" enctype='multipart/form-data'>
+        <input type="hidden" name="shop_id" value="{{ $shop->id }}">
         @csrf
         <div class="form__review-stars">
           <label class="review-label" for="stars">体験を評価してください</label>
@@ -71,7 +72,7 @@
 
         <div class="form__review-comment">
           <label class="review-label" for="comment">口コミ投稿</label>
-          <textarea class="review-comment" name="comment" id="comment" placeholder="カジュアルな夜のお出かけにおすすめのスポット"></textarea>
+          <textarea class="review-comment" name="comment" id="comment" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('comment') }}</textarea>
           <p class="review-comment__notes">0/400(最高文字数)</p>
         </div>
 
@@ -81,14 +82,14 @@
             <label class="review-image__upload" for="image">
               クリックして写真を追加
               <span class="review-image__notes">またはドロッグアンドドロップ</span></label>
-            <input type="file" class="review-image__input" name="image" id="image">
+            <input class="review-image__input" type="file" name="image" id="image" accept="image/*">
           </div>
         </div>
 
     </div>
   </div>
 
-    <button class="review-posting__button">口コミを投稿</button>
+  <button class="review-posting__button">口コミを投稿</button>
   </form>
 </div>
 
