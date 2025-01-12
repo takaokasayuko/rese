@@ -1,31 +1,31 @@
 .mypage__link {
-	text-decoration: none;
-	cursor: pointer;
-	background-color: white;
-	color: black;
-	padding: 3px 8px;
-	box-shadow: 2px 2px 2px #9C9C9C;
-	border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  padding: 3px 8px;
+  box-shadow: 2px 2px 2px #9C9C9C;
+  border-radius: 5px;
 }
 
 .save__button {
-	text-align: right;
+  text-align: right;
 }
 
 .save__button-submit {
-	cursor: pointer;
-	text-decoration: none;
-	border: none;
-	border-radius: 3px;
-	color: #3560F6;
-	background-color: white;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  color: #3560F6;
+  background-color: white;
 }
 
 .message {
-	color: red;
-	font-size: 20px;
+  color: red;
+  font-size: 20px;
 }
 
 .message-list {
-	list-style: none;
+  list-style: none;
 }

@@ -1,28 +1,28 @@
 .content {
-	margin: 100px auto;
-	width: 400px;
-	border-radius: 5px;
-	box-shadow: 2px 2px 1px #9C9C9C;
-	background-color: white;
-	padding: 60px 50px;
-	text-align: center;
+  margin: 100px auto;
+  width: 400px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px #9C9C9C;
+  background-color: white;
+  padding: 60px 50px;
+  text-align: center;
 }
 
 .text {
-	margin-bottom: 40px;
-	font-size: 20px;
+  margin-bottom: 40px;
+  font-size: 20px;
 }
 
 .form__button {
-	margin: 0 auto;
-	width: 120px;
-	padding: 5px;
-	background-color: #3560F6;
-	border-radius: 5px;
+  margin: 0 auto;
+  width: 120px;
+  padding: 5px;
+  background-color: #3560F6;
+  border-radius: 5px;
 }
 
 .form__button-submit {
-	color: white;
-	font-size: 15px;
-	text-decoration: none;
+  color: white;
+  font-size: 15px;
+  text-decoration: none;
 }

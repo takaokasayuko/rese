@@ -165,7 +165,7 @@
   display: none;
 }
 
-.review-posting__button{
+.review-posting__button {
   display: block;
   margin: 40px auto;
   padding: 10px;
@@ -174,4 +174,52 @@
   border: none;
   border-radius: 50px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .shop__review-posting {
+    flex-direction: column;
+  }
+
+  .shop-review {
+    width: 100%;
+  }
+
+  .shop-detail {
+    width: 60%;
+  }
+
+  .shop-img img {
+    height: 200px;
+  }
+
+  /* 口コミ投稿 */
+  .review-posting {
+    width: 80%;
+    margin: 50px auto 0;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  .shop-review {
+    margin-top: 10px;
+  }
+
+  .shop-review__ttl {
+    font-size: 35px;
+  }
+
+  .shop-detail {
+    width: 90%;
+    margin: 40px auto 0;
+  }
+
+  .shop-img img {
+    height: 150px;
+  }
+
+  .review-stars__input {
+    justify-content: center;
+  }
 }
