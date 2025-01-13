@@ -78,10 +78,10 @@ return [
     'max'                  => [
         'numeric' => ':max以下の数字を入力してください。',
         'file'    => ':attributeには、:max KB以下のファイルを指定してください。',
-        'string'  => ':attributeは、:max文字以下にしてください。',
+        'string'  => ':attributeは、:max文字以内にしてください。',
         'array'   => ':attributeの項目は、:max個以下にしてください。',
     ],
-    'mimes'                => ':attributeには、:valuesタイプのファイルを指定してください。',
+    'mimes'                => ':attributeには、:valuesでアップロードしてください。',
     'mimetypes'            => ':attributeには、:valuesタイプのファイルを指定してください。',
     'min'                  => [
         'numeric' => ':min以上の数字を入力してください。',
@@ -150,6 +150,8 @@ return [
     'attributes' => [
         'name' => 'お名前',
         'email' => 'メールアドレス',
-        'password' => 'パスワード'
+        'password' => 'パスワード',
+        'image' => '画像',
+        'comment' => '感想・コメント'
     ],
 ];

@@ -43,12 +43,19 @@
   margin-left: 10px;
 }
 
+.review-link {
+  width: 100%;
+  margin-top: 30px;
+}
+
 .review-link__button {
+  display: block;
+  width: 100%;
   background-color: #3560F6;
   color: white;
   text-decoration: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
 }
 
 .shop-detail {
@@ -65,7 +72,88 @@
   font-size: 18px;
 }
 
+/* 口コミ内容 */
+.review {
+  border-top: solid 2px #D2D2D2;
+  border-bottom: solid 2px #D2D2D2;
+  margin-top: 30px;
+  padding: 20px 0;
+}
+
+.review-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.review-edit__link {
+  color: black;
+  margin-right: 20px;
+}
+
+.review-delete__button {
+  border: none;
+  text-decoration: underline;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.review-stars {
+  position: relative;
+  width: 210px;
+  font-size: 40px;
+  display: inline-block;
+  color: #D2D2D2;
+}
+
+.review-stars::before,
+.review-stars::after {
+  content: '★★★★★';
+}
+
+.review-stars::after {
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #003FF5;
+}
+
+.review-stars[data-rate="5"]::after {
+  width: 100%;
+}
+
+.review-stars[data-rate="4"]::after {
+  width: 80%;
+}
+
+.review-stars[data-rate="3"]::after {
+  width: 60%;
+}
+
+.review-stars[data-rate="2"]::after {
+  width: 40%;
+}
+
+.review-stars[data-rate="1"]::after {
+  width: 20%;
+}
+
+.review-comment__text {
+  white-space: pre-wrap;
+}
+
 /* 予約 */
+.message {
+  color: red;
+  font-size: 20px;
+}
+
+.message-list {
+  list-style: none;
+}
+
 .content__shop-reservation {
   width: 45%;
 }
@@ -126,15 +214,6 @@
   color: white;
   cursor: pointer;
   padding: 10px;
-}
-
-.message {
-  color: red;
-  font-size: 20px;
-}
-
-.message-list {
-  list-style: none;
 }
 
 @media screen and (max-width: 768px) {

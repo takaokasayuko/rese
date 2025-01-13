@@ -14,7 +14,7 @@
       <select class="search__select" name="area">
         <option selected value="">All area</option>
         @foreach($areas as $area)
-        <option value="{{ $area }}" @if( request('area')==$area ) selected @endif>{{ $area }}</option>
+        <option value="{{ $area['name'] }}" @if( request('area')==$area['name'] ) selected @endif>{{ $area['name'] }}</option>
         @endforeach
       </select>
     </div>
@@ -23,7 +23,7 @@
       <select class="search__select" name="genre">
         <option selected value="">All genre</option>
         @foreach($genres as $genre)
-        <option value="{{ $genre['genre'] }}" @if( request('genre')==$genre['genre'] ) selected @endif>{{ $genre['genre'] }}</option>
+        <option value="{{ $genre['name'] }}" @if( request('genre')==$genre['name'] ) selected @endif>{{ $genre['name'] }}</option>
         @endforeach
       </select>
     </div>
@@ -41,9 +41,9 @@
   <div class="shop__list">
     <div class="shop__img">
       @if(str_starts_with($shop_favorite['shop']['image'], 'https://'))
-      <img src="{{ $shop_favorite['shop']['image'] }}" alt="">
+      <img src="{{ $shop_favorite['shop']['image'] }}" alt="店舗画像">
       @else
-      <img src="{{ Storage::url($shop_favorite['shop']['image']) }}" alt="">
+      <img src="{{ Storage::url($shop_favorite['shop']['image']) }}" alt="店舗画像">
       @endif
 
     </div>
@@ -58,8 +58,8 @@
       </div>
 
       <div class="shop__container-tag">
-        <p class="shop__container-tag--area">#{{ $shop_favorite['shop']['area'] }}</p>
-        <p class="shop__container-tag--genre">#{{ $shop_favorite['shop']['genre'] }}</p>
+        <p class="shop__container-tag--area">#{{ $shop_favorite['shop']->area->name }}</p>
+        <p class="shop__container-tag--genre">#{{ $shop_favorite['shop']->genre->name }}</p>
       </div>
       <div class="shop__container-foot">
         <div class="shop__container-foot--detail">

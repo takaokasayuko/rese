@@ -43,7 +43,8 @@ Route::middleware(['check.user', 'verified'])->group(function () {
     Route::get('/credit', [ReservationController::class, 'credit']);
     Route::post('/credit/store', [ReservationController::class, 'creditStore']);
 
-    Route::get('/review', [ReviewController::class, 'review']);
+    Route::get('/review/{shop_id}', [ReviewController::class, 'review'])->name('review.posting');
+    Route::post('/review', [ReviewController::class, 'create']);
 
 });
 
