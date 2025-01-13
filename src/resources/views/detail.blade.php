@@ -39,7 +39,7 @@
     <div class="review">
       <div class="review-button">
         <div class="review-edit">
-          <a class="review-edit__link" href="">口コミを編集</a>
+          <a class="review-edit__link" href="{{ route('review.edit', ['shop_id' => $shop['id']]) }}">口コミを編集</a>
         </div>
         <div class="review-delate">
           <form class="review-delete__form" action="/delete" method="post">

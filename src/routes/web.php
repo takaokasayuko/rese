@@ -45,6 +45,8 @@ Route::middleware(['check.user', 'verified'])->group(function () {
 
     Route::get('/review/{shop_id}', [ReviewController::class, 'review'])->name('review.posting');
     Route::post('/review', [ReviewController::class, 'create']);
+    Route::get('/review/edit/{shop_id}', [ReviewController::class, 'edit'])->name('review.edit');
+    Route::patch('/review/update', [ReviewController::class, 'update']);
 
 });
 
