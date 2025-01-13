@@ -118,7 +118,6 @@ class ShopController extends Controller
         if(empty($review)) {
             $review = [];
         }
-        // dd($review);
 
         return view('detail', compact('shop', 'times', 'people_num', 'review'));
     }
