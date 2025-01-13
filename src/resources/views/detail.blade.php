@@ -42,7 +42,8 @@
           <a class="review-edit__link" href="{{ route('review.edit', ['shop_id' => $shop['id']]) }}">口コミを編集</a>
         </div>
         <div class="review-delate">
-          <form class="review-delete__form" action="/delete" method="post">
+          <form class="review-delete__form" action="/review/delete" method="post">
+            <input type="hidden" name="id" value="{{ $review->id }}">
             @method('DELETE')
             @csrf
             <button class="review-delete__button">口コミを削除</button>

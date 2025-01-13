@@ -47,7 +47,7 @@ Route::middleware(['check.user', 'verified'])->group(function () {
     Route::post('/review', [ReviewController::class, 'create']);
     Route::get('/review/edit/{shop_id}', [ReviewController::class, 'edit'])->name('review.edit');
     Route::patch('/review/update', [ReviewController::class, 'update']);
-
+    Route::delete('/review/delete', [ReviewController::class, 'destroy']);
 });
 
 // 管理者

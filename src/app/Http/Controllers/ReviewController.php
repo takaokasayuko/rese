@@ -86,4 +86,16 @@ class ReviewController extends Controller
 
         return redirect()->route('shop.detail', ['shop_id' => $review->shop_id]);
     }
+
+    public function destroy(Request $request)
+    {
+        $user_id = Auth::id();
+        $review = Review::find($request->id);
+
+        if ($review['user_id'] === $user_id) {
+            Review::find($request->id)->delete();
+        }
+
+        return redirect()->route('shop.detail', ['shop_id' => $review->shop_id]);
+    }
 }
