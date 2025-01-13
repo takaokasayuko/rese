@@ -57,6 +57,15 @@
     </div>
 
     <div class="review-posting">
+
+      <div class="message">
+        <ul class="message__alert">
+          @foreach($errors->all() as $error)
+          <li class="message__item">{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+
       <form class="form-review" action="/review" method="post" enctype='multipart/form-data'>
         <input type="hidden" name="shop_id" value="{{ $shop->id }}">
         @csrf

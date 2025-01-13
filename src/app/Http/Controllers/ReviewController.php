@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ReviewPostingRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
 use App\Models\Favorite;
@@ -31,7 +32,7 @@ class ReviewController extends Controller
         return view('review-posting', compact('shop', 'favorite'));
     }
 
-    public function create(Request $request)
+    public function create(ReviewPostingRequest $request)
     {
         $user_id = Auth::id();
         $review = Review::where('user_id', $user_id)
