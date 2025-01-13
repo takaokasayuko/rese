@@ -26,9 +26,38 @@
     <div class="shop-detail">
       <p class="shop-detail__text">{{ $shop['detail'] }}</p>
     </div>
+
+    <div class="review-link">
+      <a class="review-link__button" href="{{ route('detail.review', ['shop_id' => $shop['id']]) }}">全ての口コミ情報</a>
+    </div>
+
+    @if(!$review)
     <div class="review-posting">
       <a class="review-posting__link" href="{{ route('review.posting', ['shop_id' => $shop['id']]) }}">口コミを投稿する</a>
     </div>
+    @else
+    <div class="review">
+      <div class="review-button">
+        <div class="review-edit">
+          <a class="review-edit__link" href="">口コミを編集</a>
+        </div>
+        <div class="review-delate">
+          <form class="review-delete__form" action="/delete" method="post">
+            @method('DELETE')
+            @csrf
+            <button class="review-delete__button">口コミを削除</button>
+          </form>
+        </div>
+      </div>
+      <div class="review__group">
+        <div class="review-stars" data-rate="{{ $review['stars'] }}"></div>
+        <div class="review-comment">
+          <p class="review-comment__text">{{ $review['comment'] }}</p>
+        </div>
+      </div>
+    </div>
+    @endif
+
 
   </div>
 

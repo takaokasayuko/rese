@@ -9,7 +9,7 @@ use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Favorite;
 use App\Models\Reservation;
-use App\Consts\PrefectureConst;
+use App\Models\Review;
 
 class ShopController extends Controller
 {
@@ -111,12 +111,23 @@ class ShopController extends Controller
         $times = $reservation->reservationOpeningHours();
         $people_num = $reservation->reservationPeopleNum();
 
-        return view('detail', compact('shop', 'times', 'people_num'));
+        $user_id = Auth::id();
+        $review = Review::where('user_id', $user_id)
+        ->where('shop_id', $shop->id)
+        ->first();
+        if(empty($review)) {
+            $review = [];
+        }
+        // dd($review);
+
+        return view('detail', compact('shop', 'times', 'people_num', 'review'));
     }
 
     public function detailReview($shop_id)
     {
-        $shop = Shop::find($shop_id);
+        $shop = Shop::where('id', $shop_id)
+        ->with('area', 'genre')
+        ->first();
         $reviews = Reservation::where('shop_id', $shop_id)
             ->whereNotnull('stars')
             ->latest('updated_at')
