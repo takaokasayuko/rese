@@ -45,7 +45,7 @@
 
 .review-link {
   width: 100%;
-  margin-top: 30px;
+  margin: 30px auto 0;
 }
 
 .review-link__button {
@@ -99,7 +99,7 @@
 
 .review-stars {
   position: relative;
-  width: 210px;
+  width: 206px;
   font-size: 40px;
   display: inline-block;
   color: #D2D2D2;
