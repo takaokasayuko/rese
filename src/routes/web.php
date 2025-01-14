@@ -57,6 +57,11 @@ Route::middleware(['check.admin', 'verified'])->group(
         Route::post('/admin/store', [AdminController::class, 'adminStore']);
         Route::get('/admin/email', [AdminController::class, 'mail']);
         Route::post('/admin/email/send', [AdminController::class, 'send']);
+
+        Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('shop.detail');
+        Route::get('/detail/review/{shop_id}', [ShopController::class, 'detailReview'])->name('detail.review');
+        Route::get('/review/{shop_id}', [ReviewController::class, 'review'])->name('review.posting');
+        Route::delete('/review/delete', [ReviewController::class, 'destroy']);
     });
 
 // 店舗管理者

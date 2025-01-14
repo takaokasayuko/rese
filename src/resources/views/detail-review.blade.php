@@ -63,19 +63,29 @@
 
     @foreach($reviews as $review)
 
-      <div class="review">
-        <div class="review-stars" data-rate="{{ $review['stars'] }}"> </div>
-
-          <p class="review-comment__text">{{ $review['comment'] }}</p>
+    <div class="review">
+      @if(auth()->user()->admin === 0)
+      <div class="review-button">
+        <form class="review-delete__form" action="/review/delete" method="post">
+          <input type="hidden" name="id" value="{{ $review->id }}">
+          @method('DELETE')
+          @csrf
+          <button class="review-delete__button">口コミを削除</button>
+        </form>
       </div>
-
-      @endforeach
-
-      @if($reviews)
-      {{ $reviews->links('vendor.pagination.bootstrap-4') }}
       @endif
+      <div class="review-stars" data-rate="{{ $review['stars'] }}"> </div>
+
+      <p class="review-comment__text">{{ $review['comment'] }}</p>
     </div>
 
+    @endforeach
+
+    @if($reviews)
+    {{ $reviews->links('vendor.pagination.bootstrap-4') }}
+    @endif
   </div>
 
-  @endsection
+</div>
+
+@endsection

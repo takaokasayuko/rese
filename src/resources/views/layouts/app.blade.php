@@ -43,7 +43,7 @@
 				@auth
 				<nav class="nav">
 					<ul class="header-nav">
-						@if(auth()->user()->admin === 2)
+						@if(auth()->user()->admin === 2 || auth()->user()->admin === 0)
 						<li class="header-nav__item">
 							<a class="header-nav__link" href="/">Home</a>
 						</li>

@@ -25,19 +25,14 @@ class ShopController extends Controller
             return view('auth.verify-email');
         }
 
-        // ユーザー
-        if (!$user || $user->admin === 2) {
+        // ユーザーと管理者
+        if (!$user || $user->admin === 2|| $user->admin === 0) {
             $shops = Shop::with('area', 'genre')
                 ->get();
             $areas = Area::all();
             $genres = Genre::all();
             $shop_favorites = $this->getShopStatus($shops);
             return view('index', compact('shop_favorites', 'areas', 'genres'));
-        }
-
-        // 管理者
-        if ($user->admin === 0) {
-            return redirect('/admin');
         }
 
         // 店舗代表者

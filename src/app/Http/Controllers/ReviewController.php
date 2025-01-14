@@ -89,10 +89,10 @@ class ReviewController extends Controller
 
     public function destroy(Request $request)
     {
-        $user_id = Auth::id();
+        $user = Auth::user();
         $review = Review::find($request->id);
 
-        if ($review['user_id'] === $user_id) {
+        if ($review['user_id'] === $user->id || $user['admin'] === 0) {
             Review::find($request->id)->delete();
         }
 
