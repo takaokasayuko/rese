@@ -113,9 +113,9 @@ class ShopController extends Controller
 
         $user_id = Auth::id();
         $review = Review::where('user_id', $user_id)
-        ->where('shop_id', $shop->id)
-        ->first();
-        if(empty($review)) {
+            ->where('shop_id', $shop->id)
+            ->first();
+        if (empty($review)) {
             $review = [];
         }
 
@@ -124,15 +124,27 @@ class ShopController extends Controller
 
     public function detailReview($shop_id)
     {
-        $shop = Shop::where('id', $shop_id)
-        ->with('area', 'genre')
-        ->first();
-        $reviews = Reservation::where('shop_id', $shop_id)
-            ->whereNotnull('stars')
-            ->latest('updated_at')
-            ->paginate(3);
+        $user_id = Auth::id();
+        $user_review = Review::where('user_id', $user_id)
+            ->where('shop_id', $shop_id)
+            ->first();
 
-        return view('detail-review', compact('shop', 'reviews'));
+        if ($user_review) {
+            $reviews = Review::where('shop_id', $shop_id)
+                ->whereNotIn('id', [$user_review['id']])
+                ->latest('updated_at')
+                ->paginate(3);
+        } else {
+            $reviews = Review::where('shop_id', $shop_id)
+                ->latest('updated_at')
+                ->paginate(3);
+        }
+
+        $shop = Shop::where('id', $shop_id)
+            ->with('area', 'genre')
+            ->first();
+
+        return view('detail-review', compact('shop', 'reviews', 'user_review'));
     }
 
     private function getShopStatus($shops)

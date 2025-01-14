@@ -25,25 +25,57 @@
     <div class="shop-detail">
       <p class="shop-detail__text">{{ $shop['detail'] }}</p>
     </div>
+
+    <!-- <div class="review-link">
+      <a class="review-link__button" href="{{ route('detail.review', ['shop_id' => $shop['id']]) }}">全ての口コミ情報</a>
+    </div> -->
+
+    @if(!$user_review)
+    <div class="review-posting">
+      <a class="review-posting__link" href="{{ route('review.posting', ['shop_id' => $shop['id']]) }}">口コミを投稿する</a>
+    </div>
+    @else
+    <div class="review">
+      <div class="review-button">
+        <div class="review-edit">
+          <a class="review-edit__link" href="{{ route('review.edit', ['shop_id' => $shop['id']]) }}">口コミを編集</a>
+        </div>
+        <div class="review-delate">
+          <form class="review-delete__form" action="/review/delete" method="post">
+            <input type="hidden" name="id" value="{{ $user_review->id }}">
+            @method('DELETE')
+            @csrf
+            <button class="review-delete__button">口コミを削除</button>
+          </form>
+        </div>
+      </div>
+      <div class="review__group">
+        <div class="review-stars" data-rate="{{ $user_review['stars'] }}"></div>
+        <div class="review-comment">
+          <p class="review-comment__text">{{ $user_review['comment'] }}</p>
+        </div>
+      </div>
+    </div>
+    @endif
   </div>
 
   <div class="content__review">
 
     @foreach($reviews as $review)
-    <div class="review-list">
-      <p class="review-nickname">{{ $review['nickname'] }}</p>
 
-      <p class="star-rate">
-        <span class="review-star" data-rate="{{ $review['stars'] }}"></span>
-        <span class="review-rate">({{ $review['stars'] }})</span>
-      </p>
-      <p class="post-date">[投稿日]{{ \Carbon\Carbon::parse($review['updated_at'])->toDateString() }}</p>
-      <p class="review-comment">{{ $review['comment'] }}</p>
+      <div class="review">
+        <div class="review-stars" data-rate="{{ $review['stars'] }}"> </div>
+
+          <p class="review-comment__text">{{ $review['comment'] }}</p>
+      </div>
+
+      @endforeach
+
+      @if($reviews)
+      {{ $reviews->links('vendor.pagination.bootstrap-4') }}
+      @endif
     </div>
-    @endforeach
-    {{ $reviews->links('vendor.pagination.bootstrap-4') }}
+
   </div>
 
-</div>
-
-@endsection
+  @endsection
