@@ -14,12 +14,12 @@ class ReviewController extends Controller
     public function review($shop_id)
     {
         $user = Auth::user();
-        $review = Review::where('user_id', $user->id)
-            ->where('shop_id', $shop_id)
-            ->exists();
-        if ($review) {
-            return redirect()->route('shop.detail', ['shop_id' => $shop_id]);
-        }
+        // $review = Review::where('user_id', $user->id)
+        //     ->where('shop_id', $shop_id)
+        //     ->exists();
+        // if ($review) {
+        //     return redirect()->route('shop.detail', ['shop_id' => $shop_id]);
+        // }
 
         $shop = Shop::where('id', $shop_id)
             ->with('area', 'genre')

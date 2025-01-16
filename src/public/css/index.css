@@ -1,5 +1,27 @@
 /* 検索 */
-.search-box {
+.search-sort {
+  position: fixed;
+  top: 25px;
+  right: 700px;
+  box-shadow: 2px 2px 2px #9C9C9C;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: white;
+  width: 150px;
+}
+
+.sort__select {
+  height: 30px;
+  width: 100%;
+  border: none;
+  margin-right: 5px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  padding: 0 7px;
+}
+
+.search-bar {
   position: fixed;
   top: 25px;
   right: 100px;
@@ -9,11 +31,7 @@
   background-color: white;
   width: 500px;
   flex-wrap: wrap;
-}
-
-.search-form {
   display: flex;
-  align-items: stretch;
 }
 
 .search__select {
@@ -23,6 +41,7 @@
   margin-right: 5px;
   border-right: solid 1px #9C9C9C;
   outline: none;
+  cursor: pointer;
 }
 
 .search__keyword-input {
@@ -47,6 +66,7 @@
   display: flex;
   flex-wrap: wrap;
   margin: 50px auto 0;
+  width: 80%;
 }
 
 .shop__list {
@@ -54,7 +74,8 @@
   background-color: white;
   box-shadow: 2px 2px 2px #9C9C9C;
   border-radius: 5px;
-  margin: 5px;
+  gap: 10px;
+  margin: 0 auto 10px;
 }
 
 .shop__img img {
@@ -209,6 +230,28 @@
     margin: 0 auto;
   }
 
+  .search-bar {
+    right: 10px;
+    width: 350px;
+  }
+
+  .search__select {
+    width: 70px;
+  }
+
+  .search__keyword-input {
+    width: 150px;
+  }
+
+  .search-sort {
+    right: 400px;
+    width: 145px;
+  }
+
+  select {
+    font-size: 12px;
+  }
+
   .shop__list {
     width: 48%;
   }
@@ -239,16 +282,38 @@
 }
 
 @media screen and (max-width: 480px) {
+  .search-sort {
+    top: 20px;
+    left: 200px;
+    width: 136px;
+  }
+
+  .search-bar {
+    top: 80px;
+    left: 10px;
+    width: 95%;
+  }
+
+  .search__select {
+    width: 70px;
+    font-size: 12px;
+  }
+
+  .search__keyword-input {
+    font-size: 12px;
+  }
+
+  /* 店舗リスト */
+  .content {
+    margin: 160px auto 0;
+  }
+
   .shop__list {
-    width: 70%;
+    width: 90%;
   }
 
   .shop-name {
     font-size: 30px;
   }
 
-  .review-rate {
-    font-size: 30px;
-    width: 153px;
-  }
 }
