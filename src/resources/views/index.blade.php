@@ -10,26 +10,37 @@
 <div class="search-box">
   <form class="search-form" action="/search" method="get">
 
-    <div class="search__area">
-      <select class="search__select" name="area">
-        <option selected value="">All area</option>
-        @foreach($areas as $area)
-        <option value="{{ $area['name'] }}" @if( request('area')==$area['name'] ) selected @endif>{{ $area['name'] }}</option>
-        @endforeach
+    <div class="search-sort">
+      <select class="sort__select" name="sort" id="sort">
+        <option value="" disabled selected>並び替え：評価高/低</option>
+        <option value="0">ランダム</option>
+        <option value="1">評価が高い順</option>
+        <option value="2">評価が低い順</option>
       </select>
     </div>
 
-    <div class="search__genre">
-      <select class="search__select" name="genre">
-        <option selected value="">All genre</option>
-        @foreach($genres as $genre)
-        <option value="{{ $genre['name'] }}" @if( request('genre')==$genre['name'] ) selected @endif>{{ $genre['name'] }}</option>
-        @endforeach
-      </select>
-    </div>
-    <input class="search__button-submit" type="submit" value="">
+    <div class="search-bar">
+      <div class="search__area">
+        <select class="search__select" name="area">
+          <option selected value="">All area</option>
+          @foreach($areas as $area)
+          <option value="{{ $area['name'] }}" @if( request('area')==$area['name'] ) selected @endif>{{ $area['name'] }}</option>
+          @endforeach
+        </select>
+      </div>
 
-    <input class="search__keyword-input" type="text" name="keyword" placeholder="Search …" value="{{ request('keyword') }}">
+      <div class="search__genre">
+        <select class="search__select" name="genre">
+          <option selected value="">All genre</option>
+          @foreach($genres as $genre)
+          <option value="{{ $genre['name'] }}" @if( request('genre')==$genre['name'] ) selected @endif>{{ $genre['name'] }}</option>
+          @endforeach
+        </select>
+      </div>
+      <input class="search__button-submit" type="submit" value="">
+
+      <input class="search__keyword-input" type="text" name="keyword" placeholder="Search …" value="{{ request('keyword') }}">
+    </div>
   </form>
 </div>
 @endsection
@@ -50,11 +61,6 @@
     <div class="shop__container">
       <div class="shop-tittle__group">
         <h2 class="shop-name">{{ $shop_favorite['shop']['name'] }}</h2>
-
-        <p class="shop-review">
-          <span class="review-rate" data-rate="{{ $shop_favorite['star'] }}"></span>
-          <span class="review-average">{{ $shop_favorite['average'] }}</span>
-        </p>
       </div>
 
       <div class="shop__container-tag">
