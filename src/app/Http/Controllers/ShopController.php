@@ -20,6 +20,7 @@ class ShopController extends Controller
 
     public function index()
     {
+
         $user = Auth::user();
         if ($user && !$user->email_verified_at) {
             return view('auth.verify-email');
@@ -31,7 +32,7 @@ class ShopController extends Controller
                 ->get();
             $areas = Area::all();
             $genres = Genre::all();
-            $shop_favorites = $this->getShopStatus($shops);
+            $shop_favorites = $this->getShopStatus($shops)->shuffle();
             return view('index', compact('shop_favorites', 'areas', 'genres'));
         }
 
@@ -46,8 +47,10 @@ class ShopController extends Controller
 
         $area = Area::where('name', $request->input('area'))->first();
         $genre = Genre::where('name', $request->input('genre'))->first();
-
         $keyword = $request->input('keyword');
+
+        $sort = $request->input('sort');
+
         $query = Shop::query();
 
         if (!empty($area)) {
@@ -65,7 +68,17 @@ class ShopController extends Controller
             });
         }
 
-        $shops = $query->get();
+        if($sort == 0) {
+        $shops = $query->withAvg('reviews', 'stars')
+            ->orderByDesc('reviews_avg_stars')->get();
+        } elseif($sort == 1) {
+            $shops = $query->withAvg('reviews', 'stars')
+            ->orderByRaw('case when reviews_avg_stars is null then 1 else 0 end')
+            ->orderBy('reviews_avg_stars')->get();
+        } else {
+            $shops = $query->get()->shuffle();
+        }
+
         $areas = Area::all();
         $genres = Genre::all();
 
@@ -156,23 +169,13 @@ class ShopController extends Controller
             $favorite = $favorite_status ? 'true' : 'false';
 
             // 星評価の平均
-            $review = Reservation::where('shop_id', $shop->id)
+            $review_avg = Review::where('shop_id', $shop->id)
                 ->avg('stars');
-            $review_avg = round($review, 1);
-            $review_int = floor($review_avg);
-            $review_decimal = $review_avg - $review_int;
-            if ($review_decimal < 0.5) {
-                $review_decimal = 0;
-            } else {
-                $review_decimal = 0.5;
-            }
-            $review_star = $review_int + $review_decimal;
 
             return [
                 'shop' => $shop,
                 'favorite' => $favorite,
-                'average' => number_format($review_avg, 1),
-                'star' => $review_star,
+                'average' => $review_avg,
             ];
         });
     }
