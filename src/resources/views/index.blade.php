@@ -13,9 +13,9 @@
     <div class="search-sort">
       <select class="sort__select" name="sort">
         <option value="" disabled selected>並び替え：評価高/低</option>
-        <option value="">ランダム</option>
-        <option value="0">評価が高い順</option>
-        <option value="1">評価が低い順</option>
+        <option value="0" @if( request('sort')=="0" ) selected @endif>ランダム</option>
+        <option value="1" @if( request('sort')==1 ) selected @endif>評価が高い順</option>
+        <option value="2" @if( request('sort')==2 ) selected @endif>評価が低い順</option>
       </select>
     </div>
 

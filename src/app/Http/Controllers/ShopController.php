@@ -68,16 +68,17 @@ class ShopController extends Controller
             });
         }
 
-        if($sort == 0) {
+        if($sort == 1) {
         $shops = $query->withAvg('reviews', 'stars')
             ->orderByDesc('reviews_avg_stars')->get();
-        } elseif($sort == 1) {
+        } elseif($sort == 2) {
             $shops = $query->withAvg('reviews', 'stars')
             ->orderByRaw('case when reviews_avg_stars is null then 1 else 0 end')
             ->orderBy('reviews_avg_stars')->get();
         } else {
             $shops = $query->get()->shuffle();
         }
+
 
         $areas = Area::all();
         $genres = Genre::all();
