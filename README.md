@@ -141,6 +141,8 @@ php artisan schedule:work
 
 ## CSVインポート
 
+- 管理者はCSVをインポートすることで、店舗情報を追加することができます。
+
 -  CSVファイルのA1に店舗名（name）、B1に地域（area_id）、C1にジャンル（genre_id）、D1  に画像URL（image）、E1に詳細（detail）と記入。
    その下の行に登録したい店舗情報をそれぞれ記入してください。
 
