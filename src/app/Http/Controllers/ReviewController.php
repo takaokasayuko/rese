@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ReviewPostingRequest;
+use App\Http\Requests\ReviewUpdateRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
 use App\Models\Favorite;
 use App\Models\Review;
+use Illuminate\Support\Facades\Storage;
 
 class ReviewController extends Controller
 {
@@ -64,17 +66,23 @@ class ReviewController extends Controller
         return view('review-update', compact('shop', 'favorite', 'review'));
     }
 
-    public function update(ReviewPostingRequest $request)
+    public function update(ReviewUpdateRequest $request)
     {
         $user_id = Auth::id();
         $review = Review::find($request->id);
+
+        if($request->hasFile('image')) {
+            $image_path = $request->file('image')->store('public/review');
+        } else {
+            $image_path = $review['image'];
+        }
 
         if ($review['user_id'] === $user_id) {
             Review::find($request->id)
                 ->update([
                     'stars' => $request->stars,
                     'comment' => $request->comment,
-                    'image' => $request->file('image')->store('public/review')
+                    'image' => $image_path
                 ]);
         }
 
