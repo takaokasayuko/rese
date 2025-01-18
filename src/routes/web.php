@@ -42,9 +42,10 @@ Route::middleware(['check.user', 'verified'])->group(function () {
 
     Route::get('/review/{shop_id}', [ReviewController::class, 'review'])->name('review.posting');
     Route::post('/review', [ReviewController::class, 'create']);
+
     Route::get('/review/edit/{shop_id}', [ReviewController::class, 'edit'])->name('review.edit');
     Route::patch('/review/update', [ReviewController::class, 'update']);
-    Route::delete('/review/delete', [ReviewController::class, 'destroy']);
+
 });
 
 // 管理者
@@ -57,9 +58,13 @@ Route::middleware(['check.admin', 'verified'])->group(
 
         Route::get('/admin/import', [AdminController::class, 'import']);
         Route::post('/admin/import/csv', [AdminController::class, 'csvImport']);
-
-        Route::delete('/review/delete', [ReviewController::class, 'destroy']);
     });
+
+Route::middleware(['check.admin_or_user', 'verified'])->group(
+    function () {
+        Route::delete('/review/delete', [ReviewController::class, 'destroy']);
+    }
+);
 
 // 店舗管理者
 Route::middleware(['check.owner', 'verified'])->group(
