@@ -1,0 +1,24 @@
+label {
+  display: block;
+}
+
+input {
+  display: block;
+}
+
+.import-button__submit {
+  margin-top: 50px;
+  background-color: #3560F6;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  width: 100px;
+}
+
+.error-message,
+.success-message {
+  color: red;
+}

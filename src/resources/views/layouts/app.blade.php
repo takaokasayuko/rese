@@ -62,6 +62,9 @@
             <li class="header-nav__item">
               <a class="header-nav__link" href="/admin/email">Mail</a>
             </li>
+            <li class="header-nav__item">
+              <a class="header-nav__link" href="/admin/import">CSV-Import</a>
+            </li>
             @endif
 
             @if(auth()->user()->admin === 1)

@@ -25,9 +25,6 @@ Route::middleware(['check.user', 'verified'])->group(function () {
     Route::post('/favorite/store', [ShopController::class, 'store']);
     Route::delete('/favorite/delete', [ShopController::class, 'destory']);
 
-    Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('shop.detail');
-    Route::get('/detail/review/{shop_id}', [ShopController::class, 'detailReview'])->name('detail.review');
-
     Route::post('/reservation/store', [ReservationController::class, 'store']);
     Route::delete('/reservation/delete', [ReservationController::class, 'destory']);
     Route::patch('/reservation/update', [ReservationController::class, 'update']);
@@ -58,10 +55,10 @@ Route::middleware(['check.admin', 'verified'])->group(
         Route::get('/admin/email', [AdminController::class, 'mail']);
         Route::post('/admin/email/send', [AdminController::class, 'send']);
 
-        // Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('shop.detail');
-        // Route::get('/detail/review/{shop_id}', [ShopController::class, 'detailReview'])->name('detail.review');
-        // Route::get('/review/{shop_id}', [ReviewController::class, 'review'])->name('review.posting');
-        // Route::delete('/review/delete', [ReviewController::class, 'destroy']);
+        Route::get('/admin/import', [AdminController::class, 'import']);
+        Route::post('/admin/import/csv', [AdminController::class, 'csvImport']);
+
+        Route::delete('/review/delete', [ReviewController::class, 'destroy']);
     });
 
 // 店舗管理者
@@ -80,6 +77,8 @@ Route::middleware(['check.owner', 'verified'])->group(
 // ゲスト
 Route::get('/', [ShopController::class, 'index']);
 Route::get('/search', [ShopController::class, 'search']);
+Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('shop.detail');
+Route::get('/detail/review/{shop_id}', [ShopController::class, 'detailReview'])->name('detail.review');
 Route::get('/confirmation/{reservation_id}', [ReservationController::class, 'confirmation'])->name('confirmation');
 
 

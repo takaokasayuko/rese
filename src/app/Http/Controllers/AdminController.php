@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AdminRegisterRequest;
 use App\Http\Requests\ShopRegisterRequest;
 use App\Http\Requests\PaymentRequest;
+use App\Http\Requests\CsvRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Area;
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminMail;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
 
 class AdminController extends Controller
 {
@@ -41,7 +45,7 @@ class AdminController extends Controller
     public function ownerRegister()
     {
         $areas = Area::all();
-        $genres = GenreConst::GENRES;
+        $genres = Genre::all();
 
         return view('admin.shop-registration', compact('areas', 'genres'));
     }
@@ -123,9 +127,9 @@ class AdminController extends Controller
     public function payment($reservation_id, Request $request)
     {
         $reservation = Reservation::where('id', $reservation_id)
-        ->with('reservationShop')
-        ->with('reservationUser')
-        ->first();
+            ->with('reservationShop')
+            ->with('reservationUser')
+            ->first();
 
         return view('admin.payment', compact('reservation'));
     }
@@ -149,10 +153,41 @@ class AdminController extends Controller
         ]);
 
         Reservation::find($request->id)
-        ->update([
-            'payment' => $amount,
-        ]);
+            ->update([
+                'payment' => $amount,
+            ]);
 
         return back();
+    }
+
+    public function import()
+    {
+        return view('admin.csv-import');
+    }
+
+    public function csvImport(CsvRequest $request)
+    {
+        $file = $request->file('csv');
+        $path = $file->getRealPath();
+        $fp = fopen($path, 'r');
+        $header = fgetcsv($fp);
+        while (($csv = fgetcsv($fp)) !== false) {
+            $this->InsertCsvData($csv);
+        }
+        fclose($fp);
+
+        return redirect('/admin/import')->with('message', '登録しました');
+    }
+
+    public function InsertCsvData($csv)
+    {
+        Shop::create([
+            'name' => $csv[0],
+            'area_id' => $csv[1],
+            'genre_id' => $csv[2],
+            'image' => $csv[3],
+            'detail' => $csv[4],
+        ]);
+
     }
 }
