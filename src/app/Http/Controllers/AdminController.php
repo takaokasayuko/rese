@@ -170,7 +170,7 @@ class AdminController extends Controller
         $file = $request->file('csv');
         $path = $file->getRealPath();
         $fp = fopen($path, 'r');
-        $header = fgetcsv($fp);
+        fgetcsv($fp);
         while (($csv = fgetcsv($fp)) !== false) {
             $this->InsertCsvData($csv);
         }
