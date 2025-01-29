@@ -157,6 +157,6 @@ return [
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'image' => '画像',
-        'comment' => '感想・コメント'
+        'comment' => '感想・コメント',
     ],
 ];

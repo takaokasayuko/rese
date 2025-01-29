@@ -16,9 +16,11 @@
     </div>
   </form>
   <div class="error-message">
-    @error('csv')
-    {{ $message }}
-    @enderror
+    <ul class="error-message__item">
+      @foreach ($errors->all() as $error)
+      <li class="error-message__list">{{ $error }}</li>
+      @endforeach
+    </ul>
   </div>
   <div class="success-message">
     {{ session('message') }}

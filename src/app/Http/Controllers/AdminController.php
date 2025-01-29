@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminMail;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
 
 class AdminController extends Controller
@@ -167,8 +165,9 @@ class AdminController extends Controller
 
     public function csvImport(CsvRequest $request)
     {
+
         $file = $request->file('csv');
-        $path = $file->getRealPath();
+        $path = $file->getPathname();
         $fp = fopen($path, 'r');
         fgetcsv($fp);
         while (($csv = fgetcsv($fp)) !== false) {
