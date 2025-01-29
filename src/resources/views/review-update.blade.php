@@ -88,10 +88,11 @@
 
         <div class="form__review-image">
           <label class="review-label" for="image">画像の追加</label>
+
+          <div class="review-image">
+            <img class="review-image_img" src="{{ Storage::url($review['image']) }}" alt="口コミ画像">
+          </div>
           <div class="review-image__group">
-            <div class="review-image">
-              <img class="review-image_img" src="{{ Storage::url($review['image']) }}" alt="口コミ画像">
-            </div>
             <label class="review-image__upload" for="image">
               クリックして写真を追加
               <span class="review-image__notes">またはドロッグアンドドロップ</span></label>

@@ -154,9 +154,7 @@
 .review-image__upload {
   display: block;
   width: 100%;
-  height: 150px;
   text-align: center;
-  background-color: white;
   cursor: pointer;
   padding-top: 70px;
 }
@@ -166,7 +164,20 @@
   font-size: 13px;
 }
 
-.review-image__input[type="file"] {
+.review-image__group {
+  width: 100%;
+  background-color: white;
+  padding-bottom: 20px;
+}
+
+.review-image__input {
+  display: block;
+  width: 100%;
+  margin: 20px auto;
+  padding-left: 38%;
+}
+
+.review-image__input[type="file"]::file-selector-button {
   display: none;
 }
 
@@ -238,5 +249,9 @@
 
   .review-stars__input {
     justify-content: center;
+  }
+
+  .review-image__input {
+    padding-left: 30%;
   }
 }

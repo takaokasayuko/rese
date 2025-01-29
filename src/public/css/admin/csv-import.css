@@ -22,3 +22,7 @@ input {
 .success-message {
   color: red;
 }
+
+.error-message__list {
+  list-style: none;
+}
