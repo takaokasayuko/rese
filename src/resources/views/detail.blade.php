@@ -55,6 +55,9 @@
         <div class="review-comment">
           <p class="review-comment__text">{{ $review['comment'] }}</p>
         </div>
+        <div class="review-image">
+          <img src="{{ Storage::url($review['image']) }}" alt="">
+        </div>
       </div>
     </div>
     @endif

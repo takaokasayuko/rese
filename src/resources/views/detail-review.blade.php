@@ -26,10 +26,6 @@
       <p class="shop-detail__text">{{ $shop['detail'] }}</p>
     </div>
 
-    <!-- <div class="review-link">
-      <a class="review-link__button" href="{{ route('detail.review', ['shop_id' => $shop['id']]) }}">全ての口コミ情報</a>
-    </div> -->
-
     @if(!$user_review)
     <div class="review-posting">
       <a class="review-posting__link" href="{{ route('review.posting', ['shop_id' => $shop['id']]) }}">口コミを投稿する</a>
@@ -54,6 +50,9 @@
         <div class="review-comment">
           <p class="review-comment__text">{{ $user_review['comment'] }}</p>
         </div>
+        <div class="review-image">
+          <img src="{{ Storage::url($user_review['image']) }}" alt="">
+        </div>
       </div>
     </div>
     @endif
@@ -64,6 +63,7 @@
     @foreach($reviews as $review)
 
     <div class="review">
+      @auth()
       @if(auth()->user()->admin === 0)
       <div class="review-button">
         <form class="review-delete__form" action="/review/delete" method="post">
@@ -74,9 +74,12 @@
         </form>
       </div>
       @endif
+      @endauth
       <div class="review-stars" data-rate="{{ $review['stars'] }}"> </div>
-
       <p class="review-comment__text">{{ $review['comment'] }}</p>
+      <div class="review-image">
+        <img src="{{ Storage::url($review['image']) }}" alt="">
+      </div>
     </div>
 
     @endforeach

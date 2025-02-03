@@ -90,7 +90,7 @@
           <label class="review-label" for="image">画像の追加</label>
 
           <div class="review-image">
-            <img class="review-image_img" src="{{ Storage::url($review['image']) }}" alt="口コミ画像">
+            <img src="{{ Storage::url($review['image']) }}" alt="口コミ画像">
           </div>
           <div class="review-image__group">
             <label class="review-image__upload" for="image">
