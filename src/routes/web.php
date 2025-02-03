@@ -60,6 +60,7 @@ Route::middleware(['check.admin', 'verified'])->group(
         Route::post('/admin/import/csv', [AdminController::class, 'csvImport']);
     });
 
+// 管理者とユーザー
 Route::middleware(['check.admin_or_user', 'verified'])->group(
     function () {
         Route::delete('/review/delete', [ReviewController::class, 'destroy']);
