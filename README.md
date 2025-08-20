@@ -14,6 +14,8 @@
 
 ![menu2](src/public/image/menu2.png)
 
+![予約](src/public/image/shop_detail.png)
+
 ![マイページ](src/public/image/my_page.png)
 
 ![予約確認](src/public/image/reservation-detail.png)
