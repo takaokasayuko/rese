@@ -1,7 +1,37 @@
 # Rese(リーズ)
 
 飲食店予約アプリ
+## ユーザー
 ![ホーム](src/public/image/shop_all.png)
+
+![ログイン](src/public/image/login.png)
+
+![会員登録](src/public/image/register.png)
+
+![会員登録サンクス](src/public/image/done.png)
+
+![menu1](src/public/image/menu1.png)
+
+![menu2](src/public/image/menu2.png)
+
+![マイページ](src/public/image/my_page.png)
+
+![予約確認](src/public/image/reservation-detail.png)
+
+![QRコード](src/public/image/QRcode.png)
+
+![クレジットカード](src/public/image/creditcard.png)
+
+## 店舗代表者
+![予約一覧](src/public/image/shop-reservation.png)
+
+![支払い確認](src/public/image/pay.png)
+
+![支払い](src/public/image/pay2.png)
+
+## 管理者
+![メール](src/public/image/mail.png)
+
 
 ## 作成した目的
 
@@ -22,12 +52,14 @@
 2. 飲食店お気に入り機能
 3. 飲食店予約登録・変更・削除
 4. 飲食店検索機能
-5. レビュー登録
+5. レビュー登録（星5評価、コメント、画像）
 6. 画像のストレージ保存
 7. 予約のリマインダー送信
 8. 全利用者へメール送信
 9. QR コード発行
 10. Stripe を利用した決済機能
+11. 飲食店一覧並び替え（評価の高/低、ランダム）
+12. CSVインポート
 
 ## 使用技術（実行環境）
 
